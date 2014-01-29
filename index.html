@@ -30,11 +30,10 @@ ob_start( 'ob_gzhandler' );
 <img src="themes/images/ajax-loader.gif" alt="[image]" style="max-width: 100%;" />
 </div>
 <script type="text/javascript">
-
          $(document).ready(function(){
             $.ajax({
                 type: "POST",
-                url: "http://www.schwitte.de/heiden/ajax.php",
+                url: "ajax.php",
                 data: "function=start",
                 success: function(data){
                     var json = $.parseJSON(data);
@@ -44,9 +43,8 @@ ob_start( 'ob_gzhandler' );
                     $("#pictures").html(json.pictures).trigger("create");
                 }
             });
-            document.getElementById('loading').style.visibility = 'visible';
-            alert("loaded");
          });
+         document.getElementById('loading').style.visibility = 'visible';
 </script>
 <!-- Start of first page -->
 <div data-role="page" id="Aktuelles" data-dom-cache="true"  data-ajax-dom-caching="true" >
