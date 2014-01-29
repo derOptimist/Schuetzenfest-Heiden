@@ -31,20 +31,30 @@ ob_start( 'ob_gzhandler' );
 </div>
 <script type="text/javascript">
          $(document).ready(function(){
+
+            
+            var url = 'http://www.schwitte.de/heiden/ajax.php'; // you'll want to change
             $.ajax({
-                type: "POST",
-                url: "http://www.schwitte.de/heiden/ajax.php",
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
                 crossDomain: true,
-                data: "function=start",
-                dataType   : 'json',
-                success: function(data){
-                    var json = $.parseJSON(data);
-                    start(json.datum_technisch);
-                    $("#output").html('<span style="color: #ff0000; font-weight: bold;">'+json.datum_anzeige+"</span><br/>"+json.mytext+'<br/>');
-                    $("#news").html(json.news).trigger("create");
-                    $("#pictures").html(json.pictures).trigger("create");
+                success: function(res) {
+                    start(res.datum_technisch);
+                    $("#output").html('<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>"+res.mytext+'<br/>');
+                    $("#news").html(res.news).trigger('create');
+                    $("#pictures").html(res.pictures);
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                    console.log(e.message);
                 }
             });
+            
          });
          document.getElementById('loading').style.visibility = 'visible';
 </script>
@@ -64,8 +74,8 @@ ob_start( 'ob_gzhandler' );
                 <div id="output"></div>
             </form>
             <b>Neuigkeiten:</b>
-           <div id="news" data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
-
+           <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+               <div id="news"></div>
            </div>
         </div>
     </div><!-- /content -->
