@@ -33,7 +33,7 @@ ob_start( 'ob_gzhandler' );
          $(document).ready(function(){
             $.ajax({
                 type: "POST",
-                url: "ajax.php",
+                url: "http://www.schwitte.de/ajax.php",
                 data: "function=start",
                 success: function(data){
                     var json = $.parseJSON(data);
