@@ -33,8 +33,10 @@ ob_start( 'ob_gzhandler' );
          $(document).ready(function(){
             $.ajax({
                 type: "POST",
-                url: "http://www.schwitte.de/ajax.php",
+                url: "http://www.schwitte.de/heiden/ajax.php",
+                crossDomain: true,
                 data: "function=start",
+                dataType   : 'json',
                 success: function(data){
                     var json = $.parseJSON(data);
                     start(json.datum_technisch);
