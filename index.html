@@ -1,6 +1,3 @@
-<?php
-ob_start( 'ob_gzhandler' );
-?>
 <!DOCTYPE html>
 <html manifest="cache.manifest">
 <head>
@@ -18,17 +15,14 @@ ob_start( 'ob_gzhandler' );
 <link rel="stylesheet" href="themes/test.min.css" />
 <link rel="stylesheet" href="themes/jquery.mobile.structure-1.3.1.min.css" /> 
 <!-- Start of Countdown -->
-<script type="text/javascript" src="js/libs/countdown.js">
-</script>
+<script type="text/javascript" src="js/libs/countdown.js"></script>
 <!-- End of Countdown -->
 <!-- Start of Homescreenbutton -->
 <script type="application/javascript" src="js/libs/add2home.js" charset="utf-8"></script>
 <!-- End of Homescreenbutton --> 
 </head>
 
-<div id="loading"  style="visibility=hidden">
-<img src="themes/images/ajax-loader.gif" alt="[image]" style="max-width: 100%;" />
-</div>
+
 <script type="text/javascript">
          $(document).ready(function(){
 
@@ -41,6 +35,9 @@ ob_start( 'ob_gzhandler' );
                 dataType: 'jsonp',
                 data: {},
                 crossDomain: true,
+                beforeSend: function(){
+                    $('.loading').show();
+                },
                 success: function(res) {
                     start(res.datum_technisch);
                     $("#output").html('<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>"+res.mytext+'<br/>');
@@ -51,7 +48,7 @@ ob_start( 'ob_gzhandler' );
                     console.log(e.message);
                 },
                 complete: function(data) {
-                    console.log(e.message);
+                    $('.loading').hide();
                 }
             });
             
