@@ -11,9 +11,9 @@
 <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
 <link rel="shortcut icon" href="images/background.png" />
 <script src="js/libs/jquery.min.js"></script> 
-<script src="js/libs/jquery.mobile-1.3.1.min.js"></script> 
+<script src="js/libs/jquery.mobile1.3.1.min.js"></script> 
 <link rel="stylesheet" href="themes/test.min.css" />
-<link rel="stylesheet" href="themes/jquery.mobile.structure-1.3.1.min.css" /> 
+<link rel="stylesheet" href="themes/jquery.mobile.structure1.3.1.min.css" /> 
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
 <!-- End of Countdown -->
@@ -67,6 +67,7 @@
                 success: function(res) {
                      console.log('Erfolgreich');
                      chat_refresh();
+                     document.getElementById("chat_text").value = "";
                      return false;
                 },
                 error: function(e) {
@@ -107,7 +108,7 @@
 <!-- Start of first page -->
 <div data-role="page" id="Aktuelles" data-dom-cache="true" data-ajax-dom-caching="true" >
     <div data-role="header">
-        <h1>Aktuelles msch</h1>
+        <h1>Aktuelles</h1>
     </div><!-- /header -->
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
@@ -148,23 +149,23 @@
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div data-role="collapsible">
                 <h3>Kaiserschie&szlig;en Samstag</h3>
-                <img src="images/Flyer_1a.jpg" alt="[image]" style="max-width: 100%;" /><br />
+                <img src="images/Flyer1a.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
             <div data-role="collapsible">
                 <h3>Kaiserschie&szlig;en Sonntag</h3>
-                <img src="images/Flyer_1b.jpg" alt="[image]" style="max-width: 100%;" /><br />
+                <img src="images/Flyer1b.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Samstag</h3>
-                <img src="images/Flyer_2a.jpg" alt="[image]" style="max-width: 100%;" /><br />
+                <img src="images/Flyer2a.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Sonntag</h3>
-                <img src="images/Flyer_2b.jpg" alt="[image]" style="max-width: 100%;" /><br />
+                <img src="images/Flyer2b.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Montag</h3>
-                <img src="images/Flyer_2c.jpg" alt="[image]" style="max-width: 100%;" /><br />
+                <img src="images/Flyer2c.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
         </div>
     </div><!-- /content -->
@@ -232,7 +233,10 @@
                        <td ><label>Name: </label></td>
                        <td ><input type="text" id="chat_user" name="text" required /></td>
                      </p></tr>
-                     <tr><td ><input type="submit" id="submit" value="Senden" /></td></tr>
+                     <tr><p>
+                        <td ><input type="submit" id="submit" value="Senden" /></td>
+                        <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
+                     </p></tr>
                   </table>
             </fieldset>
             </form>
