@@ -1,2 +1,0 @@
-Schuetzenfest-Heiden
-====================
