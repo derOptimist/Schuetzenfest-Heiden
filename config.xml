@@ -1,1 +1,22 @@
-<gap:plugin name="org.apache.cordova.dialogs" />
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.schuetzenfestheiden"
+    versionCode = "10" 
+    version     = "1.2.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Schützenfest Heiden</name>
+
+    <description>
+      Die inoffizielle App von Schützenfest Heiden
+    </description>
+
+    <author href="http://www.schwitte.de" email="phonegap@schwitte.de">
+      Maik Schwitte
+    </author>
+
+    <!-- We'll include the Barcode plugin as an example -->
+    <gap:plugin name="org.apache.cordova.dialogs" />
+</widget>
