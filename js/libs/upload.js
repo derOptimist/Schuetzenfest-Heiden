@@ -1,5 +1,9 @@
 // Once files have been selected
+<<<<<<< HEAD
+document.querySelector('#fileinput').addEventListener('change', function(event){
+=======
 document.querySelector('form input[type=file]').addEventListener('change', function(event){
+>>>>>>> 311622d8c565fde184dd59bc3ba47f474316cc69
 
 	// Read files
 	var files = event.target.files;
@@ -63,16 +67,27 @@ document.querySelector('form input[type=file]').addEventListener('change', funct
 									imageElement.classList.add('uploaded');
 									imageElement.style.backgroundImage = 'url('+xhr.responseText+')';
 
+<<<<<<< HEAD
+									alert("Erfolgreich hochgeladen. Die Bilder werden erst nach Freigabe des Administrators angezeigt");
+
+								} else {
+									alert("Fehler beim Hochladen.");
+=======
 									console.log('Image uploaded: '+xhr.responseText);
 
 								} else {
 									imageElement.parentNode.removeChild(imageElement);
+>>>>>>> 311622d8c565fde184dd59bc3ba47f474316cc69
 								}
 							}
 						}
 
 						// Start upload
+<<<<<<< HEAD
+						xhr.open('post', 'http://schwitte.de/heiden/upload/process.php', true);
+=======
 						xhr.open('post', 'http://www.schwitte.de/heiden/upload.php', true);
+>>>>>>> 311622d8c565fde184dd59bc3ba47f474316cc69
 						xhr.send(canvas.toDataURL('image/jpeg'));
 
 					}

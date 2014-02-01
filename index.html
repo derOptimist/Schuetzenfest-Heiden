@@ -1,0 +1,266 @@
+<!DOCTYPE html charset=utf-8>
+<html manifest="cache.manifest">
+<head>
+<title>Sch&uuml;tzenfest Heiden</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width; initial-scale=1">
+<meta name="date" content="2013-07-27T08:49:37+01:00">
+<meta http-equiv="expires" content="Sat, 17 Aug 2013 00:00:00 GMT">
+<link rel="stylesheet" href="themes/add2home.css">
+<link rel="apple-touch-icon" href="images/background.png"/>
+<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
+<link rel="shortcut icon" href="images/background.png" />
+<script src="js/libs/jquery.min.js"></script> 
+<script src="js/libs/jquery.mobile1.3.1.min.js"></script> 
+<link rel="stylesheet" href="themes/test.min.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.structure1.3.1.min.css" /> 
+<!-- Start of Countdown -->
+<script type="text/javascript" src="js/libs/countdown.js"></script>
+<!-- End of Countdown -->
+<!-- Start of Homescreenbutton -->
+<script type="application/javascript" src="js/libs/add2home.js" charset="utf-8"></script>
+<!-- End of Homescreenbutton --> 
+</head>
+
+<script type="text/javascript">
+         $(document).ready(function(){
+         $('.loading').show();
+            var url = 'http://www.schwitte.de/heiden/ajax.php';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                    start(res.datum_technisch);
+                    $("#output").html('<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>"+res.mytext+'<br/>').trigger('create');
+                    $("#news").html(res.news).trigger('create');
+                    console.log(res.news);
+                    $("#pictures").html(res.pictures).trigger('create');
+                    document.getElementById("chat_content").value = res.chat_content;
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                    $.mobile.loading('hide');
+                }
+            });
+         });
+         
+         
+         function chat_submit(){
+            var url = 'http://www.schwitte.de/heiden/chat_submit.php';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
+                crossDomain: true,
+                beforeSend: function(){
+                    $('.loading').show();
+                },
+                success: function(res) {
+                     console.log('Erfolgreich');
+                     chat_refresh();
+                     document.getElementById("chat_text").value = "";
+                     return false;
+                },
+                error: function(e) {
+                    console.log("Fehler");
+                },
+                complete: function(data) {
+                    $('.loading').hide();
+                }
+            });
+         };
+         
+         
+         function chat_refresh(){
+            var url = 'http://www.schwitte.de/heiden/chat_refresh.php';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: { },
+                crossDomain: true,
+                beforeSend: function(){
+                    $('.loading').show();
+                },
+                success: function(res) {
+                     document.getElementById("chat_content").value = res.chat_content;
+                     return false;
+                },
+                error: function(e) {
+                    console.log("Fehler");
+                },
+                complete: function(data) {
+                    $('.loading').hide();
+                }
+            });
+         };
+</script>
+<!-- Start of first page -->
+<div data-role="page" id="Aktuelles" data-dom-cache="true" data-ajax-dom-caching="true" >
+    <div data-role="header">
+        <h1>Aktuelles</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <p>
+               <b>N&auml;chster Termin:</b>
+            </p>
+            <form name="form1" action="">
+                <input type="hidden" name="time2" size="0" value="" /><input type="text" name="time" size="28" value=" " />
+                <div id="output"></div>
+            </form>
+            <b>Neuigkeiten:</b>
+           <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+               <div id="news"></div>
+           </div>
+        </div>
+    </div><!-- /content -->
+
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+        <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Aktuelles">Aktuelles</a></li>
+                <li><a href="#Festprogramm">Festprogramm</a></li>
+                <li><a href="#Galerie">Galerie</a></li>
+                <li><a href="#Chat">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+<!-- Start of second page -->
+<div data-role="page" id="Festprogramm" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header">
+        <h1>Festprogramm</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Samstag</h3>
+                <img src="images/Flyer2a.jpg" alt="[image]" style="max-width: 100%;" /><br />
+            </div>
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Sonntag</h3>
+                <img src="images/Flyer2b.jpg" alt="[image]" style="max-width: 100%;" /><br />
+            </div>
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Montag</h3>
+                <img src="images/Flyer2c.jpg" alt="[image]" style="max-width: 100%;" /><br />
+            </div>
+        </div>
+    </div><!-- /content -->
+
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+        <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Aktuelles">Aktuelles</a></li>
+                <li><a href="#Festprogramm">Festprogramm</a></li>
+                <li><a href="#Galerie">Galerie</a></li>
+                <li><a href="#Chat">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+
+<!-- Start of third page -->
+<div data-role="page" id="Galerie" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header">
+         <h1>Galerie</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <div class="slideshow">
+            
+<form>
+<input type="file" multiple />
+<div class="photos">
+</div>
+</form>
+<script src="js/libs/upload.js"></script> 
+               <div id="pictures"></div>
+               <form>
+                  <br><br><br>Bild hochladen
+                  <input type="file" id="fileinput" accept="text/*" multiple />
+                  <div class="photos">
+                  </div>
+               </form>
+
+               <script src="js/libs/upload.js"></script>
+            </div>
+        </div>
+    </div><!-- /content -->
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+        <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Aktuelles">Aktuelles</a></li>
+                <li><a href="#Festprogramm">Festprogramm</a></li>
+                <li><a href="#Galerie">Galerie</a></li>
+                <li><a href="#Chat">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+
+<!-- Start of fourth page -->
+<div data-role="page" id="Chat" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header">
+         <h1>Chat</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <form id="myform" action="javascript:chat_submit()" >
+            <fieldset>
+               <textarea id="chat_content" style="width:100%;height:100%" ></textarea>
+                  <table cellpadding="0" cellspacing="0"  frame="void" class="dfContactTable" style="width:300px">
+                     <tr ><p>
+                       <td ><label>Text: </label></td>
+                       <td ><input type="text" id="chat_text" name="text" required autofocus /></td>
+                     </p></tr>
+                     <tr ><p>
+                       <td ><label>Name: </label></td>
+                       <td ><input type="text" id="chat_user" name="text" required /></td>
+                     </p></tr>
+                     <tr><p>
+                        <td ><input type="submit" id="submit" value="Senden" /></td>
+                        <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
+                     </p></tr>
+                  </table>
+            </fieldset>
+            </form>
+        </div>
+    </div><!-- /content -->
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+        <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#Aktuelles">Aktuelles</a></li>
+                <li><a href="#Festprogramm">Festprogramm</a></li>
+                <li><a href="#Galerie">Galerie</a></li>
+                <li><a href="#Chat">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+</body>
