@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html charset=utf-8>
 <html manifest="cache.manifest">
 <head>
 <title>Sch&uuml;tzenfest Heiden</title>
@@ -39,6 +39,7 @@
                     start(res.datum_technisch);
                     $("#output").html('<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>"+res.mytext+'<br/>').trigger('create');
                     $("#news").html(res.news).trigger('create');
+                    console.log(res.news);
                     $("#pictures").html(res.pictures).trigger('create');
                     document.getElementById("chat_content").value = res.chat_content;
                 },
@@ -148,14 +149,6 @@
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div data-role="collapsible">
-                <h3>Kaiserschie&szlig;en Samstag</h3>
-                <img src="images/Flyer1a.jpg" alt="[image]" style="max-width: 100%;" /><br />
-            </div>
-            <div data-role="collapsible">
-                <h3>Kaiserschie&szlig;en Sonntag</h3>
-                <img src="images/Flyer1b.jpg" alt="[image]" style="max-width: 100%;" /><br />
-            </div>
-            <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Samstag</h3>
                 <img src="images/Flyer2a.jpg" alt="[image]" style="max-width: 100%;" /><br />
             </div>
@@ -194,6 +187,13 @@
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div class="slideshow">
+            
+<form>
+<input type="file" multiple />
+<div class="photos">
+</div>
+</form>
+<script src="js/libs/upload.js"></script> 
                <div id="pictures"></div>
             </div>
         </div>
