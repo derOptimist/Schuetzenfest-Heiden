@@ -17,6 +17,7 @@
       Maik Schwitte
     </author>
 
+    <icon src="icon.png" />
     <!-- Push Plugin -->
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>
