@@ -20,4 +20,5 @@
     <icon src="icon.png" />
     <!-- Push Plugin -->
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
+    <plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
 </widget>
