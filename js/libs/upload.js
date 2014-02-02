@@ -1,5 +1,5 @@
 // Once files have been selected
-document.querySelector('#fileinput').addEventListener('change', function(event){
+document.querySelector('form input[type=file]').addEventListener('change', function(event){
 
 	// Read files
 	var files = event.target.files;
@@ -9,8 +9,6 @@ document.querySelector('#fileinput').addEventListener('change', function(event){
 
 		// Ensure it's an image
 		if (files[i].type.match(/image.*/)) {
-
-         $("#pictures").html('Bild wird hochgeladen').trigger('create');
 
 			// Load image
 			var reader = new FileReader();
@@ -24,19 +22,29 @@ document.querySelector('#fileinput').addEventListener('change', function(event){
 					imageElement.innerHTML = '<span class="progress"><span></span></span>';
 					var progressElement = imageElement.querySelector('span.progress span');
 					progressElement.style.width = 0;
-					document.querySelector('#photos').appendChild(imageElement);
+					document.querySelector('form div.photos').appendChild(imageElement);
 
+               
+               //alert(image.width+'-'+image.height);               
+               
+               
+               
 					// Resize image
 					var canvas = document.createElement('canvas'),
 						max_size = 1200,
+
 						width = image.width,
 						height = image.height;
 					if (width > height) {
+               //Querformat
+               //alert('Querformat');
 						if (width > max_size) {
 							height *= max_size / width;
 							width = max_size;
 						}
 					} else {
+               //hochformat
+               //alert('hochformat');
 						if (height > max_size) {
 							width *= max_size / height;
 							height = max_size;
@@ -46,6 +54,19 @@ document.querySelector('#fileinput').addEventListener('change', function(event){
 					canvas.height = height;
 					canvas.getContext('2d').drawImage(image, 0, 0, width, height);
 
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
+               
 					// Upload image
 					var xhr = new XMLHttpRequest();
 					if (xhr.upload) {
@@ -64,13 +85,13 @@ document.querySelector('#fileinput').addEventListener('change', function(event){
 									imageElement.classList.remove('uploading');
 									imageElement.classList.add('uploaded');
 									imageElement.style.backgroundImage = 'url('+xhr.responseText+')';
-                           document.querySelector('#uploadprogress').value = 'Erfolgreich hochgeladen. Die Bilder werden erst nach Freigabe des Administrators angezeigt.';
+                           alert('Bild erfolgreich hochgeladen. Es ist erst nach Freigabe durch den Administrator sichtbar.');
+									console.log('Image uploaded: '+xhr.responseText);
 
-									alert("Erfolgreich hochgeladen. Die Bilder werden erst nach Freigabe des Administrators angezeigt");
 								} else {
-                        
-                           document.querySelector('#uploadprogress').value = 'Fehler beim Hochladen.';
-									alert("Fehler beim Hochladen.");
+									imageElement.parentNode.removeChild(imageElement);
+                           alert('Fehler beim Hochladen.');
+                           console.log('Error - Image uploading: '+xhr.responseText);
 								}
 							}
 						}

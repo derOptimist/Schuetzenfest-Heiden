@@ -13,6 +13,7 @@
 <script src="js/libs/jquery.min.js"></script> 
 <script src="js/libs/jquery.mobile1.3.1.min.js"></script> 
 <link rel="stylesheet" href="themes/test.min.css" />
+<link rel="stylesheet" href="themes/style.css" />
 <link rel="stylesheet" href="themes/jquery.mobile.structure1.3.1.min.css" /> 
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
@@ -189,14 +190,13 @@
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div class="slideshow">
                <div id="pictures"></div>
-               <form>
                   <br><br><br>Bild hochladen
-                  <input type="file" id="fileinput" accept="text/*" multiple />
-                  <div id="photos" class="photos">
-                     <div id="uploadprogress" class="photos">
-                     </div>
-                  </div>
-               </form>
+		<form>
+			<input type="file" multiple />
+			<div class="photos">
+
+			</div>
+		</form>
                <script src="js/libs/upload.js"></script>
             </div>
         </div>
@@ -226,7 +226,7 @@
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <form id="myform" action="javascript:chat_submit()" >
             <fieldset>
-               <textarea id="chat_content" style="width:100%;height:100%" ></textarea>
+
                   <table cellpadding="0" cellspacing="0"  frame="void" class="dfContactTable" style="width:300px">
                      <tr ><p>
                        <td ><label>Text: </label></td>
@@ -241,6 +241,7 @@
                         <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
                      </p></tr>
                   </table>
+               <textarea id="chat_content" style="width:100%;height:100%;resize: none;" ></textarea>
             </fieldset>
             </form>
         </div>
