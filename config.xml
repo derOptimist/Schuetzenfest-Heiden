@@ -17,6 +17,6 @@
       Maik Schwitte
     </author>
 
-    <!-- We'll include the Barcode plugin as an example -->
-    <gap:plugin name="org.apache.cordova.dialogs" />
+    <!-- Push Plugin -->
+    <gap:plugin name="com.phonegap.plugins.pushplugin" />
 </widget>

@@ -188,21 +188,15 @@
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div class="slideshow">
-            
-<form>
-<input type="file" multiple />
-<div class="photos">
-</div>
-</form>
-<script src="js/libs/upload.js"></script> 
                <div id="pictures"></div>
                <form>
                   <br><br><br>Bild hochladen
                   <input type="file" id="fileinput" accept="text/*" multiple />
-                  <div class="photos">
+                  <div id="photos" class="photos">
+                     <div id="uploadprogress" class="photos">
+                     </div>
                   </div>
                </form>
-
                <script src="js/libs/upload.js"></script>
             </div>
         </div>
