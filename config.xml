@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.schuetzenfestheiden"
@@ -18,6 +18,5 @@
     </author>
 
     <icon src="icon.png" />
-    <!-- Push Plugin -->
-   <feature name="http://api.phonegap.com/1.0/device" />
+
 </widget>
