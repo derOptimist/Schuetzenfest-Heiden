@@ -19,6 +19,5 @@
 
     <icon src="icon.png" />
     <!-- Push Plugin -->
-    <gap:plugin name="com.phonegap.plugins.pushplugin" />
-    <plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
+   <gap:plugin name="com.adobe.plugins.pushplugin" />
 </widget>
