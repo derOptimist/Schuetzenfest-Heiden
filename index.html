@@ -119,6 +119,56 @@
                 }
             });
          };
+         
+         
+         
+         
+         
+        //Test Foto uploads 
+         
+    function onDeviceReady() {
+            if(navigator.platform != 'android' && navigator.platform != 'Android')
+            {
+               alert('Funktion wird auf dieser PlatTform nicht ');
+            }
+
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhoto,
+                                    function(message) { alert('get picture failed'); },
+                                    { quality: 50, 
+                                    destinationType: navigator.camera.DestinationType.FILE_URI,
+                                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                    );
+
+    }
+
+    function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+        options.mimeType="text/plain";
+
+        var params = new Object();
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("http://some.server.com/upload.php"), win, fail, options);
+    }
+
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+         
+         
 </script>
 
 
@@ -212,8 +262,11 @@
 			<div class="photos">
 
 			</div>
-		</form>
+		</form>     
                <script src="js/libs/upload.js"></script>-->
+               
+               <input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>
+                     
             </div>
         </div> 
     </div><!-- /content-->
