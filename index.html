@@ -127,10 +127,8 @@
         //Test Foto uploads 
          
     function onDeviceReady() {
-            if(navigator.platform != 'android' && navigator.platform != 'Android')
-            {
-               alert('Funktion wird auf dieser PlatTform nicht ');
-            }
+
+            alert(navigator.platform);
 
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto,
