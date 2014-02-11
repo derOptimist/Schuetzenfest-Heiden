@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="themes/test.min.css" />
 <link rel="stylesheet" href="themes/style.css" />
 <link rel="stylesheet" href="themes/jquery.mobile.structure1.3.1.min.css" /> 
+<link rel="stylesheet" href="themes/div_table.css" /> 
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
 <!-- End of Countdown -->
@@ -52,6 +53,11 @@
                     $.mobile.loading('hide');
                 }
             });
+            
+            
+            set_gray("table_termine_samstag");
+            set_gray("table_termine_sonntag");
+            set_gray("table_termine_montag");
          });
          
          
@@ -167,6 +173,27 @@
     }
          
          
+   function set_gray(tablename) {
+      var tabelle = document.getElementById(tablename);
+      var trs = tabelle.getElementsByTagName("tr");
+                      
+      for(zeilenzaehler=0;zeilenzaehler<trs.length;zeilenzaehler++)
+      {
+         var x = document.getElementById(tablename).getElementsByTagName("td")[zeilenzaehler].innerHTML.substring(0,17);
+         var termin = new Date(x.substring(6, 10), x.substring(3, 5)-1, x.substring(0, 2), x.substring(11, 13), x.substring(14, 16));   
+         termin = termin.getTime();
+            
+         var jetzt = new Date();
+         jetzt = jetzt.getTime();
+
+         if(jetzt > termin)
+         {
+            var col=document.getElementById(tablename).getElementsByTagName("tr")[zeilenzaehler];
+            col.style.background="#C7C7C7";
+         }
+      }   
+   }   
+         
 </script>
 
 
@@ -183,7 +210,7 @@
                <b>N&auml;chster Termin:</b>
             </p>
             <form name="form1" action="">
-                <input type="hidden" name="time2" size="0" value="" /><input type="text" name="time" size="28" value=" " />
+                <input type="hidden" name="time2" size="0" value="" /><input type="text" name="time" size="28" value=" " readonly />
                 <div id="output"></div>
             </form>
             <b>Neuigkeiten:</b>
@@ -216,15 +243,58 @@
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Samstag</h3>
-                <img src="images/Flyer2a.jpg" alt="[image]" style="max-width: 100%;" /><br />
+
+               <div class="div_table">
+                  <table id="table_termine_samstag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Samstag (Unvollst&auml;ndig)</td>
+                     </tr>
+                     <tr><td>09.08.2014 18:00 Ank&uuml;ndigung des Sch&uuml;tzenfestes durch B&ouml;llersch&uuml;sse</td></tr>
+                     <tr><td>09.08.2014 18:45 Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>09.08.2014 19:30 &ouml;kumenischer Wortgottesdienst</td></tr>
+                     <tr><td>09.08.2014 20:15 Gefallenenehrung am Ehrenmal</td></tr>
+                     <tr><td>09.08.2014 20:45 Groﬂer Zapfenstreich im Vogelpark</td></tr>
+                     <tr><td>09.08.2014 21:30 Tanzabend im Festzelt</td></tr>
+                  </table>
+               </div>
+                
             </div>
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Sonntag</h3>
-                <img src="images/Flyer2b.jpg" alt="[image]" style="max-width: 100%;" /><br />
+
+               <div class="div_table">
+                  <table id="table_termine_sonntag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Sonntag (Unvollst&auml;ndig)</td>
+                     </tr>
+                     <tr><td>10.08.2014 09:30 Antreten im Festzelt am Sportzentrum zum Abholen der Majest&auml;ten</td></tr>
+                     <tr><td>10.08.2014 10:00 Fr&uuml;hshoppenkonzert im Festzelt</td></tr>
+                     <tr><td>10.08.2014 15:00 Antreten im Festzelt am Sportzentrum um Zumzug durch die Gemeinde</td></tr>
+                     <tr><td>10.08.2014 20:30 Thronball</td></tr>
+                  </table>
+               </div>
+                
             </div>
             <div data-role="collapsible">
                 <h3>Sch&uuml;tzenfest Montag</h3>
-                <img src="images/Flyer2c.jpg" alt="[image]" style="max-width: 100%;" /><br />
+
+               <div class="div_table">
+                  <table id="table_termine_montag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Montag (Unvollst&auml;ndig)</td>
+                     </tr>
+                     <tr><td>12.08.2014 09:30 Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>12.08.2014 09:45 Empfang am Rathaus</td></tr>
+                     <tr><td>12.08.2014 10:15 Traditionelle Festrede der kirchlichen oder politischen Gemeinde</td></tr>
+                     <tr><td>12.08.2014 10:30 Musikst&auml;ndchen am Haus St. Josef</td></tr>
+                     <tr><td>12.08.2014 11:00 Vogelschieﬂen im Elschatt</td></tr>
+                     <tr><td>12.08.2014 14:00 Abmarsch nach erfolgtem K&ouml;nigsschuss zum traditionellen S&auml;beltanz auf dem Maib&ouml;kenplatz (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>12.08.2014 17:00 Antreten im Festzelt am Sportzentrum zur Proklamation auf dem Sportgel&auml;nde (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>12.08.2014 17:30 Umzug durch die Gemeinde mit Umtrunk und Besuch beim K&ouml;nigshaus (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>12.08.2014 20:00 Kr&ouml;nungsball im Festzelt am Sportzentrum und Festausklang</td></tr>
+                  </table>
+               </div>
+                
             </div>
         </div>
     </div><!-- /content -->
@@ -263,7 +333,7 @@
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-               <input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>
+               <!--<input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>-->
                      
             </div>
         </div> 
@@ -308,7 +378,7 @@
                         <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
                      </p></tr>
                   </table>
-               <textarea id="chat_content" style="width:100%;height:100%;resize: none;" ></textarea>
+               <textarea id="chat_content" style="width:100%;height:100%;resize: none;" readonly ></textarea>
             </fieldset>
             </form>
         </div>
