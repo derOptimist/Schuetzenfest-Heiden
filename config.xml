@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.schuetzenfestheiden"
+    versionCode = "76" 
+    version     = "1.3.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Schützenfest Heiden</name>
+
+    <description>
+      Die inoffizielle App von Schützenfest Heiden
+    </description>
+
+    <author href="http://www.schwitte.de" email="phonegap@schwitte.de">
+      Maik Schwitte
+    </author>
+
+    <icon src="icon.png" />
+
+    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+
+</widget>
