@@ -134,7 +134,6 @@
          
     function onDeviceReady() {
 
-            alert(navigator.platform);
 
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto,
@@ -157,7 +156,7 @@
         options.params = params;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, encodeURI("http://some.server.com/upload.php"), win, fail, options);
+        ft.upload(imageURI, encodeURI("http://www.schwitte.de/heiden/upload.php"), win, fail, options);
     }
 
     function win(r) {
@@ -333,7 +332,7 @@
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-               <!--<input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>-->
+               <input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>
                      
             </div>
         </div> 
