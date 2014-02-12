@@ -133,7 +133,7 @@
         //Test Foto uploads 
          
     function onDeviceReady() {
-
+try {
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto,
                                     function(message) { alert('get picture failed'); },
@@ -141,8 +141,13 @@
                                     destinationType: navigator.camera.DestinationType.FILE_URI,
                                     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
                                     );
+                                    
+}catch (e) {
+alert("Fehler"+e);
     }
 
+}
+    
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
         options.fileKey="file";
@@ -330,7 +335,7 @@
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-               <input type="button" id="sendpic" value="sendpic6" onclick="onDeviceReady()" /></td>
+               <input type="button" id="sendpic" value="sendpic7" onclick="onDeviceReady()" /></td>
                   <a data-role="button" onClick="onDeviceReady();">Upload from Gallery</a> 
                      
             </div>
