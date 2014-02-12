@@ -134,7 +134,7 @@
          
     function onDeviceReady() {
 
-
+alert("1");
         // Retrieve image file location from specified source
         navigator.camera.getPicture(uploadPhoto,
                                     function(message) { alert('get picture failed'); },
@@ -142,7 +142,7 @@
                                     destinationType: navigator.camera.DestinationType.FILE_URI,
                                     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
                                     );
-
+alert("2");
     }
 
     function uploadPhoto(imageURI) {
@@ -332,7 +332,7 @@
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-               <input type="button" id="sendpic" value="sendpic" onclick="onDeviceReady()" /></td>
+               <input type="button" id="sendpic" value="sendpic2" onclick="onDeviceReady()" /></td>
                      
             </div>
         </div> 
