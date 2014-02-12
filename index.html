@@ -26,6 +26,12 @@
 </head>
 
 <script type="text/javascript">
+
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value 
+document.addEventListener("deviceready",onDeviceReady,false);
+
+
          $(document).ready(function(){
          $('.loading').show();
             var url = 'http://www.schwitte.de/heiden/ajax.php';
