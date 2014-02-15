@@ -28,13 +28,28 @@
 
 <script type="text/javascript">
 
-var pictureSource;   // picture source
-var destinationType; // sets the format of returned value 
-document.addEventListener("deviceready",onDeviceReady,false);
-function onDeviceReady() {
-    pictureSource=navigator.camera.PictureSourceType;
-    destinationType=navigator.camera.DestinationType;
-}
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+    var encodingType; // sets the format of returned value 
+
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        console.log("onDeviceReady");
+        pictureSource=navigator.camera.PictureSourceType;
+        console.log("onDeviceReady1");
+
+        destinationType=navigator.camera.DestinationType;
+        console.log("onDeviceReady2");
+        encodingType=navigator.camera.EncodingType;
+        
+        alert("onDeviceReady");
+
+    }
 
          $(document).ready(function(){
          $('.loading').show();
@@ -140,23 +155,36 @@ function onDeviceReady() {
          
          
          
-        //Test Foto uploads 
-        var destinationType; // sets the format of returned value 
-    function onDeviceReady() {
-try {
-        // Retrieve image file location from specified source
-        navigator.camera.getPicture(uploadPhoto,
-                                    function(message) { alert('get picture failed'); },
-                                    { quality: 50, 
-                                    destinationType: navigator.camera.DestinationType.FILE_URI,
-                                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                    );
+//          //Test Foto uploads 
+        // var destinationType; // sets the format of returned value 
+    // function onDeviceReady() {
+// try {
+        // // Retrieve image file location from specified source
+        // navigator.camera.getPicture(uploadPhoto,
+                                    // function(message) { alert('get picture failed'); },
+                                    // { quality: 50, 
+                                    // destinationType: navigator.camera.DestinationType.FILE_URI,
+                                    // sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                    // );
                                     
-}catch (e) {
-alert("Fehler"+e);
+// }catch (e) {
+// alert("Fehler"+e);
+    // }
+
+// }
+
+
+    // A button will call this function
+    //
+    function getPhoto() { 
+    alert("getPhoto1");
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
+        destinationType: destinationType.FILE_URI,encodingType:PNG,
+        sourceType: pictureSource.PHOTOLIBRARY });
+    alert("getPhoto1");
     }
 
-}
     
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
@@ -345,8 +373,8 @@ alert("Fehler"+e);
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-               <input type="button" id="sendpic" value="sendpic7" onclick="onDeviceReady()" /></td>
-                  <a data-role="button" onClick="onDeviceReady();">Upload from Gallery</a> 
+               <input type="button" id="sendpic" value="sendpic7" onclick="getPhoto()" /></td>
+                  <a data-role="button" onClick="getPhoto();">Upload from Gallery</a> 
                      
             </div>
         </div> 
