@@ -16,7 +16,7 @@
     <author href="http://www.schwitte.de" email="phonegap@schwitte.de">
       Maik Schwitte
     </author>
-<access origin="*" />
+
     <icon src="icon.png" />
 
 <gap:plugin name="org.apache.cordova.core.camera" />
