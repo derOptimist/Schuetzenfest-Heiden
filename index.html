@@ -52,6 +52,18 @@
     }
 
          $(document).ready(function(){
+         
+        console.log("onDeviceReady");
+        pictureSource=navigator.camera.PictureSourceType;
+        console.log("onDeviceReady1");
+
+        destinationType=navigator.camera.DestinationType;
+        console.log("onDeviceReady2");
+        encodingType=navigator.camera.EncodingType;
+        
+        alert("onDeviceReady");         
+         
+         
          $('.loading').show();
             var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
@@ -177,12 +189,16 @@
     // A button will call this function
     //
     function getPhoto() { 
-    alert("getPhoto1");
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
-        destinationType: destinationType.FILE_URI,encodingType:PNG,
-        sourceType: pictureSource.PHOTOLIBRARY });
-    alert("getPhoto1");
+    try {
+       alert("getPhoto1");
+         // Retrieve image file location from specified source
+         navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
+           destinationType: destinationType.FILE_URI,encodingType:PNG,
+           sourceType: pictureSource.PHOTOLIBRARY });
+       alert("getPhoto1");
+    }catch (e) {
+      alert("Fehler"+e);
+    }
     }
 
     
