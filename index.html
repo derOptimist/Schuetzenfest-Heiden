@@ -35,9 +35,7 @@
     var destinationType; // sets the format of returned value 
     var encodingType; // sets the format of returned value 
 
-    // Wait for PhoneGap to connect with the device
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
+
 
     // PhoneGap is ready to be used!
     //
@@ -68,6 +66,10 @@
              }catch (e) {
       alert("Fehler"+e);
     }
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+         
          
          $('.loading').show();
             var url = 'http://www.schwitte.de/heiden/ajax.php';
