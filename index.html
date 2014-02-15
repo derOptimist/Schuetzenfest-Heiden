@@ -65,7 +65,7 @@ try{
         
         alert("onDeviceReady");
 }catch (e) {
-alert("Fehler"+e);
+alert("Fehler beim Starten"+e);
     }
          
          
@@ -171,33 +171,25 @@ alert("Fehler"+e);
          
          
          
-//          //Test Foto uploads 
-        // var destinationType; // sets the format of returned value 
-    // function onDeviceReady() {
-// try {
-        // // Retrieve image file location from specified source
-        // navigator.camera.getPicture(uploadPhoto,
-                                    // function(message) { alert('get picture failed'); },
-                                    // { quality: 50, 
-                                    // destinationType: navigator.camera.DestinationType.FILE_URI,
-                                    // sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                    // );
+         //Test Foto uploads 
+
+    function getPhoto() {
+try {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(uploadPhoto,
+                                    function(message) { alert('get picture failed'); },
+                                    { quality: 50, 
+                                    destinationType: navigator.camera.DestinationType.FILE_URI,
+                                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                    );
                                     
-// }catch (e) {
-// alert("Fehler"+e);
-    // }
-
-// }
-
-
-    // A button will call this function
-    //
-    function getPhoto() { 
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
-        destinationType: destinationType.FILE_URI,encodingType:PNG,
-        sourceType: pictureSource.PHOTOLIBRARY });
+}catch (e) {
+alert("Fehler"+e);
     }
+
+}
+
+
 
     
     function uploadPhoto(imageURI) {
