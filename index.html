@@ -16,8 +16,12 @@
     // device APIs are available
     //
     function onDeviceReady() {
+    try {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
+    }catch (e) {
+      alert("Fehler beim Starten"+e);
+    }
     }
 
     // Called when a photo is successfully retrieved
@@ -63,26 +67,38 @@
     // A button will call this function
     //
     function capturePhoto() {
+    try{
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
+    }catch (e) {
+      alert("Fehler bei capturePhoto"+e);
+    }
     }
 
     // A button will call this function
     //
     function capturePhotoEdit() {
+    try{
       // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
         destinationType: destinationType.DATA_URL });
+    }catch (e) {
+      alert("Fehler bei capturePhoto"+e);
+    }
     }
 
     // A button will call this function
     //
     function getPhoto(source) {
+    try{
       // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
         destinationType: destinationType.FILE_URI,
         sourceType: source });
+    }catch (e) {
+      alert("Fehler bei capturePhoto"+e);
+    }
     }
 
     // Called if something bad happens.
