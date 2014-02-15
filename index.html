@@ -12,9 +12,6 @@
 <link rel="shortcut icon" href="images/background.png" />
 <script src="js/libs/jquery.min.js"></script> 
 <script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
-
-
-
 <link rel="stylesheet" href="themes/div_table.css" /> 
 <link rel="stylesheet" href="themes/style.css" />
 <link rel="stylesheet" href="themes/jquery.mobile.structure1.3.2.min.css" /> 
@@ -35,7 +32,9 @@
     var destinationType; // sets the format of returned value 
     var encodingType; // sets the format of returned value 
 
-
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
 
     // PhoneGap is ready to be used!
     //
@@ -53,7 +52,9 @@
     }
 
          $(document).ready(function(){
-         try {
+         $('.loading').show();
+try{
+
         console.log("onDeviceReady");
         pictureSource=navigator.camera.PictureSourceType;
         console.log("onDeviceReady1");
@@ -62,16 +63,12 @@
         console.log("onDeviceReady2");
         encodingType=navigator.camera.EncodingType;
         
-        alert("onDeviceReady");         
-             }catch (e) {
-      alert("Fehler"+e);
+        alert("onDeviceReady");
+}catch (e) {
+alert("Fehler"+e);
     }
-    // Wait for PhoneGap to connect with the device
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
          
          
-         $('.loading').show();
             var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
                 type: 'GET',
@@ -196,16 +193,10 @@
     // A button will call this function
     //
     function getPhoto() { 
-    try {
-       alert("getPhoto1");
-         // Retrieve image file location from specified source
-         navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
-           destinationType: destinationType.FILE_URI,encodingType:PNG,
-           sourceType: pictureSource.PHOTOLIBRARY });
-       alert("getPhoto1");
-    }catch (e) {
-      alert("Fehler"+e);
-    }
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 100, targetWidth: -1, targetHeight: -1 , 
+        destinationType: destinationType.FILE_URI,encodingType:PNG,
+        sourceType: pictureSource.PHOTOLIBRARY });
     }
 
     
