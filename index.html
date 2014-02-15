@@ -52,7 +52,7 @@
     }
 
          $(document).ready(function(){
-         
+         try {
         console.log("onDeviceReady");
         pictureSource=navigator.camera.PictureSourceType;
         console.log("onDeviceReady1");
@@ -62,7 +62,9 @@
         encodingType=navigator.camera.EncodingType;
         
         alert("onDeviceReady");         
-         
+             }catch (e) {
+      alert("Fehler"+e);
+    }
          
          $('.loading').show();
             var url = 'http://www.schwitte.de/heiden/ajax.php';
