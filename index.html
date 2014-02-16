@@ -29,25 +29,54 @@
 
 <script type="text/javascript">
 
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+    var encodingType; // sets the format of returned value 
 
-    document.addEventListener("deviceready", onDeviceReady(), true); 
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready", onDeviceReady(), true);
+
+    // PhoneGap is ready to be used!
+    //
     function onDeviceReady() {
-            // Retrieve image file location from specified source
-            try{
-            navigator.camera.getPicture(onSuccess,
-                                        function(message) { alert('get picture failed'); },
-                                        { quality: 50, 
-                                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                        );
-            }catch (e) {
-               alert("Fehler 0"+e);
-            }  
-    }
+    try{
+        console.log("onDeviceReady");
+        pictureSource=navigator.camera.PictureSourceType;
+        console.log("onDeviceReady1");
 
-       
+        destinationType=navigator.camera.DestinationType;
+        console.log("onDeviceReady2");
+        encodingType=navigator.camera.EncodingType;
+        
+        alert('Camera geladen');
+        }catch (e) {
+           alert("Fehler"+e);
+        }
+        
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
          $(document).ready(function(){
-            $('.loading').show();
+         $('.loading').show();
+         
+
+         
+         
             var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
                 type: 'GET',
@@ -147,6 +176,55 @@
          };
          
          
+         
+         
+         
+         //Test Foto uploads 
+         function getPhoto() {
+            try {
+               // Retrieve image file location from specified source
+               navigator.camera.getPicture(uploadPhoto,
+                                       function(message) { alert('get picture failed'); },
+                                       { quality: 50, 
+                                       destinationType: navigator.camera.DestinationType.FILE_URI,
+                                       sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                       );
+                                       
+            }catch (e) {
+               alert("Fehler"+e);
+            }
+         }
+
+
+
+    
+    function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+        options.mimeType="text/plain";
+
+        var params = new Object();
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("http://www.schwitte.de/heiden/upload.php"), win, fail, options);
+    }
+
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+         
+         
    function set_gray(tablename) {
       var tabelle = document.getElementById(tablename);
       var trs = tabelle.getElementsByTagName("tr");
@@ -167,79 +245,7 @@
          }
       }   
    }   
-
-   
-function onConfirm(buttonIndex) {
-  if(buttonIndex == 1) {
-    // User wants to make a photo using the camera
-    sourceType = Camera.PictureSourceType.CAMERA;
-    captureImage();
-  } else if (buttonIndex == 2) {
-    // User wants to select a photo from the gallery
-    sourceType = Camera.PictureSourceType.PHOTOLIBRARY;
-  } else {
-    // cancelled
-  }
-}
-
-function captureImage() {
-try{
-  navigator.camera.getPicture(
-    onSuccess,
-    onFail,
-    { quality:60,
-      allowEdit:true, // ignored by Android
-      destinationType:Camera.DestinationType.DATA_URL, //base64
-      encodingType:Camera.EncodingType.JPEG,
-      sourceType:Camera.PictureSourceType.PHOTOLIBRARY,
-      targetWidth:160,
-      targetHeight:160
-    }
-  );
-}catch (e) {
-   alert("Fehler 1"+e);
-}  
-  
-}
-
-function onSuccess(imageData) {
-try{
-  var theImage = "data:image/jpeg;base64,"+imageData;
- 
-  // immediately change the image in the view
-  clickedImage.src = theImage;
- 
- alert('Hurra');
-  // And now upload the photo to the server
-}catch (e) {
-   alert("Fehler 2"+e);
-}    
-}
-
-// function onSuccess(imageData) {
-  // var theImage = "data:image/jpeg;base64,"+imageData;
- 
-  // // immediately change the image in the view
-  // clickedImage.src = theImage;
- 
-  // $.mobile.loading('show'); // Show the spinner
-  // doPost(
-    // '/user/uploadphoto',
-    // {
-       // 'personid': getUser().personID,
-       // 'photo': imageData
-    // },
-    // function(data) {
-      // if (data.success) {
-        // alert('Saving photo succeeded');
-      // } else {
-        // alert('Saving photo failed');
-      // }
-      // $.mobile.loading('hide'); // Hide the spinner
-    // }
-  // );
-// }
-   
+         
 </script>
 
 <body>
@@ -379,7 +385,7 @@ try{
 		</form>     
                <script src="js/libs/upload.js"></script>-->
                
-                  <a data-role="button" onClick="captureImage();">Upload from Gallery1</a> 
+                  <a data-role="button" onClick="getPhoto();">Upload from Gallery2</a> 
                   <img src="" id="clickedImage" name="clickedImage" alt="Boris"><br>
             </div>
         </div> 
