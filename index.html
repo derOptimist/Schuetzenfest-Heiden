@@ -93,7 +93,7 @@ alert(imageURI);
     function getPhoto(source) {
     try{
       // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+      navigator.camera.getPicture(onPhotoURISuccess, onFail("Fehler"), { quality: 50,
         destinationType: destinationType.FILE_URI,
         sourceType: source });
     }catch (e) {
