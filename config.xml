@@ -20,6 +20,7 @@
     <icon src="icon.png" />
 
 <gap:plugin name="org.apache.cordova.core.camera" />
+<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 
 <feature name="http://api.phonegap.com/1.0/battery"/>
 <feature name="http://api.phonegap.com/1.0/camera"/>
@@ -41,6 +42,7 @@
     <feature name="Camera">
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
+    
     <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
     </feature>
