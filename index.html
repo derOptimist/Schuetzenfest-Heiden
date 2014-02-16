@@ -166,6 +166,7 @@ function onConfirm(buttonIndex) {
 }
 
 function captureImage() {
+try{
   navigator.camera.getPicture(
     onSuccess,
     onFail,
@@ -178,9 +179,14 @@ function captureImage() {
       targetHeight:160
     }
   );
+}catch (e) {
+   alert("Fehler 1"+e);
+}  
+  
 }
 
 function onSuccess(imageData) {
+try{
   var theImage = "data:image/jpeg;base64,"+imageData;
  
   // immediately change the image in the view
@@ -188,6 +194,9 @@ function onSuccess(imageData) {
  
  alert('Hurra');
   // And now upload the photo to the server
+}catch (e) {
+   alert("Fehler 2"+e);
+}    
 }
 
 // function onSuccess(imageData) {
