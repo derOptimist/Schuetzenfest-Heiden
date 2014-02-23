@@ -7,6 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="3.2.0" />
+<preference name="splashscreen" value="icon" />
     <name>Schützenfest Heiden</name>
 
     <description>
@@ -18,7 +19,7 @@
     </author>
     <icon src="icon.png" />
     
-
+<gap:plugin name="org.apache.cordova.splashscreen" />
 <gap:plugin name="org.apache.cordova.core.camera" />
 <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 
