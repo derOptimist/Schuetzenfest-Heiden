@@ -9,11 +9,11 @@
 <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
 <link rel="shortcut icon" href="images/background.png" />
 
-<script src="js/libs/jquery.min.js"></script> 
-<script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
+<script src="js/libs/jquery1.11.0.min.js"></script> 
+<script src="js/libs/jquery.mobile1.4.1.js"></script> 
 <link rel="stylesheet" href="themes/div_table.css" /> 
 <link rel="stylesheet" href="themes/style.css" />
-<link rel="stylesheet" href="themes/jquery.mobile.structure1.3.2.min.css" /> 
+<link rel="stylesheet" href="themes/jquery.mobile1.4.1.css" /> 
 <link rel="stylesheet" href="themes/test.css" />
 <link rel="stylesheet" href="themes/test.additional.css" />
 
@@ -252,7 +252,7 @@
 
 <!-- Start of first page -->
 <div data-role="page" id="Aktuelles" data-dom-cache="true" data-ajax-dom-caching="true" >
-    <div data-role="header">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <h1>Aktuelles</h1>
     </div><!-- /header -->
     <div data-role="content">
@@ -271,14 +271,14 @@
         </div>
     </div><!-- /content -->
 
-    <div data-role="footer" style="overflow:hidden;" data-position="fixed" style="background:#000000;">
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false" style="background:#000000;">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
-        <div data-role="navbar" data-iconpos="top">
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
             <ul>
                 <li><a href="#Aktuelles" data-icon="info" id="mytest1">Aktuelles</a></li>
-                <li><a href="#Festprogramm" data-icon="check">Festprogramm</a></li>
-                <li><a href="#Galerie" data-icon="grid">Galerie</a></li>
-                <li><a href="#Chat" data-icon="star">Chat</a></li>
+                <li><a href="#Festprogramm" data-icon="clock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="camera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="comment">Chat</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
@@ -287,7 +287,7 @@
 
 <!-- Start of second page -->
 <div data-role="page" id="Festprogramm" data-dom-cache="true"  data-ajax-dom-caching="true">
-    <div data-role="header">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <h1>Festprogramm</h1>
     </div><!-- /header -->
     <div data-role="content">
@@ -298,14 +298,14 @@
                <div class="div_table">
                   <table id="table_termine_samstag">
                      <tr>
-                        <td>Sch&uuml;tzenfest Samstag (Unvollst&auml;ndig)</td>
+                        <td>Sch&uuml;tzenfest Samstag</td>
                      </tr>
-                     <tr><td>09.08.2014 18:00 Ank&uuml;ndigung des Sch&uuml;tzenfestes durch B&ouml;llersch&uuml;sse</td></tr>
-                     <tr><td>09.08.2014 18:45 Antreten im Festzelt am Sportzentrum</td></tr>
-                     <tr><td>09.08.2014 19:30 &ouml;kumenischer Wortgottesdienst</td></tr>
-                     <tr><td>09.08.2014 20:15 Gefallenenehrung am Ehrenmal</td></tr>
-                     <tr><td>09.08.2014 20:45 Groﬂer Zapfenstreich im Vogelpark</td></tr>
-                     <tr><td>09.08.2014 21:30 Tanzabend im Festzelt</td></tr>
+                     <tr><td>09.08.2014 18:00<br>Ank&uuml;ndigung des Sch&uuml;tzenfestes durch B&ouml;llersch&uuml;sse</td></tr>
+                     <tr><td>09.08.2014 18:45<br>Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>09.08.2014 19:30<br>&ouml;kumenischer Wortgottesdienst</td></tr>
+                     <tr><td>09.08.2014 20:15<br>Gefallenenehrung am Ehrenmal</td></tr>
+                     <tr><td>09.08.2014 20:45<br>Groﬂer Zapfenstreich im Vogelpark</td></tr>
+                     <tr><td>09.08.2014 21:30<br>Tanzabend im Festzelt</td></tr>
                   </table>
                </div>
                 
@@ -318,10 +318,10 @@
                      <tr>
                         <td>Sch&uuml;tzenfest Sonntag (Unvollst&auml;ndig)</td>
                      </tr>
-                     <tr><td>10.08.2014 09:30 Antreten im Festzelt am Sportzentrum zum Abholen der Majest&auml;ten</td></tr>
-                     <tr><td>10.08.2014 10:00 Fr&uuml;hshoppenkonzert im Festzelt</td></tr>
-                     <tr><td>10.08.2014 15:00 Antreten im Festzelt am Sportzentrum um Zumzug durch die Gemeinde</td></tr>
-                     <tr><td>10.08.2014 20:30 Thronball</td></tr>
+                     <tr><td>10.08.2014 09:30<br>Antreten im Festzelt am Sportzentrum zum Abholen der Majest&auml;ten</td></tr>
+                     <tr><td>10.08.2014 10:00<br>Fr&uuml;hshoppenkonzert im Festzelt</td></tr>
+                     <tr><td>10.08.2014 15:00<br>Antreten im Festzelt am Sportzentrum um Zumzug durch die Gemeinde</td></tr>
+                     <tr><td>10.08.2014 20:30<br>Thronball</td></tr>
                   </table>
                </div>
                 
@@ -332,17 +332,17 @@
                <div class="div_table">
                   <table id="table_termine_montag">
                      <tr>
-                        <td>Sch&uuml;tzenfest Montag (Unvollst&auml;ndig)</td>
+                        <td>Sch&uuml;tzenfest Montag</td>
                      </tr>
-                     <tr><td>12.08.2014 09:30 Antreten im Festzelt am Sportzentrum</td></tr>
-                     <tr><td>12.08.2014 09:45 Empfang am Rathaus</td></tr>
-                     <tr><td>12.08.2014 10:15 Traditionelle Festrede der kirchlichen oder politischen Gemeinde</td></tr>
-                     <tr><td>12.08.2014 10:30 Musikst&auml;ndchen am Haus St. Josef</td></tr>
-                     <tr><td>12.08.2014 11:00 Vogelschieﬂen im Elschatt</td></tr>
-                     <tr><td>12.08.2014 14:00 Abmarsch nach erfolgtem K&ouml;nigsschuss zum traditionellen S&auml;beltanz auf dem Maib&ouml;kenplatz (Uhrzeit kann abweichen)</td></tr>
-                     <tr><td>12.08.2014 17:00 Antreten im Festzelt am Sportzentrum zur Proklamation auf dem Sportgel&auml;nde (Uhrzeit kann abweichen)</td></tr>
-                     <tr><td>12.08.2014 17:30 Umzug durch die Gemeinde mit Umtrunk und Besuch beim K&ouml;nigshaus (Uhrzeit kann abweichen)</td></tr>
-                     <tr><td>12.08.2014 20:00 Kr&ouml;nungsball im Festzelt am Sportzentrum und Festausklang</td></tr>
+                     <tr><td>11.08.2014 09:30<br>Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>11.08.2014 09:45<br>Empfang am Rathaus</td></tr>
+                     <tr><td>11.08.2014 10:15<br>Traditionelle Festrede der kirchlichen oder politischen Gemeinde</td></tr>
+                     <tr><td>11.08.2014 10:30<br>Musikst&auml;ndchen am Haus St. Josef</td></tr>
+                     <tr><td>11.08.2014 11:00<br>Vogelschieﬂen im Elschatt</td></tr>
+                     <tr><td>ca. 11.08.2014 14:00<br>Abmarsch nach erfolgtem K&ouml;nigsschuss zum traditionellen S&auml;beltanz auf dem Maib&ouml;kenplatz (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>ca. 11.08.2014 17:00<br>Antreten im Festzelt am Sportzentrum zur Proklamation auf dem Sportgel&auml;nde (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>ca. 11.08.2014 17:30<br>Umzug durch die Gemeinde mit Umtrunk und Besuch beim K&ouml;nigshaus (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>11.08.2014 20:00<br>Kr&ouml;nungsball im Festzelt am Sportzentrum und Festausklang</td></tr>
                   </table>
                </div>
                 
@@ -350,14 +350,14 @@
         </div>
     </div><!-- /content -->
 
-    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
-        <div data-role="navbar" data-iconpos="top">
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
             <ul>
                 <li><a href="#Aktuelles" data-icon="info">Aktuelles</a></li>
-                <li><a href="#Festprogramm" data-icon="check">Festprogramm</a></li>
-                <li><a href="#Galerie" data-icon="grid">Galerie</a></li>
-                <li><a href="#Chat" data-icon="star">Chat</a></li>
+                <li><a href="#Festprogramm" data-icon="clock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="camera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="comment">Chat</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
@@ -368,7 +368,7 @@
 
 <!-- Start of third page -->
 <div data-role="page" id="Galerie" data-dom-cache="true"  data-ajax-dom-caching="true">
-    <div data-role="header">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
          <h1>Galerie</h1>
     </div><!-- /header -->
     <div data-role="content">
@@ -389,14 +389,14 @@
             </div>
         </div> 
     </div><!-- /content-->
-    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
-        <div data-role="navbar" data-iconpos="top">
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
             <ul>
                 <li><a href="#Aktuelles" data-icon="info">Aktuelles</a></li>
-                <li><a href="#Festprogramm" data-icon="check">Festprogramm</a></li>
-                <li><a href="#Galerie" data-icon="grid">Galerie</a></li>
-                <li><a href="#Chat" data-icon="star">Chat</a></li>
+                <li><a href="#Festprogramm" data-icon="clock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="camera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="comment">Chat</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
@@ -407,7 +407,7 @@
 
 <!-- Start of fourth page -->
 <div data-role="page" id="Chat" data-dom-cache="true"  data-ajax-dom-caching="true">
-    <div data-role="header">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
          <h1>Chat</h1>
     </div><!-- /header -->
     <div data-role="content">
@@ -429,19 +429,19 @@
                         <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
                      </p></tr>
                   </table>
-               <textarea id="chat_content" style="width:100%;height:150px;resize: none;" readonly ></textarea>
+               <textarea id="chat_content" style="width:100%;" readonly ></textarea>
             </fieldset>
             </form>
         </div>
     </div><!-- /content -->
-    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
-        <div data-role="navbar" data-iconpos="top">
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
             <ul>
                 <li><a href="#Aktuelles" data-icon="info">Aktuelles</a></li>
-                <li><a href="#Festprogramm" data-icon="check">Festprogramm</a></li>
-                <li><a href="#Galerie" data-icon="grid">Galerie</a></li>
-                <li><a href="#Chat" data-icon="star">Chat</a></li>
+                <li><a href="#Festprogramm" data-icon="clock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="camera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="comment">Chat</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
