@@ -7,8 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="3.2.0" />
-<preference name="splashscreen" value="icon" />
-    <name>Schützenfest Heiden</name>
+    <name>Schützenfest Heiden2</name>
 
     <description>
       Die inoffizielle App von Schützenfest Heiden
@@ -19,16 +18,12 @@
     </author>
     <icon src="icon.png" />
     
-<gap:plugin name="org.apache.cordova.splashscreen" />
 <gap:plugin name="org.apache.cordova.core.camera" />
 <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 
-<feature name="http://api.phonegap.com/1.0/battery"/>
 <feature name="http://api.phonegap.com/1.0/camera"/>
-<feature name="http://api.phonegap.com/1.0/contacts"/>
 <feature name="http://api.phonegap.com/1.0/device" /> 
 <feature name="http://api.phonegap.com/1.0/file"/>
-<feature name="http://api.phonegap.com/1.0/geolocation"/>
 <feature name="http://api.phonegap.com/1.0/media"/>
 <feature name="http://api.phonegap.com/1.0/network"/>
 <feature name="http://api.phonegap.com/1.0/notification"/>
