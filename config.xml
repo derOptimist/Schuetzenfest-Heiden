@@ -6,8 +6,8 @@
     version     = "1.4.0" >
 
     <!-- versionCode is optional and Android only -->
-<preference name="phonegap-version" value="3.2.0" />
-    <name>Schützenfest Heiden2</name>
+<preference name="phonegap-version" value="3.3.0" />
+    <name>Schützenfest Heiden3</name>
 
     <description>
       Die inoffizielle App von Schützenfest Heiden
