@@ -7,7 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="3.3.0" />
-    <name>Schützenfest Heiden3</name>
+    <name>Schützenfest Heiden</name>
 
     <description>
       Die inoffizielle App von Schützenfest Heiden
