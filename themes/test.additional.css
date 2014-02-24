@@ -33,3 +33,30 @@ height: 500px !important;
 resize: none;
 overflow-y: scroll;
 }
+.ui-icon-myinfo {
+	background-color: #666666 !important/*{global-icon-color}*/;
+	background-color: rgba(0,0,0,.4) !important/*{global-icon-disc}*/;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	-webkit-border-radius: 1em !important;
+	border-radius: 1em !important;
+	background-image: url(images/icons-png/info-white.png);
+}
+.ui-icon-myclock {
+	background-color: #666666 !important/*{global-icon-color}*/;
+	background-color: rgba(0,0,0,.4) !important/*{global-icon-disc}*/;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	-webkit-border-radius: 1em !important;
+	border-radius: 1em !important;
+	background-image: url(images/icons-png/clock-white.png);
+}
+.ui-icon-mycamera {
+	background-color: #666666 !important/*{global-icon-color}*/;
+	background-color: rgba(0,0,0,.4) !important/*{global-icon-disc}*/;
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	-webkit-border-radius: 1em !important;
+	border-radius: 1em !important;
+	background-image: url(images/icons-png/camera-white.png);
+}
