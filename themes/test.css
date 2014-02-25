@@ -14,7 +14,7 @@
 /* A
 -----------------------------------------------------------------------------------------------------------*/
 .ui-bar-a {
-	border: 1px solid #000000 /*{a-bar-border}*/;
+	border: 0px solid #000000 /*{a-bar-border}*/;
 	background: #00a055 /*{a-bar-background-color}*/;
 	color: #ffffff /*{a-bar-color}*/;
 	font-weight: bold;
