@@ -27,48 +27,6 @@
 </head>
 
 <script type="text/javascript">
-
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value 
-    var encodingType; // sets the format of returned value 
-
-    // Wait for PhoneGap to connect with the device
-    //
-    document.addEventListener("deviceready", onDeviceReady(), true);
-
-    // PhoneGap is ready to be used!
-    //
-    function onDeviceReady() {
-    try{
-        console.log("onDeviceReady");
-        pictureSource=navigator.camera.PictureSourceType;
-        console.log("onDeviceReady1");
-
-        destinationType=navigator.camera.DestinationType;
-        console.log("onDeviceReady2");
-        encodingType=navigator.camera.EncodingType;
-        
-        //alert('Camera geladen');
-        }catch (e) {
-           //alert("Fehler"+e);
-        }
-        
-        }
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
          $(document).ready(function(){
          $('.loading').show();
@@ -107,6 +65,17 @@
             set_gray("table_termine_montag");
          });
          
+         
+         function photo_visible(){
+            if(picture_upload.style.visibility=='hidden')
+            {
+               picture_upload.style.visibility='visible'
+            }
+            else
+            {
+               picture_upload.style.visibility='hidden'
+            }
+         }
          
          function chat_submit(){
          
@@ -173,54 +142,7 @@
             });
          };
          
-         
-         
-         
-         
-         //Test Foto uploads 
-         function getPhoto() {
-            try {
-               // Retrieve image file location from specified source
-               navigator.camera.getPicture(uploadPhoto,
-                                       function(message) { alert('get picture failed'); },
-                                       { quality: 50, 
-                                       destinationType: navigator.camera.DestinationType.FILE_URI,
-                                       sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                       );
-                                       
-            }catch (e) {
-               //alert("Fehler"+e);
-            }
-         }
 
-
-
-    
-    function uploadPhoto(imageURI) {
-        var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
-        options.mimeType="text/plain";
-
-        var params = new Object();
-
-        options.params = params;
-
-        var ft = new FileTransfer();
-        ft.upload(imageURI, encodeURI("http://www.schwitte.de/heiden/upload.php"), win, fail, options);
-    }
-
-    function win(r) {
-        console.log("Code = " + r.responseCode);
-        console.log("Response = " + r.response);
-        console.log("Sent = " + r.bytesSent);
-    }
-
-    function fail(error) {
-        alert("An error has occurred: Code = " + error.code);
-        console.log("upload error source " + error.source);
-        console.log("upload error target " + error.target);
-    }
          
          
    function set_gray(tablename) {
@@ -373,22 +295,16 @@
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div class="slideshow">
+             
+
                <div id="pictures"></div>
-                  <!--<br><br><br>Bild hochladen
-		<form>
-			<input type="file" multiple />
-			<div class="photos">
+                  <!-- Hier werden Bilder per Ajax geladen-->
+            </div>
+            <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
+            <div id="picture_upload">
+               <iframe height="100%" width="280" src="http://www.schwitte.de/heiden/upload.html"> 
 
-			</div>
-		</form>     
-               <script src="js/libs/upload.js"></script>
-               
-                  <a data-role="button" id="bt_upload" name="bt_upload" onClick="getPhoto();">Upload from Gallery3</a> 
-                  <img src="" id="clickedImage" name="clickedImage" alt="Boris"><br>-->
-                  
-<iframe height="260" width="280" src="http://www.schwitte.de/heiden/upload.php" seamless> 
-
-</iframe>
+               </iframe>
             </div>
         </div> 
     </div><!-- /content-->
