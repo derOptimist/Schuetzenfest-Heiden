@@ -1,74 +1,452 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Capture Photo</title>
+<!DOCTYPE html charset=utf-8>
+<html manifest="cache.manifest">
+<head>
+<title>Sch&uuml;tzenfest Heiden</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=device-width; initial-scale=1">
+<link rel="stylesheet" href="themes/add2home.css">
+<link rel="apple-touch-icon" href="images/background.png"/>
+<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
+<link rel="shortcut icon" href="images/background.png" />
+
+<script src="js/libs/jquery1.7.1.min.js"></script> 
+<script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
+<link rel="stylesheet" href="themes/div_table.css" /> 
+<link rel="stylesheet" href="themes/style.css" />
+<link rel="stylesheet" href="themes/jquery.mobile.structure1.3.2.min.css" /> 
+<link rel="stylesheet" href="themes/test.css" />
+<link rel="stylesheet" href="themes/test.additional.css" />
 
 
-    <script type="text/javascript" charset="utf-8">
+<!-- Start of Countdown -->
+<script type="text/javascript" src="js/libs/countdown.js"></script>
+<!-- End of Countdown -->
+<!-- Start of Homescreenbutton -->
+<script type="application/javascript" src="js/libs/add2home.js" charset="utf-8"></script>
+<!-- End of Homescreenbutton --> 
+</head>
 
-//Camera Section
-// Wait for PhoneGap to load
-document.addEventListener("deviceready", onDeviceReady, true);
+<script type="text/javascript">
 
-// PhoneGap is ready
-function onDeviceReady() {
-alert("device ready");
-}
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+    var encodingType; // sets the format of returned value 
 
-// Called when capture operation is finished
-//
-function captureSuccess(mediaFiles) {    
-    uploadFile(mediaFiles[0]);
-}
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready", onDeviceReady(), true);
 
-// Called if something bad happens.
-//
-function captureError(error) {
-    var msg = 'An error occurred during capture: ' + error.code;
-    alert(msg);
-    navigator.notification.alert(msg, null, 'Uh oh!');
-}
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+    try{
+        console.log("onDeviceReady");
+        pictureSource=navigator.camera.PictureSourceType;
+        console.log("onDeviceReady1");
 
-// A button will call this function
-//
-function captureImage() {
-    // Launch device camera application,
-    // allowing user to capture only one image by {limit: 1}
-    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
-}
+        destinationType=navigator.camera.DestinationType;
+        console.log("onDeviceReady2");
+        encodingType=navigator.camera.EncodingType;
+        
+        //alert('Camera geladen');
+        }catch (e) {
+           //alert("Fehler"+e);
+        }
+        
+        }
 
-// Upload files to server
-function uploadFile(mediaFile) {
-    path = mediaFile.fullPath;
-    name = mediaFile.name;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         $(document).ready(function(){
+         $('.loading').show();
+         
+
+         
+            var url = 'http://www.schwitte.de/heiden/ajax.php';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                    start(res.datum_technisch);
+                    $("#news").html(res.news).trigger('create');
+                    $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');
+                    $("#pictures").html(res.pictures).trigger('create');
+                    document.getElementById("chat_content").value = res.chat_content;
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                    $.mobile.loading('hide');
+                }
+            });
+            
+            
+            set_gray("table_termine_samstag");
+            set_gray("table_termine_sonntag");
+            set_gray("table_termine_montag");
+         });
+         
+         
+         function chat_submit(){
+         
+            if(document.getElementById("chat_text").value == '')
+            {
+               alert('Bitte Text angeben');
+            }
+            else if(document.getElementById("chat_user").value == '')
+            {
+               alert('Bitte Namen angeben');
+            }
+            else
+            {
+               var url = 'http://www.schwitte.de/heiden/chat_submit.php';
+               $.ajax({
+                   type: 'GET',
+                   url: url,
+                   contentType: "application/json",
+                   dataType: 'jsonp',
+                   data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
+                   crossDomain: true,
+                   beforeSend: function(){
+                       $('.loading').show();
+                   },
+                   success: function(res) {
+                        console.log('Erfolgreich');
+                        chat_refresh();
+                        document.getElementById("chat_text").value = "";
+                        return false;
+                   },
+                   error: function(e) {
+                       console.log("Fehler");
+                   },
+                   complete: function(data) {
+                       $('.loading').hide();
+                   }
+               });
+            }
+         };
+         
+         
+         function chat_refresh(){
+            var url = 'http://www.schwitte.de/heiden/chat_refresh.php';
+            $.ajax({
+                type: 'GET',
+                url: url,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: { },
+                crossDomain: true,
+                beforeSend: function(){
+                    $('.loading').show();
+                },
+                success: function(res) {
+                     document.getElementById("chat_content").value = res.chat_content;
+                     return false;
+                },
+                error: function(e) {
+                    console.log("Fehler");
+                },
+                complete: function(data) {
+                    $('.loading').hide();
+                }
+            });
+         };
+         
+         
+         
+         
+         
+         //Test Foto uploads 
+         function getPhoto() {
+            try {
+               // Retrieve image file location from specified source
+               navigator.camera.getPicture(uploadPhoto,
+                                       function(message) { alert('get picture failed'); },
+                                       { quality: 50, 
+                                       destinationType: navigator.camera.DestinationType.FILE_URI,
+                                       sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                       );
+                                       
+            }catch (e) {
+               //alert("Fehler"+e);
+            }
+         }
+
+
+
     
-    var options = new FileUploadOptions();
-    options.fileKey="file";
-    options.fileName=mediaFile.name;
-    options.mimeType="image/jpeg";
+    function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1)+'.png';
+        options.mimeType="text/plain";
 
-    var params = new Object();
-    params.fullpath = path;
-    params.name = name;
+        var params = new Object();
 
-    options.params = params;
-    options.chunkedMode = false;
-    
-    var ft = new FileTransfer();
-    ft.upload( path, "http://www.schwitte.de/heiden/upload.php",
-        function(result) {
-			//upload successful            
-        },
-        function(error) {
-            //upload unsuccessful, error occured while upload. 
-        },
-        options
-        );
-}
-    </script>
-  </head>
-  <body>
-    <button onclick="captureImage();">Capture Photo</button> <br>
+        options.params = params;
 
-  </body>
-</html>
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("http://www.schwitte.de/heiden/upload.php"), win, fail, options);
+    }
+
+    function win(r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        alert("An error has occurred: Code = " + error.code);
+        console.log("upload error source " + error.source);
+        console.log("upload error target " + error.target);
+    }
+         
+         
+   function set_gray(tablename) {
+      var tabelle = document.getElementById(tablename);
+      var trs = tabelle.getElementsByTagName("tr");
+                      
+      for(zeilenzaehler=0;zeilenzaehler<trs.length;zeilenzaehler++)
+      {
+         var x = document.getElementById(tablename).getElementsByTagName("td")[zeilenzaehler].innerHTML.substring(0,17);
+         var termin = new Date(x.substring(6, 10), x.substring(3, 5)-1, x.substring(0, 2), x.substring(11, 13), x.substring(14, 16));   
+         termin = termin.getTime();
+            
+         var jetzt = new Date();
+         jetzt = jetzt.getTime();
+
+         if(jetzt > termin)
+         {
+            var col=document.getElementById(tablename).getElementsByTagName("tr")[zeilenzaehler];
+            col.style.background="#C7C7C7";
+         }
+      }   
+   }   
+         
+</script>
+
+<body>
+      
+
+<!-- Start of first page -->
+<div data-role="page" id="Aktuelles" data-dom-cache="true" data-ajax-dom-caching="true" >
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <h1>Aktuelles</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <p>
+               <b>N&auml;chster Termin:</b>
+            </p>
+            <form name="form1" action="">
+                <input type="hidden" name="time2" size="0" value="" /><input type="text" name="time" size="28" value=" " readonly />
+                <div id="output"></div>
+            </form>
+            <b>Neuigkeiten:</b>
+           <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+               <div id="news"></div>
+           </div>
+        </div>
+    </div><!-- /content -->
+
+    <div data-role="footer" style="overflow:hidden;">
+        <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
+            <ul>
+                <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
+                <li><a href="#Festprogramm" data-icon="myclock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="mycamera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="edit">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+<!-- Start of second page -->
+<div data-role="page" id="Festprogramm" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+        <h1>Festprogramm</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Samstag</h3>
+
+               <div class="div_table">
+                  <table id="table_termine_samstag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Samstag</td>
+                     </tr>
+                     <tr><td>09.08.2014 18:00<br>Ank&uuml;ndigung des Sch&uuml;tzenfestes durch B&ouml;llersch&uuml;sse</td></tr>
+                     <tr><td>09.08.2014 18:45<br>Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>09.08.2014 19:30<br>&ouml;kumenischer Wortgottesdienst</td></tr>
+                     <tr><td>09.08.2014 20:15<br>Gefallenenehrung am Ehrenmal</td></tr>
+                     <tr><td>09.08.2014 20:45<br>Großer Zapfenstreich im Vogelpark</td></tr>
+                     <tr><td>09.08.2014 21:30<br>Tanzabend im Festzelt</td></tr>
+                  </table>
+               </div>
+                
+            </div>
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Sonntag</h3>
+
+               <div class="div_table">
+                  <table id="table_termine_sonntag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Sonntag (Unvollst&auml;ndig)</td>
+                     </tr>
+                     <tr><td>10.08.2014 09:30<br>Antreten im Festzelt am Sportzentrum zum Abholen der Majest&auml;ten</td></tr>
+                     <tr><td>10.08.2014 10:00<br>Fr&uuml;hshoppenkonzert im Festzelt</td></tr>
+                     <tr><td>10.08.2014 15:00<br>Antreten im Festzelt am Sportzentrum um Zumzug durch die Gemeinde</td></tr>
+                     <tr><td>10.08.2014 20:30<br>Thronball</td></tr>
+                  </table>
+               </div>
+                
+            </div>
+            <div data-role="collapsible">
+                <h3>Sch&uuml;tzenfest Montag</h3>
+
+               <div class="div_table">
+                  <table id="table_termine_montag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Montag</td>
+                     </tr>
+                     <tr><td>11.08.2014 09:30<br>Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>11.08.2014 09:45<br>Empfang am Rathaus</td></tr>
+                     <tr><td>11.08.2014 10:15<br>Traditionelle Festrede der kirchlichen oder politischen Gemeinde</td></tr>
+                     <tr><td>11.08.2014 10:30<br>Musikst&auml;ndchen am Haus St. Josef</td></tr>
+                     <tr><td>11.08.2014 11:00<br>Vogelschießen im Elschatt</td></tr>
+                     <tr><td>ca. 11.08.2014 14:00<br>Abmarsch nach erfolgtem K&ouml;nigsschuss zum traditionellen S&auml;beltanz auf dem Maib&ouml;kenplatz (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>ca. 11.08.2014 17:00<br>Antreten im Festzelt am Sportzentrum zur Proklamation auf dem Sportgel&auml;nde (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>ca. 11.08.2014 17:30<br>Umzug durch die Gemeinde mit Umtrunk und Besuch beim K&ouml;nigshaus (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>11.08.2014 20:00<br>Kr&ouml;nungsball im Festzelt am Sportzentrum und Festausklang</td></tr>
+                  </table>
+               </div>
+                
+            </div>
+        </div>
+    </div><!-- /content -->
+
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
+        <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
+                <li><a href="#Festprogramm" data-icon="myclock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="mycamera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="edit">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+
+<!-- Start of third page -->
+<div data-role="page" id="Galerie" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+         <h1>Galerie</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <div class="slideshow">
+               <div id="pictures"></div>
+                  <!--<br><br><br>Bild hochladen
+		<form>
+			<input type="file" multiple />
+			<div class="photos">
+
+			</div>
+		</form>     
+               <script src="js/libs/upload.js"></script>
+               
+                  <a data-role="button" id="bt_upload" name="bt_upload" onClick="getPhoto();">Upload from Gallery3</a> 
+                  <img src="" id="clickedImage" name="clickedImage" alt="Boris"><br>-->
+                  
+<iframe height="260" width="280" src="http://www.schwitte.de/heiden/upload.php" seamless> 
+
+</iframe>
+            </div>
+        </div> 
+    </div><!-- /content-->
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
+        <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
+                <li><a href="#Festprogramm" data-icon="myclock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="mycamera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="edit">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+
+
+
+<!-- Start of fourth page -->
+<div data-role="page" id="Chat" data-dom-cache="true"  data-ajax-dom-caching="true">
+    <div data-role="header" data-position="fixed" data-tap-toggle="false">
+         <h1>Chat</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
+            <form id="myform" action="javascript:chat_submit()" >
+            <fieldset>
+
+                  <table cellpadding="0" cellspacing="0"  frame="void" class="dfContactTable" style="width:300px">
+                     <tr ><p>
+                       <td ><label>Text: </label></td>
+                       <td ><input type="text" id="chat_text" name="text" autofocus /></td>
+                     </p></tr>
+                     <tr ><p>
+                       <td ><label>Name: </label></td>
+                       <td ><input type="text" id="chat_user" name="text" /></td>
+                     </p></tr>
+                     <tr><p>
+                        <td ><input type="submit" id="submit" value="Senden" /></td>
+                        <td ><input type="button" id="refresh" value="Aktualisieren" onclick="chat_refresh()" /></td>
+                     </p></tr>
+                  </table>
+               <textarea id="chat_content" style="width:100%;" readonly ></textarea>
+            </fieldset>
+            </form>
+        </div>
+    </div><!-- /content -->
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
+        <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
+                <li><a href="#Festprogramm" data-icon="myclock">Festprogramm</a></li>
+                <li><a href="#Galerie" data-icon="mycamera">Galerie</a></li>
+                <li><a href="#Chat" data-icon="edit">Chat</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /footer -->
+</div><!-- /page -->
+</body>
