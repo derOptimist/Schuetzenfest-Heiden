@@ -3,100 +3,72 @@
   <head>
     <title>Capture Photo</title>
 
-    <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+
     <script type="text/javascript" charset="utf-8">
 
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value 
+//Camera Section
+// Wait for PhoneGap to load
+document.addEventListener("deviceready", onDeviceReady, true);
 
-    // Wait for PhoneGap to connect with the device
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
+// PhoneGap is ready
+function onDeviceReady() {
+alert("device ready");
+}
 
-    // PhoneGap is ready to be used!
-    //
-    function onDeviceReady() {
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-    }
+// Called when capture operation is finished
+//
+function captureSuccess(mediaFiles) {    
+    uploadFile(mediaFiles[0]);
+}
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64 encoded image data
-      // console.log(imageData);
+// Called if something bad happens.
+//
+function captureError(error) {
+    var msg = 'An error occurred during capture: ' + error.code;
+    alert(msg);
+    navigator.notification.alert(msg, null, 'Uh oh!');
+}
 
-      // Get image handle
-      //
-      var smallImage = document.getElementById('smallImage');
+// A button will call this function
+//
+function captureImage() {
+    // Launch device camera application,
+    // allowing user to capture only one image by {limit: 1}
+    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
+}
 
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
+// Upload files to server
+function uploadFile(mediaFile) {
+    path = mediaFile.fullPath;
+    name = mediaFile.name;
+    
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=mediaFile.name;
+    options.mimeType="image/jpeg";
 
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
+    var params = new Object();
+    params.fullpath = path;
+    params.name = name;
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      // console.log(imageURI);
-
-      // Get image handle
-      //
-      var largeImage = document.getElementById('largeImage');
-
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-
-    // A button will call this function
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
-    }
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true }); 
-    }
-
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
-    }
-
-    // Called if something bad happens.
-    // 
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
-
+    options.params = params;
+    options.chunkedMode = false;
+    
+    var ft = new FileTransfer();
+    ft.upload( path, "http://www.schwitte.de/heiden/upload.php",
+        function(result) {
+			//upload successful            
+        },
+        function(error) {
+            //upload unsuccessful, error occured while upload. 
+        },
+        options
+        );
+}
     </script>
   </head>
   <body>
-    <button onclick="capturePhoto();">Capture Photo</button> <br>
-    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-    <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
+    <button onclick="captureImage();">Capture Photo</button> <br>
+
   </body>
 </html>
