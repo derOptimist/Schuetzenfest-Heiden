@@ -17,6 +17,10 @@
 <link rel="stylesheet" href="themes/test.css" />
 <link rel="stylesheet" href="themes/test.additional.css" />
 
+  <!-- CSS for slideshow -->
+  <link rel="stylesheet" href="themes/slide.css">
+  <script src="js/libs/jquery.slides.min.js"></script>
+  <!-- End CSS for slideshow -->
 
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
@@ -30,9 +34,7 @@
         
          $(document).ready(function(){
          $('.loading').show();
-         
-
-         
+         picture_upload.style.visibility='hidden';
             var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
                 type: 'GET',
@@ -48,7 +50,18 @@
                     start(res.datum_technisch);
                     $("#news").html(res.news).trigger('create');
                     $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');
-                    $("#pictures").html(res.pictures).trigger('create');
+                    if(res.pictures != '<img src="http://www.schwitte.de/heiden/images/startseite.jpg" width="300px" />')
+                    {
+                        //Es wurden Bilder hochgeladen
+                        $("#pictures").html(res.pictures);
+                        slides.style.visibility='hidden';
+                        slides.style.height='0px';
+                    }
+                    else
+                    {
+                        //Es wurden keine Bilder hochgeladen
+                        pictures.style.visibility='hidden';
+                    }
                     document.getElementById("chat_content").value = res.chat_content;
                 },
                 error: function(e) {
@@ -56,6 +69,25 @@
                 },
                 complete: function(data) {
                     $.mobile.loading('hide');
+                    
+                    
+                    
+    $(function() {
+      $('#slides').slidesjs({
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        },
+    pagination: {
+      active: false,
+    }
+      });
+    });
+                    
+                    
+                    
                 }
             });
             
@@ -63,6 +95,10 @@
             set_gray("table_termine_samstag");
             set_gray("table_termine_sonntag");
             set_gray("table_termine_montag");
+            
+            
+
+            
          });
          
          
@@ -295,11 +331,200 @@
     <div data-role="content">
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <div class="slideshow">
-             
+                           <div id="pictures"></div>
+    <div id="slides">
+      <img src="images/gallerie/bild001.jpg">
+      <img src="images/gallerie/bild002.jpg">
+      <!-- <img src="images/gallerie/bild003.jpg">
+      <img src="images/gallerie/bild004.jpg">
+      <img src="images/gallerie/bild005.jpg">
+      <img src="images/gallerie/bild006.jpg">
+      <img src="images/gallerie/bild007.jpg">
+      <img src="images/gallerie/bild008.jpg">
+      <img src="images/gallerie/bild009.jpg">
+      <img src="images/gallerie/bild010.jpg">
+      <img src="images/gallerie/bild011.jpg">
+      <img src="images/gallerie/bild012.jpg">
+      <img src="images/gallerie/bild013.jpg">
+      <img src="images/gallerie/bild014.jpg">
+      <img src="images/gallerie/bild015.jpg">
+      <img src="images/gallerie/bild016.jpg">
+      <img src="images/gallerie/bild017.jpg">
+      <img src="images/gallerie/bild018.jpg">
+      <img src="images/gallerie/bild019.jpg">
+      <img src="images/gallerie/bild020.jpg">
+      <img src="images/gallerie/bild021.jpg">
+      <img src="images/gallerie/bild022.jpg">
+      <img src="images/gallerie/bild023.jpg">
+      <img src="images/gallerie/bild024.jpg">
+      <img src="images/gallerie/bild025.jpg">
+      <img src="images/gallerie/bild026.jpg">
+      <img src="images/gallerie/bild027.jpg">
+      <img src="images/gallerie/bild028.jpg">
+      <img src="images/gallerie/bild029.jpg">
+      <img src="images/gallerie/bild030.jpg">
+      <img src="images/gallerie/bild031.jpg">
+      <img src="images/gallerie/bild032.jpg">
+      <img src="images/gallerie/bild033.jpg">
+      <img src="images/gallerie/bild034.jpg">
+      <img src="images/gallerie/bild035.jpg">
+      <img src="images/gallerie/bild036.jpg">
+      <img src="images/gallerie/bild037.jpg">
+      <img src="images/gallerie/bild038.jpg">
+      <img src="images/gallerie/bild039.jpg">
+      <img src="images/gallerie/bild040.jpg">
+      <img src="images/gallerie/bild041.jpg">
+      <img src="images/gallerie/bild042.jpg">
+      <img src="images/gallerie/bild043.jpg">
+      <img src="images/gallerie/bild044.jpg">
+      <img src="images/gallerie/bild045.jpg">
+      <img src="images/gallerie/bild046.jpg">
+      <img src="images/gallerie/bild047.jpg">
+      <img src="images/gallerie/bild048.jpg">
+      <img src="images/gallerie/bild049.jpg">
+      <img src="images/gallerie/bild050.jpg">
+      <img src="images/gallerie/bild051.jpg">
+      <img src="images/gallerie/bild052.jpg">
+      <img src="images/gallerie/bild053.jpg">
+      <img src="images/gallerie/bild054.jpg">
+      <img src="images/gallerie/bild055.jpg">
+      <img src="images/gallerie/bild056.jpg">
+      <img src="images/gallerie/bild057.jpg">
+      <img src="images/gallerie/bild058.jpg">
+      <img src="images/gallerie/bild059.jpg">
+      <img src="images/gallerie/bild060.jpg">
+      <img src="images/gallerie/bild061.jpg">
+      <img src="images/gallerie/bild062.jpg">
+      <img src="images/gallerie/bild063.jpg">
+      <img src="images/gallerie/bild064.jpg">
+      <img src="images/gallerie/bild065.jpg">
+      <img src="images/gallerie/bild066.jpg">
+      <img src="images/gallerie/bild067.jpg">
+      <img src="images/gallerie/bild068.jpg">
+      <img src="images/gallerie/bild069.jpg">
+      <img src="images/gallerie/bild070.jpg">
+      <img src="images/gallerie/bild071.jpg">
+      <img src="images/gallerie/bild072.jpg">
+      <img src="images/gallerie/bild073.jpg">
+      <img src="images/gallerie/bild074.jpg">
+      <img src="images/gallerie/bild075.jpg">
+      <img src="images/gallerie/bild076.jpg">
+      <img src="images/gallerie/bild077.jpg">
+      <img src="images/gallerie/bild078.jpg">
+      <img src="images/gallerie/bild079.jpg">
+      <img src="images/gallerie/bild080.jpg">
+      <img src="images/gallerie/bild081.jpg">
+      <img src="images/gallerie/bild082.jpg">
+      <img src="images/gallerie/bild083.jpg">
+      <img src="images/gallerie/bild084.jpg">
+      <img src="images/gallerie/bild085.jpg">
+      <img src="images/gallerie/bild086.jpg">
+      <img src="images/gallerie/bild087.jpg">
+      <img src="images/gallerie/bild088.jpg">
+      <img src="images/gallerie/bild089.jpg">
+      <img src="images/gallerie/bild090.jpg">
+      <img src="images/gallerie/bild091.jpg">
+      <img src="images/gallerie/bild092.jpg">
+      <img src="images/gallerie/bild093.jpg">
+      <img src="images/gallerie/bild094.jpg">
+      <img src="images/gallerie/bild095.jpg">
+      <img src="images/gallerie/bild096.jpg">
+      <img src="images/gallerie/bild097.jpg">
+      <img src="images/gallerie/bild098.jpg">
+      <img src="images/gallerie/bild099.jpg">
+      <img src="images/gallerie/bild100.jpg">
+      <img src="images/gallerie/bild101.jpg">
+      <img src="images/gallerie/bild102.jpg">
+      <img src="images/gallerie/bild103.jpg">
+      <img src="images/gallerie/bild104.jpg">
+      <img src="images/gallerie/bild105.jpg">
+      <img src="images/gallerie/bild106.jpg">
+      <img src="images/gallerie/bild107.jpg">
+      <img src="images/gallerie/bild108.jpg">
+      <img src="images/gallerie/bild109.jpg">
+      <img src="images/gallerie/bild110.jpg">
+      <img src="images/gallerie/bild111.jpg">
+      <img src="images/gallerie/bild112.jpg">
+      <img src="images/gallerie/bild113.jpg">
+      <img src="images/gallerie/bild114.jpg">
+      <img src="images/gallerie/bild115.jpg">
+      <img src="images/gallerie/bild116.jpg">
+      <img src="images/gallerie/bild117.jpg">
+      <img src="images/gallerie/bild118.jpg">
+      <img src="images/gallerie/bild119.jpg">
+      <img src="images/gallerie/bild120.jpg">
+      <img src="images/gallerie/bild121.jpg">
+      <img src="images/gallerie/bild122.jpg">
+      <img src="images/gallerie/bild123.jpg">
+      <img src="images/gallerie/bild124.jpg">
+      <img src="images/gallerie/bild125.jpg">
+      <img src="images/gallerie/bild126.jpg">
+      <img src="images/gallerie/bild127.jpg">
+      <img src="images/gallerie/bild128.jpg">
+      <img src="images/gallerie/bild129.jpg">
+      <img src="images/gallerie/bild130.jpg">
+      <img src="images/gallerie/bild131.jpg">
+      <img src="images/gallerie/bild132.jpg">
+      <img src="images/gallerie/bild133.jpg">
+      <img src="images/gallerie/bild134.jpg">
+      <img src="images/gallerie/bild135.jpg">
+      <img src="images/gallerie/bild136.jpg">
+      <img src="images/gallerie/bild137.jpg">
+      <img src="images/gallerie/bild138.jpg">
+      <img src="images/gallerie/bild139.jpg">
+      <img src="images/gallerie/bild140.jpg">
+      <img src="images/gallerie/bild141.jpg">
+      <img src="images/gallerie/bild142.jpg">
+      <img src="images/gallerie/bild143.jpg">
+      <img src="images/gallerie/bild144.jpg">
+      <img src="images/gallerie/bild145.jpg">
+      <img src="images/gallerie/bild146.jpg">
+      <img src="images/gallerie/bild147.jpg">
+      <img src="images/gallerie/bild148.jpg">
+      <img src="images/gallerie/bild149.jpg">
+      <img src="images/gallerie/bild150.jpg">
+      <img src="images/gallerie/bild151.jpg">
+      <img src="images/gallerie/bild152.jpg">
+      <img src="images/gallerie/bild153.jpg">
+      <img src="images/gallerie/bild154.jpg">
+      <img src="images/gallerie/bild155.jpg">
+      <img src="images/gallerie/bild156.jpg">
+      <img src="images/gallerie/bild157.jpg">
+      <img src="images/gallerie/bild158.jpg">
+      <img src="images/gallerie/bild159.jpg">
+      <img src="images/gallerie/bild160.jpg">
+      <img src="images/gallerie/bild161.jpg">
+      <img src="images/gallerie/bild162.jpg">
+      <img src="images/gallerie/bild163.jpg">
+      <img src="images/gallerie/bild164.jpg">
+      <img src="images/gallerie/bild165.jpg">
+      <img src="images/gallerie/bild166.jpg">
+      <img src="images/gallerie/bild167.jpg">
+      <img src="images/gallerie/bild168.jpg">
+      <img src="images/gallerie/bild169.jpg">
+      <img src="images/gallerie/bild170.jpg">
+      <img src="images/gallerie/bild171.jpg">
+      <img src="images/gallerie/bild172.jpg">
+      <img src="images/gallerie/bild173.jpg">
+      <img src="images/gallerie/bild174.jpg">
+      <img src="images/gallerie/bild175.jpg">
+      <img src="images/gallerie/bild176.jpg">
+      <img src="images/gallerie/bild177.jpg">
+      <img src="images/gallerie/bild178.jpg">
+      <img src="images/gallerie/bild179.jpg">
+      <img src="images/gallerie/bild180.jpg">
+      <img src="images/gallerie/bild181.jpg">
+      <img src="images/gallerie/bild182.jpg">
+      <img src="images/gallerie/bild183.jpg">
+      <img src="images/gallerie/bild184.jpg">
+      <img src="images/gallerie/bild185.jpg">
+      <img src="images/gallerie/bild186.jpg">
+      <img src="images/gallerie/bild187.jpg">
+      <img src="images/gallerie/bild188.jpg">-->
+    </div>
 
-               <div id="pictures"></div>
                   <!-- Hier werden Bilder per Ajax geladen-->
-            </div>
+               </div>
             <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
             <div id="picture_upload">
                <iframe height="100%" width="280" src="http://www.schwitte.de/heiden/upload.html"> 
@@ -365,4 +590,6 @@
         </div><!-- /navbar -->
     </div><!-- /footer -->
 </div><!-- /page -->
+
+
 </body>
