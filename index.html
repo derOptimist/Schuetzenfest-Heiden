@@ -9,7 +9,7 @@
 <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
 <link rel="shortcut icon" href="images/background.png" />
 
-<script src="js/libs/jquery1.7.1.min.js"></script> 
+<script src="js/libs/jquery1.11.0.min.js"></script> 
 <script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
 <link rel="stylesheet" href="themes/div_table.css" /> 
 <link rel="stylesheet" href="themes/style.css" />
@@ -61,6 +61,7 @@
                     {
                         //Es wurden keine Bilder hochgeladen
                         pictures.style.visibility='hidden';
+
                     }
                     document.getElementById("chat_content").value = res.chat_content;
                 },
@@ -68,26 +69,14 @@
                     console.log(e.message);
                 },
                 complete: function(data) {
-                    $.mobile.loading('hide');
                     
                     
                     
-    $(function() {
-      $('#slides').slidesjs({
-        play: {
-          active: true,
-          auto: true,
-          interval: 4000,
-          swap: true
-        },
-    pagination: {
-      active: false,
-    }
-      });
-    });
+
+
                     
                     
-                    
+                  $.mobile.loading('hide'); 
                 }
             });
             
@@ -100,6 +89,23 @@
 
             
          });
+         
+         
+                   function start_slide() {
+                     $('#slides').slidesjs({
+                       play: {
+                         active: true,
+                         auto: true,
+                         interval: 4000,
+                         swap: true
+                       },
+                   pagination: {
+                     active: false,
+                   }
+                     });
+
+                     console.log("Slideshow geladen");
+                   };
          
          
          function photo_visible(){
@@ -329,13 +335,12 @@
          <h1>Galerie</h1>
     </div><!-- /header -->
     <div data-role="content">
-        <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
-            <div class="slideshow">
+
                            <div id="pictures"></div>
     <div id="slides">
       <img src="images/gallerie/bild001.jpg">
       <img src="images/gallerie/bild002.jpg">
-      <!-- <img src="images/gallerie/bild003.jpg">
+      <img src="images/gallerie/bild003.jpg">
       <img src="images/gallerie/bild004.jpg">
       <img src="images/gallerie/bild005.jpg">
       <img src="images/gallerie/bild006.jpg">
@@ -520,18 +525,17 @@
       <img src="images/gallerie/bild185.jpg">
       <img src="images/gallerie/bild186.jpg">
       <img src="images/gallerie/bild187.jpg">
-      <img src="images/gallerie/bild188.jpg">-->
+      <img src="images/gallerie/bild188.jpg">
     </div>
 
                   <!-- Hier werden Bilder per Ajax geladen-->
-               </div>
             <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
             <div id="picture_upload">
                <iframe height="100%" width="280" src="http://www.schwitte.de/heiden/upload.html"> 
 
                </iframe>
             </div>
-        </div> 
+   
     </div><!-- /content-->
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
