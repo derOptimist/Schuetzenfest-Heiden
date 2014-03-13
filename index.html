@@ -18,8 +18,9 @@
 <link rel="stylesheet" href="themes/test.additional.css" />
 
   <!-- CSS for slideshow -->
-  <link rel="stylesheet" href="themes/slide.css">
-  <script src="js/libs/jquery.slides.min.js"></script>
+      <link rel="stylesheet" href="themes/slide.css">
+    <script src="js/libs/jquery.slides.min.js"></script>
+
   <!-- End CSS for slideshow -->
 
 <!-- Start of Countdown -->
@@ -61,7 +62,6 @@
                     {
                         //Es wurden keine Bilder hochgeladen
                         pictures.style.visibility='hidden';
-
                     }
                     document.getElementById("chat_content").value = res.chat_content;
                 },
@@ -71,27 +71,6 @@
                 complete: function(data) {
                     
                     
-                    
-
-
-                    
-                    
-                  $.mobile.loading('hide'); 
-                }
-            });
-            
-            
-            set_gray("table_termine_samstag");
-            set_gray("table_termine_sonntag");
-            set_gray("table_termine_montag");
-            
-            
-
-            
-         });
-         
-         
-                   function start_slide() {
                      $('#slides').slidesjs({
                        play: {
                          active: true,
@@ -105,7 +84,25 @@
                      });
 
                      console.log("Slideshow geladen");
-                   };
+                    
+                  $.mobile.loading('hide'); 
+                }
+            });
+            
+            
+            set_gray("table_termine_samstag");
+            set_gray("table_termine_sonntag");
+            set_gray("table_termine_montag");
+            
+
+                   
+                   
+
+
+            
+         });
+         
+         
          
          
          function photo_visible(){
