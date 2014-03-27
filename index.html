@@ -32,7 +32,7 @@
         
          $(document).ready(function(){
          $('.loading').show();
-         picture_upload.style.visibility='hidden';
+         //picture_upload.style.visibility='hidden';
             var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
                 type: 'GET',
@@ -48,18 +48,18 @@
                     start(res.datum_technisch);
                     $("#news").html(res.news).trigger('create');
                     $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');
-                    if(res.pictures != '<img src="http://www.schwitte.de/heiden/images/startseite.jpg" width="300px" />')
-                    {
-                        //Es wurden Bilder hochgeladen
-                        $("#pictures").html(res.pictures);
-                        slides.style.visibility='hidden';
-                        slides.style.height='0px';
-                    }
-                    else
-                    {
-                        //Es wurden keine Bilder hochgeladen
-                        pictures.style.visibility='hidden';
-                    }
+                    // if(res.pictures != '<img src="http://www.schwitte.de/heiden/images/startseite.jpg" width="300px" />')
+                    // {
+                        // //Es wurden Bilder hochgeladen
+                        // $("#pictures").html(res.pictures);
+                        // slides.style.visibility='hidden';
+                        // slides.style.height='0px';
+                    // }
+                    // else
+                    // {
+                        // //Es wurden keine Bilder hochgeladen
+                        // pictures.style.visibility='hidden';
+                    // }
                     document.getElementById("chat_content").value = res.chat_content;
                 },
                 error: function(e) {
@@ -90,16 +90,16 @@
          
          
          
-         function photo_visible(){
-            if(picture_upload.style.visibility=='hidden')
-            {
-               picture_upload.style.visibility='visible'
-            }
-            else
-            {
-               picture_upload.style.visibility='hidden'
-            }
-         }
+         // function photo_visible(){
+            // if(picture_upload.style.visibility=='hidden')
+            // {
+               // picture_upload.style.visibility='visible'
+            // }
+            // else
+            // {
+               // picture_upload.style.visibility='hidden'
+            // }
+         // }
          
          function chat_submit(){
          
@@ -367,7 +367,7 @@
 <a href="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild001.jpg" width="120"></a>
 <a href="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild002.jpg" width="120"></a>
 <a href="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild003.jpg" width="120"></a>
-<a href="images/gallerie/bild004.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild004.jpg" width="120"></a>
+<!-- <a href="images/gallerie/bild004.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild004.jpg" width="120"></a>
 <a href="images/gallerie/bild005.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild005.jpg" width="120"></a>
 <a href="images/gallerie/bild006.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild006.jpg" width="120"></a>
 <a href="images/gallerie/bild007.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild007.jpg" width="120"></a>
@@ -387,7 +387,6 @@
 <a href="images/gallerie/bild021.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild021.jpg" width="120"></a>
 <a href="images/gallerie/bild022.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild022.jpg" width="120"></a>
 <a href="images/gallerie/bild023.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild023.jpg" width="120"></a>
-<!-- <a href="images/gallerie/bild024.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild024.jpg" width="120"></a> -->
 <a href="images/gallerie/bild025.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild025.jpg" width="120"></a>
 <a href="images/gallerie/bild026.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild026.jpg" width="120"></a>
 <a href="images/gallerie/bild027.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild027.jpg" width="120"></a>
@@ -440,7 +439,6 @@
 <a href="images/gallerie/bild074.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild074.jpg" width="120"></a>
 <a href="images/gallerie/bild075.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild075.jpg" width="120"></a>
 <a href="images/gallerie/bild076.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild076.jpg" width="120"></a>
-<!-- <a href="images/gallerie/bild077.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild077.jpg" width="120"></a> -->
 <a href="images/gallerie/bild078.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild078.jpg" width="120"></a>
 <a href="images/gallerie/bild079.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild079.jpg" width="120"></a>
 <a href="images/gallerie/bild080.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild080.jpg" width="120"></a>
@@ -547,11 +545,9 @@
 <a href="images/gallerie/bild181.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild181.jpg" width="120"></a>
 <a href="images/gallerie/bild182.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild182.jpg" width="120"></a>
 <a href="images/gallerie/bild183.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild183.jpg" width="120"></a>
-<!-- <a href="images/gallerie/bild184.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild184.jpg" width="120"></a>
-<a href="images/gallerie/bild185.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild185.jpg" width="120"></a> -->
 <a href="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild186.jpg" width="120"></a>
 <a href="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild187.jpg" width="120"></a>
-<a href="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild188.jpg" width="120"></a>
+<a href="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild188.jpg" width="120"></a> -->
 </div>
 
 
@@ -559,13 +555,13 @@
                            
 
 
-                  <!-- Hier werden Bilder per Ajax geladen-->
+<!--                   <!-- Hier werden Bilder per Ajax geladen
             <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
             <div id="picture_upload">
                <iframe height="100%" width="280" src="http://www.schwitte.de/heiden/upload.html"> 
 
                </iframe>
-            </div>
+            </div> -->
    
     </div><!-- /content-->
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
@@ -613,9 +609,10 @@
             </form>
         </div>
     </div><!-- /content -->
-    <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
+    
+    <div data-role="footer" style="overflow:hidden;" data-position="fixed">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
-        <div data-role="navbar" data-iconpos="top">
+        <div data-role="navbar" data-iconpos="top" data-position="fixed" data-tap-toggle="false">
             <ul>
                 <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
                 <li><a href="#Festprogramm" data-icon="myclock">Festprogramm</a></li>
