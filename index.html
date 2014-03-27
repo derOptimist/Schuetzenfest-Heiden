@@ -17,18 +17,15 @@
 <link rel="stylesheet" href="themes/test.css" />
 <link rel="stylesheet" href="themes/test.additional.css" />
 
-  <!-- CSS for slideshow -->
-      <link rel="stylesheet" href="themes/slide.css">
-    <script src="js/libs/jquery.slides.min.js"></script>
-
-  <!-- End CSS for slideshow -->
-
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
 <!-- End of Countdown -->
-<!-- Start of Homescreenbutton -->
-<script type="application/javascript" src="js/libs/add2home.js" charset="utf-8"></script>
-<!-- End of Homescreenbutton --> 
+
+<!-- Start of Gallery -->
+<link rel="stylesheet" href="themes/gallery.min.css">
+<link rel="stylesheet" href="themes/blueimp-gallery.min.css">
+<link rel="stylesheet" href="themes/bootstrap-image-gallery.css">
+<!-- End of Countdown -->
 </head>
 
 <script type="text/javascript">
@@ -71,18 +68,6 @@
                 complete: function(data) {
                     
                     
-                     $('#slides').slidesjs({
-                       play: {
-                         active: true,
-                         auto: true,
-                         interval: 4000,
-                         swap: true
-                       },
-                   pagination: {
-                     active: false,
-                   }
-                     });
-
                      console.log("Slideshow geladen");
                     
                   $.mobile.loading('hide'); 
@@ -334,196 +319,245 @@
     <div data-role="content">
 
                            <div id="pictures"></div>
-    <div id="slides">
-      <img src="images/gallerie/bild001.jpg">
-      <img src="images/gallerie/bild002.jpg">
-      <img src="images/gallerie/bild003.jpg">
-      <img src="images/gallerie/bild004.jpg">
-      <img src="images/gallerie/bild005.jpg">
-      <img src="images/gallerie/bild006.jpg">
-      <img src="images/gallerie/bild007.jpg">
-      <img src="images/gallerie/bild008.jpg">
-      <img src="images/gallerie/bild009.jpg">
-      <img src="images/gallerie/bild010.jpg">
-      <img src="images/gallerie/bild011.jpg">
-      <img src="images/gallerie/bild012.jpg">
-      <img src="images/gallerie/bild013.jpg">
-      <img src="images/gallerie/bild014.jpg">
-      <img src="images/gallerie/bild015.jpg">
-      <img src="images/gallerie/bild016.jpg">
-      <img src="images/gallerie/bild017.jpg">
-      <img src="images/gallerie/bild018.jpg">
-      <img src="images/gallerie/bild019.jpg">
-      <img src="images/gallerie/bild020.jpg">
-      <img src="images/gallerie/bild021.jpg">
-      <img src="images/gallerie/bild022.jpg">
-      <img src="images/gallerie/bild023.jpg">
-      <img src="images/gallerie/bild024.jpg">
-      <img src="images/gallerie/bild025.jpg">
-      <img src="images/gallerie/bild026.jpg">
-      <img src="images/gallerie/bild027.jpg">
-      <img src="images/gallerie/bild028.jpg">
-      <img src="images/gallerie/bild029.jpg">
-      <img src="images/gallerie/bild030.jpg">
-      <img src="images/gallerie/bild031.jpg">
-      <img src="images/gallerie/bild032.jpg">
-      <img src="images/gallerie/bild033.jpg">
-      <img src="images/gallerie/bild034.jpg">
-      <img src="images/gallerie/bild035.jpg">
-      <img src="images/gallerie/bild036.jpg">
-      <img src="images/gallerie/bild037.jpg">
-      <img src="images/gallerie/bild038.jpg">
-      <img src="images/gallerie/bild039.jpg">
-      <img src="images/gallerie/bild040.jpg">
-      <img src="images/gallerie/bild041.jpg">
-      <img src="images/gallerie/bild042.jpg">
-      <img src="images/gallerie/bild043.jpg">
-      <img src="images/gallerie/bild044.jpg">
-      <img src="images/gallerie/bild045.jpg">
-      <img src="images/gallerie/bild046.jpg">
-      <img src="images/gallerie/bild047.jpg">
-      <img src="images/gallerie/bild048.jpg">
-      <img src="images/gallerie/bild049.jpg">
-      <img src="images/gallerie/bild050.jpg">
-      <img src="images/gallerie/bild051.jpg">
-      <img src="images/gallerie/bild052.jpg">
-      <img src="images/gallerie/bild053.jpg">
-      <img src="images/gallerie/bild054.jpg">
-      <img src="images/gallerie/bild055.jpg">
-      <img src="images/gallerie/bild056.jpg">
-      <img src="images/gallerie/bild057.jpg">
-      <img src="images/gallerie/bild058.jpg">
-      <img src="images/gallerie/bild059.jpg">
-      <img src="images/gallerie/bild060.jpg">
-      <img src="images/gallerie/bild061.jpg">
-      <img src="images/gallerie/bild062.jpg">
-      <img src="images/gallerie/bild063.jpg">
-      <img src="images/gallerie/bild064.jpg">
-      <img src="images/gallerie/bild065.jpg">
-      <img src="images/gallerie/bild066.jpg">
-      <img src="images/gallerie/bild067.jpg">
-      <img src="images/gallerie/bild068.jpg">
-      <img src="images/gallerie/bild069.jpg">
-      <img src="images/gallerie/bild070.jpg">
-      <img src="images/gallerie/bild071.jpg">
-      <img src="images/gallerie/bild072.jpg">
-      <img src="images/gallerie/bild073.jpg">
-      <img src="images/gallerie/bild074.jpg">
-      <img src="images/gallerie/bild075.jpg">
-      <img src="images/gallerie/bild076.jpg">
-      <img src="images/gallerie/bild077.jpg">
-      <img src="images/gallerie/bild078.jpg">
-      <img src="images/gallerie/bild079.jpg">
-      <img src="images/gallerie/bild080.jpg">
-      <img src="images/gallerie/bild081.jpg">
-      <img src="images/gallerie/bild082.jpg">
-      <img src="images/gallerie/bild083.jpg">
-      <img src="images/gallerie/bild084.jpg">
-      <img src="images/gallerie/bild085.jpg">
-      <img src="images/gallerie/bild086.jpg">
-      <img src="images/gallerie/bild087.jpg">
-      <img src="images/gallerie/bild088.jpg">
-      <img src="images/gallerie/bild089.jpg">
-      <img src="images/gallerie/bild090.jpg">
-      <img src="images/gallerie/bild091.jpg">
-      <img src="images/gallerie/bild092.jpg">
-      <img src="images/gallerie/bild093.jpg">
-      <img src="images/gallerie/bild094.jpg">
-      <img src="images/gallerie/bild095.jpg">
-      <img src="images/gallerie/bild096.jpg">
-      <img src="images/gallerie/bild097.jpg">
-      <img src="images/gallerie/bild098.jpg">
-      <img src="images/gallerie/bild099.jpg">
-      <img src="images/gallerie/bild100.jpg">
-      <img src="images/gallerie/bild101.jpg">
-      <img src="images/gallerie/bild102.jpg">
-      <img src="images/gallerie/bild103.jpg">
-      <img src="images/gallerie/bild104.jpg">
-      <img src="images/gallerie/bild105.jpg">
-      <img src="images/gallerie/bild106.jpg">
-      <img src="images/gallerie/bild107.jpg">
-      <img src="images/gallerie/bild108.jpg">
-      <img src="images/gallerie/bild109.jpg">
-      <img src="images/gallerie/bild110.jpg">
-      <img src="images/gallerie/bild111.jpg">
-      <img src="images/gallerie/bild112.jpg">
-      <img src="images/gallerie/bild113.jpg">
-      <img src="images/gallerie/bild114.jpg">
-      <img src="images/gallerie/bild115.jpg">
-      <img src="images/gallerie/bild116.jpg">
-      <img src="images/gallerie/bild117.jpg">
-      <img src="images/gallerie/bild118.jpg">
-      <img src="images/gallerie/bild119.jpg">
-      <img src="images/gallerie/bild120.jpg">
-      <img src="images/gallerie/bild121.jpg">
-      <img src="images/gallerie/bild122.jpg">
-      <img src="images/gallerie/bild123.jpg">
-      <img src="images/gallerie/bild124.jpg">
-      <img src="images/gallerie/bild125.jpg">
-      <img src="images/gallerie/bild126.jpg">
-      <img src="images/gallerie/bild127.jpg">
-      <img src="images/gallerie/bild128.jpg">
-      <img src="images/gallerie/bild129.jpg">
-      <img src="images/gallerie/bild130.jpg">
-      <img src="images/gallerie/bild131.jpg">
-      <img src="images/gallerie/bild132.jpg">
-      <img src="images/gallerie/bild133.jpg">
-      <img src="images/gallerie/bild134.jpg">
-      <img src="images/gallerie/bild135.jpg">
-      <img src="images/gallerie/bild136.jpg">
-      <img src="images/gallerie/bild137.jpg">
-      <img src="images/gallerie/bild138.jpg">
-      <img src="images/gallerie/bild139.jpg">
-      <img src="images/gallerie/bild140.jpg">
-      <img src="images/gallerie/bild141.jpg">
-      <img src="images/gallerie/bild142.jpg">
-      <img src="images/gallerie/bild143.jpg">
-      <img src="images/gallerie/bild144.jpg">
-      <img src="images/gallerie/bild145.jpg">
-      <img src="images/gallerie/bild146.jpg">
-      <img src="images/gallerie/bild147.jpg">
-      <img src="images/gallerie/bild148.jpg">
-      <img src="images/gallerie/bild149.jpg">
-      <img src="images/gallerie/bild150.jpg">
-      <img src="images/gallerie/bild151.jpg">
-      <img src="images/gallerie/bild152.jpg">
-      <img src="images/gallerie/bild153.jpg">
-      <img src="images/gallerie/bild154.jpg">
-      <img src="images/gallerie/bild155.jpg">
-      <img src="images/gallerie/bild156.jpg">
-      <img src="images/gallerie/bild157.jpg">
-      <img src="images/gallerie/bild158.jpg">
-      <img src="images/gallerie/bild159.jpg">
-      <img src="images/gallerie/bild160.jpg">
-      <img src="images/gallerie/bild161.jpg">
-      <img src="images/gallerie/bild162.jpg">
-      <img src="images/gallerie/bild163.jpg">
-      <img src="images/gallerie/bild164.jpg">
-      <img src="images/gallerie/bild165.jpg">
-      <img src="images/gallerie/bild166.jpg">
-      <img src="images/gallerie/bild167.jpg">
-      <img src="images/gallerie/bild168.jpg">
-      <img src="images/gallerie/bild169.jpg">
-      <img src="images/gallerie/bild170.jpg">
-      <img src="images/gallerie/bild171.jpg">
-      <img src="images/gallerie/bild172.jpg">
-      <img src="images/gallerie/bild173.jpg">
-      <img src="images/gallerie/bild174.jpg">
-      <img src="images/gallerie/bild175.jpg">
-      <img src="images/gallerie/bild176.jpg">
-      <img src="images/gallerie/bild177.jpg">
-      <img src="images/gallerie/bild178.jpg">
-      <img src="images/gallerie/bild179.jpg">
-      <img src="images/gallerie/bild180.jpg">
-      <img src="images/gallerie/bild181.jpg">
-      <img src="images/gallerie/bild182.jpg">
-      <img src="images/gallerie/bild183.jpg">
-      <img src="images/gallerie/bild184.jpg">
-      <img src="images/gallerie/bild185.jpg">
-      <img src="images/gallerie/bild186.jpg">
-      <img src="images/gallerie/bild187.jpg">
-      <img src="images/gallerie/bild188.jpg">
+
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev"><</a>
+    <a class="next">></a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>  
+                           
+<div id="links">
+<a href="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild001.jpg" width="120"></a>
+<a href="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild002.jpg" width="120"></a>
+<a href="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild003.jpg" width="120"></a>
+<a href="images/gallerie/bild004.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild004.jpg" width="120"></a>
+<a href="images/gallerie/bild005.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild005.jpg" width="120"></a>
+<a href="images/gallerie/bild006.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild006.jpg" width="120"></a>
+<a href="images/gallerie/bild007.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild007.jpg" width="120"></a>
+<a href="images/gallerie/bild008.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild008.jpg" width="120"></a>
+<a href="images/gallerie/bild009.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild009.jpg" width="120"></a>
+<a href="images/gallerie/bild010.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild010.jpg" width="120"></a>
+<a href="images/gallerie/bild011.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild011.jpg" width="120"></a>
+<a href="images/gallerie/bild012.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild012.jpg" width="120"></a>
+<a href="images/gallerie/bild013.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild013.jpg" width="120"></a>
+<a href="images/gallerie/bild014.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild014.jpg" width="120"></a>
+<a href="images/gallerie/bild015.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild015.jpg" width="120"></a>
+<a href="images/gallerie/bild016.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild016.jpg" width="120"></a>
+<a href="images/gallerie/bild017.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild017.jpg" width="120"></a>
+<a href="images/gallerie/bild018.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild018.jpg" width="120"></a>
+<a href="images/gallerie/bild019.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild019.jpg" width="120"></a>
+<a href="images/gallerie/bild020.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild020.jpg" width="120"></a>
+<a href="images/gallerie/bild021.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild021.jpg" width="120"></a>
+<a href="images/gallerie/bild022.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild022.jpg" width="120"></a>
+<a href="images/gallerie/bild023.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild023.jpg" width="120"></a>
+<!-- <a href="images/gallerie/bild024.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild024.jpg" width="120"></a> -->
+<a href="images/gallerie/bild025.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild025.jpg" width="120"></a>
+<a href="images/gallerie/bild026.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild026.jpg" width="120"></a>
+<a href="images/gallerie/bild027.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild027.jpg" width="120"></a>
+<a href="images/gallerie/bild028.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild028.jpg" width="120"></a>
+<a href="images/gallerie/bild029.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild029.jpg" width="120"></a>
+<a href="images/gallerie/bild030.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild030.jpg" width="120"></a>
+<a href="images/gallerie/bild031.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild031.jpg" width="120"></a>
+<a href="images/gallerie/bild032.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild032.jpg" width="120"></a>
+<a href="images/gallerie/bild033.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild033.jpg" width="120"></a>
+<a href="images/gallerie/bild034.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild034.jpg" width="120"></a>
+<a href="images/gallerie/bild035.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild035.jpg" width="120"></a>
+<a href="images/gallerie/bild036.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild036.jpg" width="120"></a>
+<a href="images/gallerie/bild037.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild037.jpg" width="120"></a>
+<a href="images/gallerie/bild038.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild038.jpg" width="120"></a>
+<a href="images/gallerie/bild039.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild039.jpg" width="120"></a>
+<a href="images/gallerie/bild040.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild040.jpg" width="120"></a>
+<a href="images/gallerie/bild041.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild041.jpg" width="120"></a>
+<a href="images/gallerie/bild042.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild042.jpg" width="120"></a>
+<a href="images/gallerie/bild043.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild043.jpg" width="120"></a>
+<a href="images/gallerie/bild044.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild044.jpg" width="120"></a>
+<a href="images/gallerie/bild045.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild045.jpg" width="120"></a>
+<a href="images/gallerie/bild046.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild046.jpg" width="120"></a>
+<a href="images/gallerie/bild047.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild047.jpg" width="120"></a>
+<a href="images/gallerie/bild048.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild048.jpg" width="120"></a>
+<a href="images/gallerie/bild049.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild049.jpg" width="120"></a>
+<a href="images/gallerie/bild050.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild050.jpg" width="120"></a>
+<a href="images/gallerie/bild051.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild051.jpg" width="120"></a>
+<a href="images/gallerie/bild052.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild052.jpg" width="120"></a>
+<a href="images/gallerie/bild053.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild053.jpg" width="120"></a>
+<a href="images/gallerie/bild054.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild054.jpg" width="120"></a>
+<a href="images/gallerie/bild055.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild055.jpg" width="120"></a>
+<a href="images/gallerie/bild056.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild056.jpg" width="120"></a>
+<a href="images/gallerie/bild057.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild057.jpg" width="120"></a>
+<a href="images/gallerie/bild058.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild058.jpg" width="120"></a>
+<a href="images/gallerie/bild059.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild059.jpg" width="120"></a>
+<a href="images/gallerie/bild060.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild060.jpg" width="120"></a>
+<a href="images/gallerie/bild061.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild061.jpg" width="120"></a>
+<a href="images/gallerie/bild062.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild062.jpg" width="120"></a>
+<a href="images/gallerie/bild063.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild063.jpg" width="120"></a>
+<a href="images/gallerie/bild064.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild064.jpg" width="120"></a>
+<a href="images/gallerie/bild065.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild065.jpg" width="120"></a>
+<a href="images/gallerie/bild066.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild066.jpg" width="120"></a>
+<a href="images/gallerie/bild067.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild067.jpg" width="120"></a>
+<a href="images/gallerie/bild068.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild068.jpg" width="120"></a>
+<a href="images/gallerie/bild069.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild069.jpg" width="120"></a>
+<a href="images/gallerie/bild070.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild070.jpg" width="120"></a>
+<a href="images/gallerie/bild071.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild071.jpg" width="120"></a>
+<a href="images/gallerie/bild072.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild072.jpg" width="120"></a>
+<a href="images/gallerie/bild073.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild073.jpg" width="120"></a>
+<a href="images/gallerie/bild074.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild074.jpg" width="120"></a>
+<a href="images/gallerie/bild075.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild075.jpg" width="120"></a>
+<a href="images/gallerie/bild076.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild076.jpg" width="120"></a>
+<!-- <a href="images/gallerie/bild077.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild077.jpg" width="120"></a> -->
+<a href="images/gallerie/bild078.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild078.jpg" width="120"></a>
+<a href="images/gallerie/bild079.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild079.jpg" width="120"></a>
+<a href="images/gallerie/bild080.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild080.jpg" width="120"></a>
+<a href="images/gallerie/bild081.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild081.jpg" width="120"></a>
+<a href="images/gallerie/bild082.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild082.jpg" width="120"></a>
+<a href="images/gallerie/bild083.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild083.jpg" width="120"></a>
+<a href="images/gallerie/bild084.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild084.jpg" width="120"></a>
+<a href="images/gallerie/bild085.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild085.jpg" width="120"></a>
+<a href="images/gallerie/bild086.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild086.jpg" width="120"></a>
+<a href="images/gallerie/bild087.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild087.jpg" width="120"></a>
+<a href="images/gallerie/bild088.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild088.jpg" width="120"></a>
+<a href="images/gallerie/bild089.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild089.jpg" width="120"></a>
+<a href="images/gallerie/bild090.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild090.jpg" width="120"></a>
+<a href="images/gallerie/bild091.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild091.jpg" width="120"></a>
+<a href="images/gallerie/bild092.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild092.jpg" width="120"></a>
+<a href="images/gallerie/bild093.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild093.jpg" width="120"></a>
+<a href="images/gallerie/bild094.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild094.jpg" width="120"></a>
+<a href="images/gallerie/bild095.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild095.jpg" width="120"></a>
+<a href="images/gallerie/bild096.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild096.jpg" width="120"></a>
+<a href="images/gallerie/bild097.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild097.jpg" width="120"></a>
+<a href="images/gallerie/bild098.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild098.jpg" width="120"></a>
+<a href="images/gallerie/bild099.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild099.jpg" width="120"></a>
+<a href="images/gallerie/bild100.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild100.jpg" width="120"></a>
+<a href="images/gallerie/bild101.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild101.jpg" width="120"></a>
+<a href="images/gallerie/bild102.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild102.jpg" width="120"></a>
+<a href="images/gallerie/bild103.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild103.jpg" width="120"></a>
+<a href="images/gallerie/bild104.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild104.jpg" width="120"></a>
+<a href="images/gallerie/bild105.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild105.jpg" width="120"></a>
+<a href="images/gallerie/bild106.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild106.jpg" width="120"></a>
+<a href="images/gallerie/bild107.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild107.jpg" width="120"></a>
+<a href="images/gallerie/bild108.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild108.jpg" width="120"></a>
+<a href="images/gallerie/bild109.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild109.jpg" width="120"></a>
+<a href="images/gallerie/bild110.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild110.jpg" width="120"></a>
+<a href="images/gallerie/bild111.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild111.jpg" width="120"></a>
+<a href="images/gallerie/bild112.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild112.jpg" width="120"></a>
+<a href="images/gallerie/bild113.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild113.jpg" width="120"></a>
+<a href="images/gallerie/bild114.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild114.jpg" width="120"></a>
+<a href="images/gallerie/bild115.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild115.jpg" width="120"></a>
+<a href="images/gallerie/bild116.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild116.jpg" width="120"></a>
+<a href="images/gallerie/bild117.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild117.jpg" width="120"></a>
+<a href="images/gallerie/bild118.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild118.jpg" width="120"></a>
+<a href="images/gallerie/bild119.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild119.jpg" width="120"></a>
+<a href="images/gallerie/bild120.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild120.jpg" width="120"></a>
+<a href="images/gallerie/bild121.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild121.jpg" width="120"></a>
+<a href="images/gallerie/bild122.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild122.jpg" width="120"></a>
+<a href="images/gallerie/bild123.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild123.jpg" width="120"></a>
+<a href="images/gallerie/bild124.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild124.jpg" width="120"></a>
+<a href="images/gallerie/bild125.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild125.jpg" width="120"></a>
+<a href="images/gallerie/bild126.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild126.jpg" width="120"></a>
+<a href="images/gallerie/bild127.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild127.jpg" width="120"></a>
+<a href="images/gallerie/bild128.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild128.jpg" width="120"></a>
+<a href="images/gallerie/bild129.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild129.jpg" width="120"></a>
+<a href="images/gallerie/bild130.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild130.jpg" width="120"></a>
+<a href="images/gallerie/bild131.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild131.jpg" width="120"></a>
+<a href="images/gallerie/bild132.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild132.jpg" width="120"></a>
+<a href="images/gallerie/bild133.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild133.jpg" width="120"></a>
+<a href="images/gallerie/bild134.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild134.jpg" width="120"></a>
+<a href="images/gallerie/bild135.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild135.jpg" width="120"></a>
+<a href="images/gallerie/bild136.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild136.jpg" width="120"></a>
+<a href="images/gallerie/bild137.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild137.jpg" width="120"></a>
+<a href="images/gallerie/bild138.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild138.jpg" width="120"></a>
+<a href="images/gallerie/bild139.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild139.jpg" width="120"></a>
+<a href="images/gallerie/bild140.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild140.jpg" width="120"></a>
+<a href="images/gallerie/bild141.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild141.jpg" width="120"></a>
+<a href="images/gallerie/bild142.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild142.jpg" width="120"></a>
+<a href="images/gallerie/bild143.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild143.jpg" width="120"></a>
+<a href="images/gallerie/bild144.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild144.jpg" width="120"></a>
+<a href="images/gallerie/bild145.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild145.jpg" width="120"></a>
+<a href="images/gallerie/bild146.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild146.jpg" width="120"></a>
+<a href="images/gallerie/bild147.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild147.jpg" width="120"></a>
+<a href="images/gallerie/bild148.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild148.jpg" width="120"></a>
+<a href="images/gallerie/bild149.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild149.jpg" width="120"></a>
+<a href="images/gallerie/bild150.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild150.jpg" width="120"></a>
+<a href="images/gallerie/bild151.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild151.jpg" width="120"></a>
+<a href="images/gallerie/bild152.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild152.jpg" width="120"></a>
+<a href="images/gallerie/bild153.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild153.jpg" width="120"></a>
+<a href="images/gallerie/bild154.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild154.jpg" width="120"></a>
+<a href="images/gallerie/bild155.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild155.jpg" width="120"></a>
+<a href="images/gallerie/bild156.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild156.jpg" width="120"></a>
+<a href="images/gallerie/bild157.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild157.jpg" width="120"></a>
+<a href="images/gallerie/bild158.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild158.jpg" width="120"></a>
+<a href="images/gallerie/bild159.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild159.jpg" width="120"></a>
+<a href="images/gallerie/bild160.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild160.jpg" width="120"></a>
+<a href="images/gallerie/bild161.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild161.jpg" width="120"></a>
+<a href="images/gallerie/bild162.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild162.jpg" width="120"></a>
+<a href="images/gallerie/bild163.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild163.jpg" width="120"></a>
+<a href="images/gallerie/bild164.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild164.jpg" width="120"></a>
+<a href="images/gallerie/bild165.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild165.jpg" width="120"></a>
+<a href="images/gallerie/bild166.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild166.jpg" width="120"></a>
+<a href="images/gallerie/bild167.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild167.jpg" width="120"></a>
+<a href="images/gallerie/bild168.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild168.jpg" width="120"></a>
+<a href="images/gallerie/bild169.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild169.jpg" width="120"></a>
+<a href="images/gallerie/bild170.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild170.jpg" width="120"></a>
+<a href="images/gallerie/bild171.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild171.jpg" width="120"></a>
+<a href="images/gallerie/bild172.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild172.jpg" width="120"></a>
+<a href="images/gallerie/bild173.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild173.jpg" width="120"></a>
+<a href="images/gallerie/bild174.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild174.jpg" width="120"></a>
+<a href="images/gallerie/bild175.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild175.jpg" width="120"></a>
+<a href="images/gallerie/bild176.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild176.jpg" width="120"></a>
+<a href="images/gallerie/bild177.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild177.jpg" width="120"></a>
+<a href="images/gallerie/bild178.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild178.jpg" width="120"></a>
+<a href="images/gallerie/bild179.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild179.jpg" width="120"></a>
+<a href="images/gallerie/bild180.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild180.jpg" width="120"></a>
+<a href="images/gallerie/bild181.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild181.jpg" width="120"></a>
+<a href="images/gallerie/bild182.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild182.jpg" width="120"></a>
+<a href="images/gallerie/bild183.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild183.jpg" width="120"></a>
+<!-- <a href="images/gallerie/bild184.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild184.jpg" width="120"></a>
+<a href="images/gallerie/bild185.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild185.jpg" width="120"></a> -->
+<a href="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild186.jpg" width="120"></a>
+<a href="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild187.jpg" width="120"></a>
+<a href="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" data-gallery><img src="images/gallerie/bild188.jpg" width="120"></a>
+</div>
+
+
+
+                           
+
 
                   <!-- Hier werden Bilder per Ajax geladen-->
             <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
@@ -592,5 +626,9 @@
     </div><!-- /footer -->
 </div><!-- /page -->
 
+<!-- Start of Gallery -->
+<script src="js/libs/jquery.blueimp-gallery.min.js"></script>
+<script src="js/libs/bootstrap-image-gallery.min.js"></script>
+<!-- End of Countdown -->
 
 </body>
