@@ -21,6 +21,8 @@
 <gap:plugin name="org.apache.cordova.core.camera" />
 
 <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+<plugin name="Notification" value="org.apache.cordova.Notification"/>
+
 
 <feature name="http://api.phonegap.com/1.0/camera"/>
 <feature name="http://api.phonegap.com/1.0/device" /> 
