@@ -19,9 +19,10 @@
     <icon src="icon.png" />
     
 <gap:plugin name="org.apache.cordova.core.camera" />
+<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
 <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
-<plugin name="Notification" value="org.apache.cordova.Notification"/>
+<plugin name="PushPlugin" value="com.plugin.gcm.PushPlugin" />
 
 
 <feature name="http://api.phonegap.com/1.0/camera"/>
