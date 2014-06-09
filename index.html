@@ -27,10 +27,6 @@
 <script type="text/javascript" src="js/libs/jquery.easing.1.3.js"></script>
 <!-- End of Gallery -->
 
-<!-- Start of Push -->
-<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
-<!-- End of Push -->
-
 </head>
 
 <script type="text/javascript">
@@ -38,21 +34,29 @@
         
         
 
+         var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
+         var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
+         var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
+         // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_test.php';
+         // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh_test.php';
+         // var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
         
-        
-        
+         var chat_submit_time_old = '500000';
+         var chat_submit_time_new = '';
+         var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen muss
         
         
          $(document).ready(function(){
          
+         
+
 
          
          $('.loading').show();
          //picture_upload.style.visibility='hidden';
-            var url = 'http://www.schwitte.de/heiden/ajax.php';
             $.ajax({
                 type: 'GET',
-                url: url,
+                url: url_load_infos,
                 contentType: "application/json",
                 dataType: 'jsonp',
                 data: {},
@@ -65,19 +69,6 @@
                     start(res.datum_technisch);
                     $("#news").html(res.news).trigger('create');
                     $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');                   
-                    
-                    // if(res.pictures != '<img src="http://www.schwitte.de/heiden/images/startseite.jpg" width="300px" />')
-                    // {
-                        // //Es wurden Bilder hochgeladen
-                        // $("#pictures").html(res.pictures);
-                        // slides.style.visibility='hidden';
-                        // slides.style.height='0px';
-                    // }
-                    // else
-                    // {
-                        // //Es wurden keine Bilder hochgeladen
-                        // pictures.style.visibility='hidden';
-                    // }
                     document.getElementById("chat_content").value = res.chat_content;
                 },
                 error: function(e) {
@@ -92,36 +83,17 @@
                 }
             });
             
-            
             set_gray("table_termine_samstag");
             set_gray("table_termine_sonntag");
             set_gray("table_termine_montag");
             
-
-                   
-                   
             $('.slideshow').cycle({
              fx:     'fade',
              next:   '#vorbutton',
              prev:   '#zurueckbutton' 
             });
-
-            
          });
          
-         
-         
-         
-         // function photo_visible(){
-            // if(picture_upload.style.visibility=='hidden')
-            // {
-               // picture_upload.style.visibility='visible'
-            // }
-            // else
-            // {
-               // picture_upload.style.visibility='hidden'
-            // }
-         // }
          
          function chat_submit(){
          
@@ -135,39 +107,56 @@
             }
             else
             {
-               var url = 'http://www.schwitte.de/heiden/chat_submit.php';
-               $.ajax({
-                   type: 'GET',
-                   url: url,
-                   contentType: "application/json",
-                   dataType: 'jsonp',
-                   data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
-                   crossDomain: true,
-                   beforeSend: function(){
-                       $('.loading').show();
-                   },
-                   success: function(res) {
-                        console.log('Erfolgreich');
-                        chat_refresh();
-                        document.getElementById("chat_text").value = "";
-                        return false;
-                   },
-                   error: function(e) {
-                       console.log("Fehler");
-                   },
-                   complete: function(data) {
-                       $('.loading').hide();
-                   }
-               });
+               var submit_new_date = new Date();   //Startzeitpunkt
+               chat_submit_time_new = submit_new_date.getTime();  
+               
+               var rest = (chat_submit_time_new - chat_submit_time_old) / 1000; //Differenz bilden und in Sekunden umwandeln
+               
+               //Es müssen mindestens x Sekunden seit dem letzten Eintrag vergangen sein
+               if(rest > chat_submit_diff)
+               {
+                  $.ajax({
+                      type: 'GET',
+                      url: url_chatbox_submit,
+                      contentType: "application/json",
+                      dataType: 'jsonp',
+                      data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
+                      crossDomain: true,
+                      beforeSend: function(){
+                          $('.loading').show();
+                      },
+                      success: function(res) {
+                           console.log('Erfolgreich');
+                           chat_refresh();
+                           document.getElementById("chat_text").value = "";
+                           return false;
+                      },
+                      error: function(e) {
+                          console.log("Fehler");
+                      },
+                      complete: function(data) {
+                          $('.loading').hide();
+                      }
+                  });
+                  
+                  var submit_old_date = new Date();   //Startzeitpunkt setzen
+                  chat_submit_time_old = submit_old_date.getTime(); 
+               }
+               else
+               {
+                  var wait_seconds;
+                  wait_seconds = chat_submit_diff - rest;
+                  alert('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
+               }
             }
          };
          
          
          function chat_refresh(){
-            var url = 'http://www.schwitte.de/heiden/chat_refresh.php';
+            
             $.ajax({
                 type: 'GET',
-                url: url,
+                url: url_chatbox_refresh,
                 contentType: "application/json",
                 dataType: 'jsonp',
                 data: { },
