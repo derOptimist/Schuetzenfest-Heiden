@@ -1,67 +1,5 @@
- <?php
-if(isset($_GET['secretkey']) == 0)
-{
-
-   echo "Ung&uumlltiger Funktionsaufruf!";
-   return;
-
-}
-
-if(isset($_POST['delete_chat']) == 1)
-{
-
-   
-   $i = 0;
-   $new_file = "../chatbox_test_deleted.txt".$i;
-   while (file_exists($new_file) == 1) 
-   {
-      $i++;
-      $new_file = "../chatbox_test_deleted.txt".$i;
-   }
-   
-   rename("../chatbox_test.txt",$new_file);
-   
-   $file = "../chatbox_test.txt";
-   $string = "----------------------------\r\n".date("d.m.Y H:i:s")." - Admin";
-   $string .= "\r\nChat wurde durch den Administrator zurückgesetzt.";
-   file_put_contents($file, $string);
-   
-   
-   echo '<script>alert("Chat '.$new_file.' gesperrt");</script> ';
-}
-
-if(isset($_POST['delete_chat_forever']) == 1)
-{
-
-   
-   $i = 0;
-   $new_file = "../chatbox_test_deleted.txt".$i;
-   while (file_exists($new_file) == 1) 
-   {
-      $i++;
-      $new_file = "../chatbox_test_deleted.txt".$i;
-   }
-   
-   rename("../chatbox_test.txt",$new_file);
-   
-   $file = "../chatbox_test.txt";
-   $string = "----------------------------\r\n".date("d.m.Y H:i:s")." - Admin";
-   $string .= "\r\nChat wurde durch den Administrator zurückgesetzt.";
-   file_put_contents($file, $string);
-   
-   file_put_contents("../chatbox_block.dat", "gesperrt");
-   
-   echo '<script>alert("Chat '.$new_file.' für immer gesperrt");</script> ';
-}
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html manifest="app.appcache">
-<html>
 <head>
 <title>Schützenfest Heiden</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
@@ -99,7 +37,7 @@ if(isset($_POST['delete_chat_forever']) == 1)
         <div data-role="navbar">
             <ul>
                 <li><a href="#RSS">RSS</a></li>
-                <li><a href="#chat_sperren">chat sperren</a></li>
+                <li><a href="#bildfreigabe">Bildfreigabe</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
@@ -110,35 +48,56 @@ if(isset($_POST['delete_chat_forever']) == 1)
 
 
 <!-- Start of first page -->
-<div data-role="page" id="chat_sperren">
+<div data-role="page" id="bildfreigabe">
 
     <div data-role="header">
-        <h1>Delete chat</h1>
+        <h1>Bildfreigabe</h1>
     </div><!-- /header -->
 
     <div data-role="content">
        <div data-role="fieldcontain">
  
  <?php
-              echo '<form name="form1" action="index.php?secretkey=1"  method="POST" data-ajax="false">';
-              echo '<input type="hidden" name="delete_chat" size="0" value="doit" />';
-              echo '<input type="submit" id="submit" value="Sperren" />';
+       $pictures = "";
+        // Mit den folgenden Zeilen lassen sich
+        // alle Dateien in einem Verzeichnis auslesen
+        $i = 0;
+        $handle=opendir ("../upload/images");
+        while ($datei = readdir ($handle)) {
+        if (strlen($datei) > 5)
+        {
+           if(($datei <> "released"))
+           {
+              $i = $i + 1;
+              echo '<form name="form1" action="release_image.php"  method="POST" data-ajax="false">';
+              echo '<table>';
+              echo '<td>';  
+                 echo '<tr><img src="../upload/images/'.$datei.'" width="300px" />';
+                 echo '<input type="submit" value="Freigeben"></tr>';
+                 echo '<input type="hidden" id="image" name="imagepath" value="../upload/images/"></tr>';
+                 echo '<input type="hidden" id="image" name="imagefilename" value="'.$datei.'"></tr>';
+              echo '</td>';
+              echo '</table>';
               echo '</form>';
+           }
+         }
+        }
+        closedir($handle);
+        
+        if($i == 0)
+        {
+           $pictures = $pictures.'<img src="http://www.schwitte.de/heiden/images/startseite.jpg" width="300px" />';
+        }
  ?>
 
- <br><br><br><br>
  
  
- <?php
-              echo '<form name="form2" action="index.php?secretkey=1"  method="POST" data-ajax="false">';
-              echo '<input type="hidden" name="delete_chat_forever" size="0" value="doit" />';
-              echo '<input type="submit" id="submit2" value="F&uuml;r immer sperren" />';
-              echo '</form>';
- ?>
+ 
  
  
        </div>
-
+           <button  type="submit" name="submit" value="submit"  data-theme="b">Speichern</button> 
+       </form>
 
     </div><!-- /content -->
 
@@ -147,7 +106,7 @@ if(isset($_POST['delete_chat_forever']) == 1)
         <div data-role="navbar">
             <ul>
                 <li><a href="#RSS">RSS</a></li>
-                <li><a href="#chat_sperren">chat sperren</a></li>
+                <li><a href="#bildfreigabe">Bildfreigabe</a></li>
             </ul>
         </div><!-- /navbar -->
     </div><!-- /footer -->
