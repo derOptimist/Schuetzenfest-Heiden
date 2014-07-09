@@ -37,10 +37,8 @@
          var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
          var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
          var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
-         var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
-         var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
-         var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
-         var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
+         var url_load_date_saturday_checksum = 'http://www.schwitte.de/heiden/ajax_date_saturday_checksum.php';
+         var url_load_date_saturday_checksum = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
          // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_test.php';
          // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh_test.php';
          // var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
@@ -51,6 +49,9 @@
         
         
          $(document).ready(function(){
+         
+         
+
 
          
          $('.loading').show();
@@ -90,7 +91,7 @@
             // Hole Schuetzenfesttermine
             $.ajax({
                 type: 'GET',
-                url: url_load_date_checksums,
+                url: url_load_date_saturday_checksum,
                 contentType: "application/json",
                 dataType: 'jsonp',
                 data: {},
@@ -99,58 +100,18 @@
                     $.mobile.loading('show');
                 },
                 success: function(res) {
-                
-                    var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
-                    var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
-                    var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
-                    // ldate_saturday_checksum = 0;
-                    // ldate_sunday_checksum = 0;
-                    // ldate_monday_checksum = 0;
-                    console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
-                    console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
-                    console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
-                    if(ldate_saturday_checksum != res.date_saturday_checksum)
+                    var value = window.localStorage.getItem("date_saturday_checksum");
+                    if(value != res.date_saturday_checksum)
                     {
+                        alert("Daten neu laden");
                         load_date_saturday();
                         set_gray("table_termine_samstag");
-                        console.log("Loaded data via ajax for date saturday");
-                        window.localStorage.setItem("date_saturday_checksum", res.date_saturday_checksum);
                     }
                     else
                     {
-                        var date_saturday = window.localStorage.getItem("date_saturday");
-                        $("#table_termine_samstag").html(date_saturday).trigger('create');
-                        console.log("Loaded data via cache for date saturday");
+                        alert("Daten NICHT neu laden");
                     }
-                    
-                    if(ldate_sunday_checksum != res.date_sunday_checksum)
-                    {
-                        load_date_sunday();
-                        set_gray("table_termine_sonntag");
-                        console.log("Loaded data via ajax for date sunday");
-                        window.localStorage.setItem("date_sunday_checksum", res.date_sunday_checksum);
-                    }
-                    else
-                    {
-                        var date_sunday = window.localStorage.getItem("date_sunday");
-                        $("#table_termine_sonntag").html(date_sunday).trigger('create');
-                        console.log("Loaded data via cache for date sunday");
-                    }
-                    
-                    if(ldate_monday_checksum != res.date_monday_checksum)
-                    {
-                        load_date_monday();
-                        set_gray("table_termine_montag");
-                        console.log("Loaded data via ajax for date monday");
-                        window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
-                    }
-                    else
-                    {
-                        var date_monday = window.localStorage.getItem("date_monday");
-                        $("#table_termine_montag").html(date_monday).trigger('create');
-                        console.log("Loaded data via cache for date monday");
-                    }
-                    
+                    window.localStorage.setItem("date_saturday_checksum", "1");
                 },
                 error: function(e) {
                     console.log(e.message);
@@ -159,8 +120,15 @@
                   $.mobile.loading('hide'); 
                 }
             });
-
-
+            
+            
+            
+            
+            
+            
+            
+            set_gray("table_termine_sonntag");
+            set_gray("table_termine_montag");
             
             $('.slideshow').cycle({
              fx:     'fade',
@@ -176,7 +144,7 @@
         function load_date_saturday(){
             $.ajax({
                 type: 'GET',
-                url: url_load_date_saturday,
+                url: url_load_date_saturday_checksum,
                 contentType: "application/json",
                 dataType: 'jsonp',
                 data: {},
@@ -185,56 +153,8 @@
                     $.mobile.loading('show');
                 },
                 success: function(res) {
-                    $("#table_termine_samstag").html(res.date_saturday).trigger('create');
+                    $("#date_saturday").html(res.date_saturday).trigger('create');
                     window.localStorage.setItem("date_saturday", res.date_saturday);
-                },
-                error: function(e) {
-                    console.log(e.message);
-                },
-                complete: function(data) {
-                  $.mobile.loading('hide'); 
-                }
-            });
-         };
-         
-        function load_date_sunday(){
-            $.ajax({
-                type: 'GET',
-                url: url_load_date_sunday,
-                contentType: "application/json",
-                dataType: 'jsonp',
-                data: {},
-                crossDomain: true,
-                beforeSend: function(){
-                    $.mobile.loading('show');
-                },
-                success: function(res) {
-                    $("#table_termine_sonntag").html(res.date_sunday).trigger('create');
-                    window.localStorage.setItem("date_sunday", res.date_sunday);
-                },
-                error: function(e) {
-                    console.log(e.message);
-                },
-                complete: function(data) {
-                  $.mobile.loading('hide'); 
-                }
-            });
-         };
-         
-        function load_date_monday(){
-            $.ajax({
-                type: 'GET',
-                url: url_load_date_monday,
-                contentType: "application/json",
-                dataType: 'jsonp',
-                data: {},
-                crossDomain: true,
-                beforeSend: function(){
-                    $.mobile.loading('show');
-                },
-                success: function(res) {
-                    $("#table_termine_montag").html(res.date_monday).trigger('create');
-                    window.localStorage.setItem("date_monday", res.date_monday);
                 },
                 error: function(e) {
                     console.log(e.message);
@@ -436,7 +356,7 @@
                 <h3>Sch&uuml;tzenfest Samstag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_samstag"></table>
+                  <div id="date_saturday"></div>
                </div>
                 
             </div>
@@ -444,7 +364,17 @@
                 <h3>Sch&uuml;tzenfest Sonntag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_sonntag"></table>
+                  <table id="table_termine_sonntag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Sonntag</td>
+                     </tr>
+                     <tr><td>10.08.2014 09:45<br>Fahnen werden mit dem Spielmannszug vom Quartier des Oberst (Gasthof Ebbing Busch) abgeholt </td></tr>
+                     <tr><td>10.08.2014 10:00<br>Antreten  von Sch&uuml;tzen, Vorstand und Festausschuss im Zelt zum Abholen der Majest&auml;ten vom Vereinslokal Ebbing- Busch</td></tr>
+                     <tr><td>10.08.2014 10:30<br>Uhr Musikalisches St&auml;ndchen am Altenheim, anschlieﬂend Fr&uuml;hschoppenkonzert im Festzelt</td></tr>
+                     <tr><td>10.08.2014 15:15<br>Fahnen werden mit dem Spielmannszug vom Gasthof Ebbing Busch abgeholt</td></tr>
+                     <tr><td>10.08.2014 15:30<br>Antreten der Sch&uuml;tzen im Festzelt</td></tr>
+                     <tr><td>10.08.2014 20:00<br>Festball im Festzelt</td></tr>
+                  </table>
                </div>
                 
             </div>
@@ -452,7 +382,20 @@
                 <h3>Sch&uuml;tzenfest Montag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_montag"></table>
+                  <table id="table_termine_montag">
+                     <tr>
+                        <td>Sch&uuml;tzenfest Montag</td>
+                     </tr>
+                     <tr><td>11.08.2014 09:30<br>Antreten im Festzelt am Sportzentrum</td></tr>
+                     <tr><td>11.08.2014 09:45<br>Empfang am Rathaus</td></tr>
+                     <tr><td>11.08.2014 10:15<br>Traditionelle Festrede der kirchlichen oder politischen Gemeinde</td></tr>
+                     <tr><td>11.08.2014 10:30<br>Musikst&auml;ndchen am Haus St. Josef</td></tr>
+                     <tr><td>11.08.2014 11:00<br>Vogelschieﬂen im Elschatt</td></tr>
+                     <tr><td>11.08.2014 14:00 (ungef&auml;hr)<br>Abmarsch nach erfolgtem K&ouml;nigsschuss zum traditionellen S&auml;beltanz auf dem Maib&ouml;kenplatz (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>11.08.2014 17:00 (ungef&auml;hr)<br>Antreten im Festzelt am Sportzentrum zur Proklamation auf dem Sportgel&auml;nde (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>11.08.2014 17:30 (ungef&auml;hr)<br>Umzug durch die Gemeinde mit Umtrunk und Besuch beim K&ouml;nigshaus (Uhrzeit kann abweichen)</td></tr>
+                     <tr><td>11.08.2014 20:00<br>Kr&ouml;nungsball im Festzelt am Sportzentrum und Festausklang</td></tr>
+                  </table>
                </div>
                 
             </div>

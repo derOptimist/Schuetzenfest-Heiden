@@ -18,10 +18,6 @@
     </author>
     <icon src="icon.png" />
     
-    <plugin name="Storage" value="org.apache.cordova.Storage" />
-
-    
-    
 <!-- <gap:plugin name="org.apache.cordova.core.camera" />
 <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
@@ -33,8 +29,8 @@
 <feature name="http://api.phonegap.com/1.0/file"/>
 <feature name="http://api.phonegap.com/1.0/notification"/> -->
 
-<!-- <feature name="http://api.phonegap.com/1.0/media"/> -->
+<feature name="http://api.phonegap.com/1.0/media"/>
 <feature name="http://api.phonegap.com/1.0/network"/>
-<!-- <feature name="http://api.phonegap.com/1.0/device" />  -->
+<feature name="http://api.phonegap.com/1.0/device" /> 
 
 </widget>

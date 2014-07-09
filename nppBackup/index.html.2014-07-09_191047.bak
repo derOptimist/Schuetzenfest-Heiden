@@ -119,7 +119,7 @@
                     else
                     {
                         var date_saturday = window.localStorage.getItem("date_saturday");
-                        $("#table_termine_samstag").html(date_saturday).trigger('create');
+                        $("#date_saturday").html(date_saturday).trigger('create');
                         console.log("Loaded data via cache for date saturday");
                     }
                     
@@ -133,7 +133,7 @@
                     else
                     {
                         var date_sunday = window.localStorage.getItem("date_sunday");
-                        $("#table_termine_sonntag").html(date_sunday).trigger('create');
+                        $("#date_sunday").html(date_sunday).trigger('create');
                         console.log("Loaded data via cache for date sunday");
                     }
                     
@@ -147,7 +147,7 @@
                     else
                     {
                         var date_monday = window.localStorage.getItem("date_monday");
-                        $("#table_termine_montag").html(date_monday).trigger('create');
+                        $("#date_monday").html(date_monday).trigger('create');
                         console.log("Loaded data via cache for date monday");
                     }
                     

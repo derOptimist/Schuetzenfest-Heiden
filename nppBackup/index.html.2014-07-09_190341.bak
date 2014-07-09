@@ -103,9 +103,9 @@
                     var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
                     var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
                     var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
-                    // ldate_saturday_checksum = 0;
-                    // ldate_sunday_checksum = 0;
-                    // ldate_monday_checksum = 0;
+                    ldate_saturday_checksum = 0;
+                    ldate_sunday_checksum = 0;
+                    ldate_monday_checksum = 0;
                     console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
                     console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
                     console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
@@ -119,7 +119,7 @@
                     else
                     {
                         var date_saturday = window.localStorage.getItem("date_saturday");
-                        $("#table_termine_samstag").html(date_saturday).trigger('create');
+                        $("#date_saturday").html(date_saturday).trigger('create');
                         console.log("Loaded data via cache for date saturday");
                     }
                     
@@ -133,7 +133,7 @@
                     else
                     {
                         var date_sunday = window.localStorage.getItem("date_sunday");
-                        $("#table_termine_sonntag").html(date_sunday).trigger('create');
+                        $("#date_sunday").html(date_sunday).trigger('create');
                         console.log("Loaded data via cache for date sunday");
                     }
                     
@@ -147,7 +147,7 @@
                     else
                     {
                         var date_monday = window.localStorage.getItem("date_monday");
-                        $("#table_termine_montag").html(date_monday).trigger('create');
+                        $("#date_monday").html(date_monday).trigger('create');
                         console.log("Loaded data via cache for date monday");
                     }
                     
@@ -185,7 +185,7 @@
                     $.mobile.loading('show');
                 },
                 success: function(res) {
-                    $("#table_termine_samstag").html(res.date_saturday).trigger('create');
+                    $("#date_saturday").html(res.date_saturday).trigger('create');
                     window.localStorage.setItem("date_saturday", res.date_saturday);
                 },
                 error: function(e) {
@@ -209,7 +209,7 @@
                     $.mobile.loading('show');
                 },
                 success: function(res) {
-                    $("#table_termine_sonntag").html(res.date_sunday).trigger('create');
+                    $("#date_sunday").html(res.date_sunday).trigger('create');
                     window.localStorage.setItem("date_sunday", res.date_sunday);
                 },
                 error: function(e) {
@@ -233,7 +233,7 @@
                     $.mobile.loading('show');
                 },
                 success: function(res) {
-                    $("#table_termine_montag").html(res.date_monday).trigger('create');
+                    $("#date_monday").html(res.date_monday).trigger('create');
                     window.localStorage.setItem("date_monday", res.date_monday);
                 },
                 error: function(e) {
@@ -436,7 +436,7 @@
                 <h3>Sch&uuml;tzenfest Samstag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_samstag"></table>
+                  <div id="date_saturday"><table id="table_termine_samstag" style="width:100%"></table></div>
                </div>
                 
             </div>
@@ -444,7 +444,7 @@
                 <h3>Sch&uuml;tzenfest Sonntag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_sonntag"></table>
+                  <div id="date_sunday"><table id="table_termine_sonntag"></table></div>
                </div>
                 
             </div>
@@ -452,7 +452,7 @@
                 <h3>Sch&uuml;tzenfest Montag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_montag"></table>
+                  <div id="date_monday"><table id="table_termine_montag"></table></div>
                </div>
                 
             </div>
