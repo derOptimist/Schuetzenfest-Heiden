@@ -85,6 +85,8 @@
             //Setze gemerkten Namen der Chatbox
             document.getElementById("chat_user").value = window.localStorage.getItem("chat_user");
             console.log("chat_user: "+window.localStorage.getItem("chat_user"));
+            
+            $("#pictures").html(res.pictures).trigger('create');
          },
          error: function(e) {
             console.log(e.message);
@@ -172,13 +174,24 @@
       });
 
 
-      //Funktionen für Gallerie
+      //Funktionen für Galerie
       $('.slideshow').cycle({
          fx:     'fade',
          next:   '#vorbutton',
          prev:   '#zurueckbutton' 
       });
+      
+      //Galerie bei IOS ausblenden
+      var i = 0,
+      iDevice = ['iPad', 'iPhone', 'iPod'];
+      for ( ; i < iDevice.length ; i++ ) 
+      {
+         if( navigator.platform === iDevice[i] ){ document.getElementById('s1').style.visibility = 'hidden';document.getElementById('s1').style.display = 'none';gallerie_pause(); break; }else{ document.getElementById('s1').style.visibility = 'hidden';document.getElementById('s1').style.display = 'none';gallerie_pause(); break; }
+      }
+      
    });
+   
+
          
    // Programm für Samstag laden
    function load_date_saturday(){
@@ -382,6 +395,9 @@
          document.getElementById("pausebutton").src = "themes/images/pause.png";
       }
    }
+   
+
+   
          
 </script>
 
@@ -485,15 +501,10 @@
          <h1>Galerie</h1>
     </div><!-- /header -->
     <div data-role="content">
+<div id="pictures"></div>
 
-                           <div id="pictures"></div>
-<!--        	<div class="slideshow">
-        <img src="1.png" /> 
-        <img src="2.png" /> 
-        <img src="3.png" /> 
-	</div> -->
-                           
-<div class="slideshow" id="s1">
+<div class="slideshow" id="s1" name="s1" >
+<h1>Sch&uuml;tzenfest 2013</h1>
 <img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
@@ -678,14 +689,14 @@
 <img src="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
-
-</div>
-  
 <div align='center'>
    <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" >
    </img> <img src="themes/images/pause.png" id="pausebutton" align="center" onclick="gallerie_pause();" >
    </img><img src="themes/images/arrow_r.png" id="vorbutton" align="right" onclick="#" ></img>
 </div>
+</div>
+  
+
 
     </div><!-- /content-->
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
