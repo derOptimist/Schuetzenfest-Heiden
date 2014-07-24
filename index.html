@@ -186,7 +186,12 @@
       iDevice = ['iPad', 'iPhone', 'iPod'];
       for ( ; i < iDevice.length ; i++ ) 
       {
-         if( navigator.platform === iDevice[i] ){ document.getElementById('s1').style.visibility = 'hidden';document.getElementById('s1').style.display = 'none';gallerie_pause(); break; }else{ document.getElementById('s1').style.visibility = 'hidden';document.getElementById('s1').style.display = 'none';gallerie_pause(); break; }
+         if( navigator.platform === iDevice[i] ){ 
+            document.getElementById('s1').style.visibility = 'hidden';
+            document.getElementById('s1').style.display = 'none';
+            gallerie_pause(); 
+            document.getElementById('webcal').style.visibility = 'visible';
+            break; }
       }
       
    });
@@ -473,9 +478,7 @@
             </div>
         </div>
         
-        <a href="webcal://www.schwitte.de/heiden/ical/SVH.ics">Festprogramm abonnieren</a><br>
-        <a href="http://www.schwitte.de/heiden/ical/SVH.ics">A - Festprogramm abonnieren</a><br>
-        <a href="http://www.schwitte.de/heiden/ical/">C - Festprogramm abonnieren</a><br>
+        <div id="webcal" style="visibility:hidden;"><a href="webcal://www.schwitte.de/heiden/ical/SVH.ics">Festprogramm abonnieren (nur iOS)</a><br></div>
         
     </div><!-- /content -->
 
