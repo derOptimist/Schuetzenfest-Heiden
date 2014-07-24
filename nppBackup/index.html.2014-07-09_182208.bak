@@ -1,17 +1,9 @@
 <!DOCTYPE html charset=utf-8>
-<html>
+<html manifest="app.appcache">
 <head>
 <title>Sch&uuml;tzenfest Heiden</title>
-
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<link rel="apple-touch-startup-image" href="1.png" />
 <meta name="viewport" content="width=device-width; initial-scale=1">
-<!-- Full Screen Mode (when run as a web app) -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<!-- <link rel="apple-touch-startup-image" href="/bilder/splash-ipad-portrait.png" media="screen and (min-device-width:481px) and (max-device-width: 1024px)" /> -->
-
-
 <link rel="stylesheet" href="themes/add2home.css">
 <link rel="apple-touch-icon" href="images/background.png"/>
 <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
@@ -38,246 +30,330 @@
 </head>
 
 <script type="text/javascript">
-   var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
-   var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
-   var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
-   var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
-   var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
-   var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
-   var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
-   // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_test.php';
-   // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh_test.php';
-   // var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
-        
-   var chat_submit_time_old = '500000';
-   var chat_submit_time_new = '';
-   var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen muss
         
         
-   $(document).ready(function(){
+        
 
-      // Zeige Ladebalken
-      $('.loading').show();
-      // Hole allgemeine Daten
-      $.ajax({
-         type: 'GET',
-         url: url_load_infos,
-         contentType: "application/json",
-         dataType: 'jsonp',
-         data: {},
-         crossDomain: true,
-         beforeSend: function(){
-            $.mobile.loading('show');
-         },
-         success: function(res) {
-            //Hole technisches Datum für Counter
-            start(res.datum_technisch);
-            console.log("Counter: "+res.datum_technisch);
-            //Hole Text zum Counter
-            $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');  
-            console.log("Text zu Counter: "+res.datum_anzeige);
-            //Hole aktuelle news
-            $("#news").html(res.news).trigger('create');
-            console.log("News: "+res.news);
-            //Hole Chatbox                    
-            document.getElementById("chat_content").value = res.chat_content;
-            //console.log("chat_content: "+res.chat_content);
-            //Setze gemerkten Namen der Chatbox
-            document.getElementById("chat_user").value = window.localStorage.getItem("chat_user");
-            console.log("chat_user: "+window.localStorage.getItem("chat_user"));
-            
-            $("#pictures").html(res.pictures).trigger('create');
-         },
-         error: function(e) {
-            console.log(e.message);
-         },
-         complete: function(data) {
-            //Ladebalken entfernen
-            $.mobile.loading('hide'); 
-         }
-      });
-            
-            
-            
-            
-      // Hole Schuetzenfesttermine
-      $.ajax({
-         type: 'GET',
-         url: url_load_date_checksums,
-         contentType: "application/json",
-         dataType: 'jsonp',
-         data: {},
-         crossDomain: true,
-         beforeSend: function(){
-            $.mobile.loading('show');
-         },
-         success: function(res) {
-            var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
-            var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
-            var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
-            // ldate_saturday_checksum = 0;
-            // ldate_sunday_checksum = 0;
-            // ldate_monday_checksum = 0;
-            console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
-            console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
-            console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
-            if(ldate_saturday_checksum != res.date_saturday_checksum)
-            {
-               load_date_saturday();
-               set_gray("table_termine_samstag");
-               console.log("Loaded data via ajax for date saturday");
-               window.localStorage.setItem("date_saturday_checksum", res.date_saturday_checksum);
-               // document.getElementById("console").value = "Loaded data via ajax";
-            }
-            else
-            {
-               var date_saturday = window.localStorage.getItem("date_saturday");
-               $("#table_termine_samstag").html(date_saturday).trigger('create');
-               console.log("Loaded data via cache for date saturday");
-               // document.getElementById("console").value = "Loaded data via cache";
-            }
-            
-            if(ldate_sunday_checksum != res.date_sunday_checksum)
-            {
-               load_date_sunday();
-               set_gray("table_termine_sonntag");
-               console.log("Loaded data via ajax for date sunday");
-               window.localStorage.setItem("date_sunday_checksum", res.date_sunday_checksum);
-            }
-            else
-            {
-               var date_sunday = window.localStorage.getItem("date_sunday");
-               $("#table_termine_sonntag").html(date_sunday).trigger('create');
-               console.log("Loaded data via cache for date sunday");
-            }
-            
-            if(ldate_monday_checksum != res.date_monday_checksum)
-            {
-               load_date_monday();
-               set_gray("table_termine_montag");
-               console.log("Loaded data via ajax for date monday");
-               window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
-            }
-            else
-            {
-               var date_monday = window.localStorage.getItem("date_monday");
-               $("#table_termine_montag").html(date_monday).trigger('create');
-               console.log("Loaded data via cache for date monday");
-            }
-        },
-        error: function(e) {
-            console.log(e.message);
-        },
-        complete: function(data) {
-          $.mobile.loading('hide'); 
-        }
-      });
+         var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
+         var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
+         var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
+         var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
+         var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
+         var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
+         var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
+         // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_test.php';
+         // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh_test.php';
+         // var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
+        
+         var chat_submit_time_old = '500000';
+         var chat_submit_time_new = '';
+         var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen muss
+        
+        
+         $(document).ready(function(){
+         
+         
 
-
-      //Funktionen für Galerie
-      $('.slideshow').cycle({
-         fx:     'fade',
-         next:   '#vorbutton',
-         prev:   '#zurueckbutton' 
-      });
-      
-      //Galerie bei IOS ausblenden
-      var i = 0,
-      iDevice = ['iPad', 'iPhone', 'iPod'];
-      for ( ; i < iDevice.length ; i++ ) 
-      {
-         if( navigator.platform === iDevice[i] ){ 
-            document.getElementById('s1').style.visibility = 'hidden';
-            document.getElementById('s1').style.display = 'none';
-            document.getElementById('s1_buttons').style.visibility = 'hidden';
-            document.getElementById('s1_buttons').style.display = 'none';
-            document.getElementById('s1_title').style.visibility = 'hidden';
-            document.getElementById('s1_title').style.display = 'none';
-            gallerie_pause(); 
-            document.getElementById('webcal').style.visibility = 'visible';
-            break; }
-      }
-      
-   });
-   
 
          
-   // Programm für Samstag laden
-   function load_date_saturday(){
-       $.ajax({
-           type: 'GET',
-           url: url_load_date_saturday,
-           contentType: "application/json",
-           dataType: 'jsonp',
-           data: {},
-           crossDomain: true,
-           beforeSend: function(){
-               $.mobile.loading('show');
-           },
-           success: function(res) {
-               $("#table_termine_samstag").html(res.date_saturday).trigger('create');
-               window.localStorage.setItem("date_saturday", res.date_saturday);
-           },
-           error: function(e) {
-               console.log(e.message);
-           },
-           complete: function(data) {
-             $.mobile.loading('hide'); 
-           }
-       });
-   };
-    
-   // Programm für Sonntag laden
-   function load_date_sunday(){
-       $.ajax({
-           type: 'GET',
-           url: url_load_date_sunday,
-           contentType: "application/json",
-           dataType: 'jsonp',
-           data: {},
-           crossDomain: true,
-           beforeSend: function(){
-               $.mobile.loading('show');
-           },
-           success: function(res) {
-               $("#table_termine_sonntag").html(res.date_sunday).trigger('create');
-               window.localStorage.setItem("date_sunday", res.date_sunday);
-           },
-           error: function(e) {
-               console.log(e.message);
-           },
-           complete: function(data) {
-             $.mobile.loading('hide'); 
-           }
-       });
-   };
-    
-   // Programm für Montag laden
-   function load_date_monday(){
-       $.ajax({
-           type: 'GET',
-           url: url_load_date_monday,
-           contentType: "application/json",
-           dataType: 'jsonp',
-           data: {},
-           crossDomain: true,
-           beforeSend: function(){
-               $.mobile.loading('show');
-           },
-           success: function(res) {
-               $("#table_termine_montag").html(res.date_monday).trigger('create');
-               window.localStorage.setItem("date_monday", res.date_monday);
-           },
-           error: function(e) {
-               console.log(e.message);
-           },
-           complete: function(data) {
-             $.mobile.loading('hide'); 
-           }
-       });
-   };
-   
-   // Vergangene Termine grau unterlegen
+         $('.loading').show();
+         //picture_upload.style.visibility='hidden';
+            $.ajax({
+                type: 'GET',
+                url: url_load_infos,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+
+                    start(res.datum_technisch);
+                    $("#news").html(res.news).trigger('create');
+                    $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');                   
+                    document.getElementById("chat_content").value = res.chat_content;
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                    
+
+                     //console.log("Slideshow geladen");
+                    
+                  $.mobile.loading('hide'); 
+                }
+            });
+            
+            
+            
+            
+            // Hole Schuetzenfesttermine
+            $.ajax({
+                type: 'GET',
+                url: url_load_date_checksums,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                
+                    var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
+                    var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
+                    var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
+                    console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
+                    console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
+                    console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
+                    if(ldate_saturday_checksum != res.date_saturday_checksum)
+                    {
+                        console.log(res.date_saturday_checksum)
+                        load_date_saturday();
+                        //set_gray("table_termine_samstag");
+                        console.log("Loaded data via ajax for date saturday");
+                        window.localStorage.setItem("date_saturday_checksum", res.date_saturday_checksum);
+                    }
+                    else
+                    {
+                        var date_saturday = window.localStorage.getItem("date_saturday");
+                        $("#date_saturday").html(date_saturday).trigger('create');
+                        console.log("Loaded data via cache for date saturday");
+                    }
+                    
+                    if(ldate_sunday_checksum != res.date_sunday_checksum)
+                    {
+                        console.log(res.date_sunday_checksum)
+                        load_date_sunday();
+                        //set_gray("table_termine_sonntag");
+                        console.log("Loaded data via ajax for date sunday");
+                        window.localStorage.setItem("date_sunday_checksum", res.date_sunday_checksum);
+                    }
+                    else
+                    {
+                        var date_sunday = window.localStorage.getItem("date_sunday");
+                        $("#date_sunday").html(date_sunday).trigger('create');
+                        console.log("Loaded data via cache for date sunday");
+                    }
+                    
+                    if(ldate_monday_checksum != res.date_monday_checksum)
+                    {
+                        console.log(res.date_monday_checksum)
+                        load_date_monday();
+                        //set_gray("table_termine_montag");
+                        console.log("Loaded data via ajax for date monday");
+                        window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
+                    }
+                    else
+                    {
+                        var date_monday = window.localStorage.getItem("date_monday");
+                        $("#date_monday").html(date_monday).trigger('create');
+                        console.log("Loaded data via cache for date monday");
+                    }
+                    
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                  $.mobile.loading('hide'); 
+                }
+            });
+
+
+            
+            $('.slideshow').cycle({
+             fx:     'fade',
+             next:   '#vorbutton',
+             prev:   '#zurueckbutton' 
+            });
+         });
+         
+         
+         
+         
+         
+        function load_date_saturday(){
+            $.ajax({
+                type: 'GET',
+                url: url_load_date_saturday,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                    $("#date_saturday").html(res.date_saturday).trigger('create');
+                    window.localStorage.setItem("date_saturday", res.date_saturday);
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                  $.mobile.loading('hide'); 
+                }
+            });
+         };
+         
+        function load_date_sunday(){
+            $.ajax({
+                type: 'GET',
+                url: url_load_date_sunday,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                    $("#date_sunday").html(res.date_sunday).trigger('create');
+                    window.localStorage.setItem("date_sunday", res.date_sunday);
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                  $.mobile.loading('hide'); 
+                }
+            });
+         };
+         
+        function load_date_monday(){
+            $.ajax({
+                type: 'GET',
+                url: url_load_date_monday,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: {},
+                crossDomain: true,
+                beforeSend: function(){
+                    $.mobile.loading('show');
+                },
+                success: function(res) {
+                    $("#date_monday").html(res.date_monday).trigger('create');
+                    window.localStorage.setItem("date_monday", res.date_monday);
+                },
+                error: function(e) {
+                    console.log(e.message);
+                },
+                complete: function(data) {
+                  $.mobile.loading('hide'); 
+                }
+            });
+         };
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         function chat_submit(){
+         
+            if(document.getElementById("chat_text").value == '')
+            {
+               alert('Bitte Text angeben');
+            }
+            else if(document.getElementById("chat_user").value == '')
+            {
+               alert('Bitte Namen angeben');
+            }
+            else
+            {
+               var submit_new_date = new Date();   //Startzeitpunkt
+               chat_submit_time_new = submit_new_date.getTime();  
+               
+               var rest = (chat_submit_time_new - chat_submit_time_old) / 1000; //Differenz bilden und in Sekunden umwandeln
+               
+               //Es müssen mindestens x Sekunden seit dem letzten Eintrag vergangen sein
+               if(rest > chat_submit_diff)
+               {
+                  $.ajax({
+                      type: 'GET',
+                      url: url_chatbox_submit,
+                      contentType: "application/json",
+                      dataType: 'jsonp',
+                      data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
+                      crossDomain: true,
+                      beforeSend: function(){
+                          $('.loading').show();
+                      },
+                      success: function(res) {
+                           console.log('Erfolgreich');
+                           chat_refresh();
+                           document.getElementById("chat_text").value = "";
+                           return false;
+                      },
+                      error: function(e) {
+                          console.log("Fehler");
+                      },
+                      complete: function(data) {
+                          $('.loading').hide();
+                      }
+                  });
+                  
+                  var submit_old_date = new Date();   //Startzeitpunkt setzen
+                  chat_submit_time_old = submit_old_date.getTime(); 
+               }
+               else
+               {
+                  var wait_seconds;
+                  wait_seconds = chat_submit_diff - rest;
+                  alert('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
+               }
+            }
+         };
+         
+         
+         function chat_refresh(){
+            
+            $.ajax({
+                type: 'GET',
+                url: url_chatbox_refresh,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: { },
+                crossDomain: true,
+                beforeSend: function(){
+                    $('.loading').show();
+                },
+                success: function(res) {
+                     document.getElementById("chat_content").value = res.chat_content;
+                     return false;
+                },
+                error: function(e) {
+                    console.log("Fehler");
+                },
+                complete: function(data) {
+                    $('.loading').hide();
+                }
+            });
+         };
+         
+
+         
+         
    function set_gray(tablename) {
       var tabelle = document.getElementById(tablename);
       var trs = tabelle.getElementsByTagName("tr");
@@ -297,101 +373,8 @@
             col.style.background="#C7C7C7";
          }
       }   
-   } 
-         
-       
-         
-         
-   // Funktion um Chatnachricht zu versenden
-   function chat_submit(){
+   }   
    
-      if(document.getElementById("chat_text").value == '')
-      {
-         alert('Bitte Text angeben');
-      }
-      else if(document.getElementById("chat_user").value == '')
-      {
-         alert('Bitte Namen angeben');
-      }
-      else
-      {
-         var submit_new_date = new Date();   //Startzeitpunkt
-         chat_submit_time_new = submit_new_date.getTime();  
-         
-         var rest = (chat_submit_time_new - chat_submit_time_old) / 1000; //Differenz bilden und in Sekunden umwandeln
-         
-         //Es müssen mindestens x Sekunden seit dem letzten Eintrag vergangen sein
-         if(rest > chat_submit_diff)
-         {
-            $.ajax({
-                type: 'GET',
-                url: url_chatbox_submit,
-                contentType: "application/json",
-                dataType: 'jsonp',
-                data: { chat_text : document.getElementById("chat_text").value, chat_user : document.getElementById("chat_user").value},
-                crossDomain: true,
-                beforeSend: function(){
-                    $('.loading').show();
-                },
-                success: function(res) {
-                     console.log('Erfolgreich');
-                     chat_refresh();
-                     document.getElementById("chat_text").value = "";
-                     return false;
-                },
-                error: function(e) {
-                    console.log("Fehler");
-                },
-                complete: function(data) {
-                    $('.loading').hide();
-                }
-            });
-            
-            var submit_old_date = new Date();   //Startzeitpunkt setzen
-            chat_submit_time_old = submit_old_date.getTime(); 
-         }
-         else
-         {
-            var wait_seconds;
-            wait_seconds = chat_submit_diff - rest;
-            alert('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
-         }
-         
-         //Chat Benutzername merken
-         window.localStorage.setItem("chat_user", document.getElementById("chat_user").value);
-      }
-   };
-         
-   // Funktion um Chatbox zu aktualisieren
-   function chat_refresh(){
-      
-      $.ajax({
-          type: 'GET',
-          url: url_chatbox_refresh,
-          contentType: "application/json",
-          dataType: 'jsonp',
-          data: { },
-          crossDomain: true,
-          beforeSend: function(){
-              $('.loading').show();
-          },
-          success: function(res) {
-               document.getElementById("chat_content").value = res.chat_content;
-               return false;
-          },
-          error: function(e) {
-              console.log("Fehler");
-          },
-          complete: function(data) {
-              $('.loading').hide();
-          }
-      });
-   };
-         
-
-
-  
-   //Funktion um die Gallerie zu pausieren
    function gallerie_pause() {
       $('#s1').cycle('toggle');
       current_src = document.getElementById("pausebutton").src.substr(document.getElementById("pausebutton").src.lastIndexOf("/") + 1);
@@ -404,9 +387,6 @@
          document.getElementById("pausebutton").src = "themes/images/pause.png";
       }
    }
-   
-
-   
          
 </script>
 
@@ -427,7 +407,6 @@
                 <input type="hidden" name="time2" size="0" value="" /><input type="text" name="time" size="28" value=" " readonly />
                 <div id="output"></div>
             </form>
-          <!--   <input type="text" name="console" id="console" size="28" value=" " readonly /> -->
             <b>Neuigkeiten:</b>
            <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
                <div id="news"></div>
@@ -460,7 +439,7 @@
                 <h3>Sch&uuml;tzenfest Samstag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_samstag"></table>
+                  <table id="table_termine_samstag"><div id="date_saturday"></div></table>
                </div>
                 
             </div>
@@ -468,7 +447,7 @@
                 <h3>Sch&uuml;tzenfest Sonntag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_sonntag"></table>
+                  <table id="table_termine_sonntag"><div id="date_sunday"></div></table>
                </div>
                 
             </div>
@@ -476,14 +455,11 @@
                 <h3>Sch&uuml;tzenfest Montag</h3>
 
                <div class="div_table">
-                  <table id="table_termine_montag"></table>
+                  <table id="table_termine_montag"><div id="date_monday"></div></table>
                </div>
                 
             </div>
         </div>
-        
-        <div id="webcal" style="visibility:hidden;"><a href="webcal://www.schwitte.de/heiden/ical/SVH.ics">Festprogramm abonnieren (nur iOS)</a><br></div>
-        
     </div><!-- /content -->
 
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
@@ -508,12 +484,15 @@
          <h1>Galerie</h1>
     </div><!-- /header -->
     <div data-role="content">
-<div id="pictures"></div>
 
-
-<div id="s1_title"><h1>Sch&uuml;tzenfest 2013</h1></div>
-<div class="slideshow" id="s1" name="s1" >
-
+                           <div id="pictures"></div>
+<!--        	<div class="slideshow">
+        <img src="1.png" /> 
+        <img src="2.png" /> 
+        <img src="3.png" /> 
+	</div> -->
+                           
+<div class="slideshow" id="s1">
 <img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
@@ -698,14 +677,33 @@
 <img src="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
+
 </div>
-<div align='center' id="s1_buttons">
-   <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" ></img>
-    <img src="themes/images/pause.png" id="pausebutton" align="center" onclick="gallerie_pause();" ></img>
-   <img src="themes/images/arrow_r.png" id="vorbutton" align="right" onclick="#" ></img>
+  
+<div align='center'>
+   <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" >
+   </img> <img src="themes/images/pause.png" id="pausebutton" align="center" onclick="gallerie_pause();" >
+   </img><img src="themes/images/arrow_r.png" id="vorbutton" align="right" onclick="#" ></img>
 </div>
 
 
+
+
+
+
+
+
+                           
+
+
+<!--                   <!-- Hier werden Bilder per Ajax geladen
+            <input type="button" name="upload" value="Hochladen" onclick="photo_visible()">
+            <div id="picture_upload">
+               <iframe height="100%" width="280" src="http://www.schwitte.de/heiden/upload.html"> 
+
+               </iframe>
+            </div> -->
+   
     </div><!-- /content-->
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
@@ -735,12 +733,12 @@
 
                   <table cellpadding="0" cellspacing="0"  frame="void" class="dfContactTable" style="width:300px">
                      <tr ><p>
-                       <td ><label>Name: </label></td>
-                       <td ><input type="text" id="chat_user" name="text" /></td>
-                     </p></tr>
-                     <tr ><p>
                        <td ><label>Text: </label></td>
                        <td ><input type="text" id="chat_text" name="text" autofocus /></td>
+                     </p></tr>
+                     <tr ><p>
+                       <td ><label>Name: </label></td>
+                       <td ><input type="text" id="chat_user" name="text" /></td>
                      </p></tr>
                      <tr><p>
                         <td ><input type="submit" id="submit" value="Senden" /></td>
@@ -754,6 +752,7 @@
     </div><!-- /content -->
     
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
+        <!-- <h4 style="text-align:center;">Sch&uuml;tzenfest Heiden</h4> -->
         <div data-role="navbar" data-iconpos="top">
             <ul>
                 <li><a href="#Aktuelles" data-icon="myinfo" id="mytest1">Aktuelles</a></li>
@@ -764,4 +763,6 @@
         </div><!-- /navbar -->
     </div><!-- /footer -->
 </div><!-- /page -->
+
+
 </body>
