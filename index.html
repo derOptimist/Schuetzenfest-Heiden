@@ -189,6 +189,8 @@
          if( navigator.platform === iDevice[i] ){ 
             document.getElementById('s1').style.visibility = 'hidden';
             document.getElementById('s1').style.display = 'none';
+            document.getElementById('s1_buttons').style.visibility = 'hidden';
+            document.getElementById('s1_buttons').style.display = 'none';
             gallerie_pause(); 
             document.getElementById('webcal').style.visibility = 'visible';
             break; }
@@ -692,13 +694,12 @@
 <img src="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
-<div align='center'>
-   <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" >
-   </img> <img src="themes/images/pause.png" id="pausebutton" align="center" onclick="gallerie_pause();" >
-   </img><img src="themes/images/arrow_r.png" id="vorbutton" align="right" onclick="#" ></img>
 </div>
+<div align='center' id="s1_buttons">
+   <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" ></img>
+    <img src="themes/images/pause.png" id="pausebutton" align="center" onclick="gallerie_pause();" ></img>
+   <img src="themes/images/arrow_r.png" id="vorbutton" align="right" onclick="#" ></img>
 </div>
-  
 
 
     </div><!-- /content-->
