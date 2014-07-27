@@ -201,23 +201,8 @@
       
       
       
-      document.addEventListener("deviceready", onDeviceReady, false);
-
-      
-      
-      
-   });
-   
-   
-   
-//Push Anfang
-
-// Android
-
 var pushNotification;
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady(){
-    pushNotification = window.plugins.pushNotification;
+   pushNotification = window.plugins.pushNotification;
     if ( device.platform == 'android' || device.platform == 'Android' )
     {
     pushNotification.register(
@@ -248,6 +233,21 @@ function onDeviceReady(){
     }, false);
  
     // aditional onDeviceReady work.
+      
+      
+      
+   });
+   
+   
+   
+//Push Anfang
+
+// Android
+
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady(){
+ 
     
 }
 // Android
