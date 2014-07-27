@@ -18,6 +18,8 @@
     </author>
     <icon src="icon.png" />
     
+    
+
     <plugin name="Storage" value="org.apache.cordova.Storage" />
 
     
@@ -37,13 +39,10 @@
 <feature name="http://api.phonegap.com/1.0/network"/>
 <!-- <feature name="http://api.phonegap.com/1.0/device" />  -->
 
-
+<gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
 
-<gap:plugin name="com.phonegap.plugins.pushplugin">
-  <param name="APIKey" value="12345678" />
-  <param name="APISecret" value="12345678" />
-</gap:plugin>
+
 
 
 </widget>
