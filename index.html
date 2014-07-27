@@ -5,10 +5,10 @@
     </head>
     <body>
         
-        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>-->
+        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>-->
         <script type="text/javascript" charset="utf-8" src="jquery_1.5.2.min.js"></script>
         <script type="text/javascript" src="PushNotification.js"></script>
         
@@ -16,6 +16,7 @@
             var pushNotification;
             
             function onDeviceReady() {
+            alert("onDeviceReady ");
                 $("#app-status-ul").append('<li>deviceready event received</li>');
                 
 document.addEventListener("backbutton", function(e)
@@ -135,7 +136,7 @@ $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we d
             }
             
 document.addEventListener('deviceready', onDeviceReady, false);
-
+alert("geladen");
          </script>
 <div id="home">
 <div id="app-status-div">
