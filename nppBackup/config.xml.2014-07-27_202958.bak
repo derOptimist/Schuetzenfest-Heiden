@@ -40,5 +40,4 @@
 <access origin=".*"/>
 <access origin="file://*"/>
 <access origin="*"/>
-<access uri="*" subdomains="true" />
 </widget>
