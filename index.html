@@ -25,6 +25,15 @@
 <link rel="stylesheet" href="themes/test.css" />
 <link rel="stylesheet" href="themes/test.additional.css" />
 
+
+        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>-->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
+
+
 <!-- Start of Countdown -->
 <script type="text/javascript" src="js/libs/countdown.js"></script>
 <!-- End of Countdown -->
@@ -536,7 +545,7 @@ function errorHandler (error) {
     $("#app-status-ul").append('<li>error:'+ error +'</li>');
 }
             
-document.addEventListener('deviceready', onDeviceReady, false);
+
 
 
 // Funktion um Chatnachricht zu versenden
@@ -571,6 +580,8 @@ function reg_id_submit(reg_id_value){
       
     //Chat Benutzername merken
     window.localStorage.setItem("chat_user", reg_id_value);
+    
+    document.addEventListener('deviceready', onDeviceReady, false);
 };
 
 //End Push
