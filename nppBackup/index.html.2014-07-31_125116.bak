@@ -408,6 +408,7 @@
 //Start Push
 
 var pushNotification;
+            
 function onDeviceReady() {
     alert("onDeviceReady ");
     $("#app-status-ul").append('<li>deviceready event received</li>');
@@ -551,6 +552,7 @@ if(res == true) {
     alert("buuh");
 }
 },"json");
+alert("geladen");
 
 //End Push
          
@@ -660,7 +662,7 @@ if(res == true) {
 <div id="s1_title"><h1>Sch&uuml;tzenfest 2013</h1></div>
 <div class="slideshow" id="s1" name="s1" >
 
-<!-- <img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
+<img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild004.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
@@ -843,7 +845,7 @@ if(res == true) {
 <img src="images/gallerie/bild183.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
-<img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img> -->
+<img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 </div>
 <div align='center' id="s1_buttons">
    <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" ></img>
