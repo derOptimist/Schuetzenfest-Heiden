@@ -201,7 +201,7 @@
       
       
       //Test push
-      reg_id_submit("wurst2")
+      reg_id_submit("wurst")
       
    });
    

@@ -201,7 +201,7 @@
       
       
       //Test push
-      reg_id_submit("wurst2")
+      reg_id_submit("wurst")
       
    });
    
@@ -550,7 +550,7 @@ function reg_id_submit(reg_id_value){
         url: url_push_save_reg_id,
         contentType: "application/json",
         dataType: 'jsonp',
-        data: { reg_id : reg_id_value, secretkey : '0'},
+        data: { reg_id : reg_id_value},
         crossDomain: true,
         beforeSend: function(){
             //$('.loading').show();

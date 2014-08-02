@@ -45,7 +45,7 @@
    var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
    var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
    var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
-   var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php';
+   var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php?secretkey=0&reg_id=';
    // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_test.php';
    // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh_test.php';
    // var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
@@ -201,7 +201,7 @@
       
       
       //Test push
-      reg_id_submit("wurst2")
+      reg_id_submit("wurst")
       
    });
    
@@ -542,22 +542,18 @@ document.addEventListener('deviceready', onDeviceReady, false);
 // Funktion um Chatnachricht zu versenden
 function reg_id_submit(reg_id_value){
 
-             console.log(url_push_save_reg_id);
-             console.log(reg_id_value);
-
     $.ajax({
         type: 'GET',
-        url: url_push_save_reg_id,
+        url: url_push_save_reg_id.reg_id_value,
         contentType: "application/json",
         dataType: 'jsonp',
-        data: { reg_id : reg_id_value, secretkey : '0'},
+        data: { reg_id : reg_id_value},
         crossDomain: true,
         beforeSend: function(){
             //$('.loading').show();
         },
         success: function(res) {
-             console.log(url_push_save_reg_id);
-             console.log(reg_id_value);
+             console.log(url_push_save_reg_id.'Erfolgreich');
              return false;
         },
         error: function(e) {
@@ -570,7 +566,7 @@ function reg_id_submit(reg_id_value){
          
       
     //Chat Benutzername merken
-    window.localStorage.setItem("chat_user", reg_id_value);
+    window.localStorage.setItem("chat_user", document.getElementById("reg_id").value);
 };
 
 //End Push

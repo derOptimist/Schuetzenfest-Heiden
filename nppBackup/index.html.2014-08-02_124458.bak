@@ -201,7 +201,7 @@
       
       
       //Test push
-      reg_id_submit("wurst2")
+      reg_id_submit("wurst")
       
    });
    
@@ -542,22 +542,18 @@ document.addEventListener('deviceready', onDeviceReady, false);
 // Funktion um Chatnachricht zu versenden
 function reg_id_submit(reg_id_value){
 
-             console.log(url_push_save_reg_id);
-             console.log(reg_id_value);
-
     $.ajax({
         type: 'GET',
-        url: url_push_save_reg_id,
+        url: url_push_save_reg_id.reg_id_value,
         contentType: "application/json",
         dataType: 'jsonp',
-        data: { reg_id : reg_id_value, secretkey : '0'},
+        data: { reg_id : reg_id_value},
         crossDomain: true,
         beforeSend: function(){
             //$('.loading').show();
         },
         success: function(res) {
              console.log(url_push_save_reg_id);
-             console.log(reg_id_value);
              return false;
         },
         error: function(e) {
