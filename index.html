@@ -26,10 +26,7 @@
 <link rel="stylesheet" href="themes/test.additional.css" />
 
 
-        <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>-->
+        <!--Erforderlich für Phonegap API-->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="PushNotification.js"></script>
 
@@ -493,7 +490,7 @@ function onNotificationGCM(e) {
             console.log("regID = " + e.regid);
             document.getElementById("console").value = e.regid;
 
-            reg_id_submit(e.regid)
+            reg_id_submit(e.regid);
 
         }
         break;
