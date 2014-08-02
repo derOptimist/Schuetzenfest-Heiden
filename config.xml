@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.schuetzenfestheiden"
-    versionCode = "81" 
-    version     = "1.7.0" >
+    versionCode = "82" 
+    version     = "1.8.0" >
 
     <!-- versionCode is optional and Android only -->
 <preference name="phonegap-version" value="3.3.0" />
@@ -39,8 +39,8 @@
 <!-- <feature name="http://api.phonegap.com/1.0/device" />  -->
 
 <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
-<access origin=".*"/>
+<!-- <access origin=".*"/>
 <access origin="file://*"/>
 <access origin="*"/>
-<access uri="*" subdomains="true" />
+<access uri="*" subdomains="true" /> -->
 </widget>
