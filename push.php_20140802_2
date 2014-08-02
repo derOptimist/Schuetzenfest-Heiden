@@ -1,0 +1,130 @@
+<?php
+
+if(isset($_GET['secretkey']) == 0)
+{
+   echo "Ung&uumlltiger Funktionsaufruf!";
+   return;
+}
+else
+{
+   echo "Funktionsaufruf!";
+}
+
+if(isset($_REQUEST['message']) OR isset($_GET['message'])) {
+function sendNotification( $apiKey, $registrationIdsArray, $messageData )
+{
+    $headers = array("Content-Type:" . "application/json", "Authorization:" . "key=" . $apiKey);
+    $data = array(
+        'data' => $messageData,
+        'registration_ids' => $registrationIdsArray
+    );
+ 
+    $ch = curl_init();
+ 
+    curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+    curl_setopt( $ch, CURLOPT_URL, "https://android.googleapis.com/gcm/send" );
+    curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
+    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($data) );
+ 
+    $response = curl_exec($ch);
+    curl_close($ch);
+ 
+    return $response;
+}
+if(isset($_REQUEST['message']))
+$message = urldecode($_REQUEST['message']);
+else if(isset($_GET['message']))
+$message = urldecode($_GET['message']);
+else
+$message = "the test message";
+
+if(isset($_REQUEST['ticket_text']))
+$tickerText = urldecode($_REQUEST['ticket_text']);
+else if(isset($_GET['ticket_text']))
+$tickerText = urldecode($_GET['ticket_text']);
+else
+$tickerText = "ticker text message";
+
+if(isset($_REQUEST['content_title']))
+$contentTitle = urldecode($_REQUEST['content_title']);
+else if(isset($_GET['content_title']))
+$contentTitle = urldecode($_GET['content_title']);
+else
+$contentTitle = "content title";
+
+
+if(isset($_REQUEST['content_text']))
+$contentText = urldecode($_REQUEST['content_text']);
+else if(isset($_GET['content_text']))
+$contentText = urldecode($_GET['content_text']);
+else
+$contentText = "content body";
+
+
+if(isset($_REQUEST['registration_id']))
+$registrationId = urldecode($_REQUEST['registration_id']);
+else if(isset($_GET['registration_id']))
+$registrationId = $_GET['registration_id'];
+
+
+// if(isset($_REQUEST['api_key']))
+// $api_key = urldecode($_REQUEST['api_key']);
+// else if(isset($_GET['api_key']))
+// $api_key = urldecode($_GET['api_key']);
+ 
+
+// $registrationId = urldecode($_REQUEST['registration_id']);
+
+$apiKey = "AIzaSyAkdzMs-_w_FclxdRQg4oHXtbJ7LVBeHEA";
+
+
+echo $message;
+echo '<br>';
+echo $tickerText;
+echo '<br>';
+echo $contentTitle;
+echo '<br>';
+echo $contentText;
+echo '<br>';
+echo $registrationId;
+echo '<br>';
+echo $apiKey;
+echo '<br>';
+
+
+
+$response = sendNotification(
+                $apiKey,
+                array($registrationId),
+                array('message' => $message, 'tickerText' => $tickerText, 'contentTitle' => $contentTitle, "contentText" => $contentText) );
+ 
+echo $response;
+
+}
+?>
+<h1>Sample Google GCM Testing Application</h1>
+<form method='post'>
+Message:
+<input type="text" name="message" value="default test msg" />
+<br/>
+Ticker Text:
+<input type="text" name="ticket_text" value="default test ticket test"/>
+<br/>
+Content Title:
+<input type="text" name="content_title" value="default content title"/>
+<br/>
+Content Text
+<input type="text" name="content_text" value="default content text"/>
+<br/>
+Registration ID:
+<input type="text" name="registration_id" />
+<br/>
+API KEY
+<input type="text" name="api_key" value="AIzaSyAkdzMs-_w_FclxdRQg4oHXtbJ7LVBeHEA" />
+<br/>
+<input type="submit" />
+</form>
+
+
