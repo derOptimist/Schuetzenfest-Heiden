@@ -17,6 +17,10 @@
 <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png"/>
 <link rel="shortcut icon" href="images/background.png" />
 
+<!-- Erforderlich für Phonegap API -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="PushNotification.js"></script>
+<!-- Ende Erforderlich für Phonegap API -->
 <script src="js/libs/jquery1.11.0.min.js"></script> 
 <script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
 <link rel="stylesheet" href="themes/div_table.css" /> 
@@ -26,9 +30,7 @@
 <link rel="stylesheet" href="themes/test.additional.css" />
 
 
-        <!--Erforderlich für Phonegap API-->
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="PushNotification.js"></script>
+
 
 
 <!-- Start of Countdown -->
@@ -483,9 +485,9 @@ function onNotificationGCM(e) {
             // Your GCM push server needs to know the regID before it can push to this device
             // here is where you might want to send it the regID for later use.
             console.log("regID = " + e.regid);
-            document.getElementById("console").value = e.regid;
-
             reg_id_submit(e.regid);
+            //document.getElementById("console").value = e.regid;
+
 
         }
         break;
@@ -570,12 +572,13 @@ function reg_id_submit(reg_id_value){
     });
          
       
-    //Chat Benutzername merken
-    window.localStorage.setItem("chat_user", reg_id_value);
+
     
-    document.addEventListener('deviceready', onDeviceReady, false);
+
 };
 
+
+document.addEventListener('deviceready', onDeviceReady, false);
 //End Push
          
 </script>
@@ -689,7 +692,7 @@ function reg_id_submit(reg_id_value){
 <div id="s1_title"><h1>Sch&uuml;tzenfest 2013</h1></div>
 <div class="slideshow" id="s1" name="s1" >
 
-<!-- <img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
+<img src="images/gallerie/bild001.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild002.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild003.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild004.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
@@ -872,7 +875,7 @@ function reg_id_submit(reg_id_value){
 <img src="images/gallerie/bild183.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild186.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 <img src="images/gallerie/bild187.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
-<img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img> -->
+<img src="images/gallerie/bild188.jpg" title="Sch&uuml;tzenfest Heiden 2013" height="298" width="448" ></img>
 </div>
 <div align='center' id="s1_buttons">
    <img src="themes/images/arrow_l.png" id="zurueckbutton" align="left" onclick="#" ></img>
