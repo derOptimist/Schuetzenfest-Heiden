@@ -153,8 +153,8 @@
       });
       
       //Galerie bei IOS ausblenden
-      var i = 0;
-      var h_ios = 0;
+      var i = 0,
+      var h_ios = 0
       iDevice = ['iPad', 'iPhone', 'iPod'];
       for ( ; i < iDevice.length ; i++ ) 
       {

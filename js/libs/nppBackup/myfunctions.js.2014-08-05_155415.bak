@@ -48,16 +48,14 @@
             console.log("chat_user: "+window.localStorage.getItem("chat_user"));
             
             $("#pictures").html(res.pictures).trigger('create');
+            console.log(res.pictures);
+      //Funktionen für Galerie
+      $('.slideshow').cycle({
+         fx:     'fade',
+         next:   '#vorbutton',
+         prev:   '#zurueckbutton' 
+      });
             
-            //Funktionen für Galerie
-            if(h_ios == 0)
-            {
-                $('.slideshow').cycle({
-                    fx:     'fade',
-                    next:   '#vorbutton',
-                    prev:   '#zurueckbutton' 
-                });
-            }
          },
          error: function(e) {
             console.log(e.message);
@@ -145,16 +143,10 @@
       });
 
 
-      //Funktionen für Galerie
-      $('.slideshow').cycle({
-         fx:     'fade',
-         next:   '#vorbutton',
-         prev:   '#zurueckbutton' 
-      });
+
       
       //Galerie bei IOS ausblenden
-      var i = 0;
-      var h_ios = 0;
+      var i = 0,
       iDevice = ['iPad', 'iPhone', 'iPod'];
       for ( ; i < iDevice.length ; i++ ) 
       {
@@ -167,12 +159,9 @@
             document.getElementById('s1_title').style.display = 'none';
             gallerie_pause(); 
             document.getElementById('webcal').style.visibility = 'visible';
-            h_ios = 1;
-            break; 
-            }
+            break; }
       }
    });
-            h_ios = 1;
    
 
          

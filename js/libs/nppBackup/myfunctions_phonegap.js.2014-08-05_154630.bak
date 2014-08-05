@@ -1,11 +1,11 @@
-  // var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
-   // var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
-   // var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
-   // var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
-   // var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
-   // var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
-   // var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
-   // var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php';
+  var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
+   var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
+   var url_load_infos = 'http://www.schwitte.de/heiden/ajax.php';
+   var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
+   var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
+   var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
+   var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
+   var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php';
 
    
    
