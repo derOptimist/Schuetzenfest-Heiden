@@ -6,7 +6,7 @@
     version     = "1.8.1" >
 
     <!-- versionCode is optional and Android only -->
-<preference name="phonegap-version" value="3.5.0" />
+<preference name="phonegap-version" value="3.3.0" />
 <gap:plugin name="org.apache.cordova.device" />
 
     <name>Schützenfest Heiden</name>
