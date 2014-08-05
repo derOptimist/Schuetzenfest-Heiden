@@ -52,6 +52,14 @@ function onDeviceReady() {
         if (device.platform == 'android' || device.platform == 'Android') {
             // $("#app-status-ul").append('<li>registering android</li>');
             pushNotification.register(successHandler, errorHandler, {"senderID":"855034647454","ecb":"onNotificationGCM"});	// required!
+            
+            //Mit Backbutton die App beenden können
+            navigator.Backbutton.goHome(function() {
+              console.log('success')
+            }, function() {
+              console.log('fail')
+            });
+            
         } else {
             // $("#app-status-ul").append('<li>registering iOS</li>');
             pushNotification.register(tokenHandler, errorHandler, {"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});	// required!
