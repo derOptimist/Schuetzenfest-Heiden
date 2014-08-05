@@ -33,17 +33,19 @@ function onDeviceReady() {
     {
         // $("#app-status-ul").append('<li>backbutton event received</li>');
     
-        if( $("#home").length > 0)
-        {
-            // call this to get a new token each time. don't call it to reuse existing token.
-            //pushNotification.unregister(successHandler, errorHandler);
-            e.preventDefault();
-            navigator.app.exitApp();
-        }
-        else
-        {
-            navigator.app.backHistory();
-        }
+        // if( $("#home").length > 0)
+        // {
+            // // call this to get a new token each time. don't call it to reuse existing token.
+            // //pushNotification.unregister(successHandler, errorHandler);
+            // e.preventDefault();
+            // navigator.app.exitApp();
+        // }
+        // else
+        // {
+            // navigator.app.backHistory();
+        // }
+        
+        navigator.app.exitApp();
     }, false);
     
     try
