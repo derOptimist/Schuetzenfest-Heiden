@@ -48,16 +48,6 @@
             console.log("chat_user: "+window.localStorage.getItem("chat_user"));
             
             $("#pictures").html(res.pictures).trigger('create');
-            
-            //Funktionen für Galerie
-            if(h_ios == 0)
-            {
-                $('.slideshow').cycle({
-                    fx:     'fade',
-                    next:   '#vorbutton',
-                    prev:   '#zurueckbutton' 
-                });
-            }
          },
          error: function(e) {
             console.log(e.message);
