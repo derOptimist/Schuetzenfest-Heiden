@@ -16,7 +16,7 @@
         
         
    $(document).ready(function(){
-// $("#app-status-ul").append('<li>document ready</li>');
+ $("#app-status-ul").append('<li>document ready</li>');
       // Zeige Ladebalken
       $('.loading').show();
       // Hole allgemeine Daten
