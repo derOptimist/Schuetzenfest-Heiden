@@ -74,6 +74,11 @@ function onDeviceReady() {
         alert(txt);
     }
 }
+
+
+function onDeviceResume() {
+window.location.reload();
+}
             
 // handle APNS notifications for iOS
 function onNotificationAPN(e) {
@@ -197,5 +202,8 @@ function reg_id_submit(reg_id_value){
 };
 
 
+
+
 document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("resume", yourCallbackFunction, false);
 //End Push
