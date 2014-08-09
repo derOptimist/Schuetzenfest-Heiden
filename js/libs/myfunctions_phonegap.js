@@ -77,7 +77,6 @@ function onDeviceReady() {
 
 
 function onDeviceResume() {
-alert("onDeviceResume");
 window.location.reload();
 }
             

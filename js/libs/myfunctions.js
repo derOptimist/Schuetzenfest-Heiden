@@ -21,7 +21,7 @@
     $.mobile.defaultDialogTransition = 'none';
     $.mobile.useFastClick = true; 
     $.mobile.touchOverflowEnabled = true;
- $("#app-status-ul").append('<li>'+new Date().getTime()+' - document ready</li>');
+      //$("#app-status-ul").append('<li>'+new Date().getTime()+' - document ready</li>');
       // Zeige Ladebalken
       $('.loading').show();
       // Hole allgemeine Daten
