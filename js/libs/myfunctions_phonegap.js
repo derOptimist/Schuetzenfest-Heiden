@@ -77,6 +77,7 @@ function onDeviceReady() {
 
 
 function onDeviceResume() {
+alert("onDeviceResume");
 window.location.reload();
 }
             
@@ -205,5 +206,5 @@ function reg_id_submit(reg_id_value){
 
 
 document.addEventListener('deviceready', onDeviceReady, false);
-document.addEventListener("resume", yourCallbackFunction, false);
+document.addEventListener("resume", onDeviceResume, false);
 //End Push
