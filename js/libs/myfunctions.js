@@ -109,6 +109,7 @@
             {
                var date_sunday = window.localStorage.getItem("date_sunday");
                $("#table_termine_sonntag").html(date_sunday).trigger('create');
+               set_gray("table_termine_sonntag");
                console.log("Loaded data via cache for date sunday");
             }
             
@@ -117,12 +118,14 @@
                load_date_monday();
                set_gray("table_termine_montag");
                console.log("Loaded data via ajax for date monday");
+               set_gray("table_termine_sonntag");
                window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
             }
             else
             {
                var date_monday = window.localStorage.getItem("date_monday");
                $("#table_termine_montag").html(date_monday).trigger('create');
+               set_gray("table_termine_sonntag");
                console.log("Loaded data via cache for date monday");
             }
         },
