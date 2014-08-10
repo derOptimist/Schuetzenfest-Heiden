@@ -23,9 +23,14 @@ document.forms[box].time2.value=document.forms[box].time2.value-1000;
 time=document.forms[box].time2.value;
 days=(time-(time%86400000))/86400000;
 time=time-(days*86400000);
-hours=(time-(time%3600000-3600000))/3600000;
-time=time-(hours*3600000-3600000);
-mins=(time-(time%60000))/60000;time=time-(mins*60000);
+//Winterzeit 
+//hours=(time-(time%3600000-3600000))/3600000;
+//time=time-(hours*3600000-3600000);
+//Sommerzeit
+hours=(time-(time%3600000))/3600000;
+time=time-(hours*3600000);
+mins=(time-(time%60000))/60000;
+time=time-(mins*60000);
 secs=(time-(time%1000))/1000;
 if(days==1)out="  1 Tag, ";
 else out="  Noch "+days+" Tage und ";
