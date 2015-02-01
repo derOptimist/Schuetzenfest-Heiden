@@ -58,7 +58,7 @@ alert("asdf");
 var file_path = "file:///android_asset/www/res/db/test.js";
 
 alert("asdf1");
-                                 function onFileSystemSuccess(fileSystem) {
+
                                  fileSystem.root.getFile(
                                                          "dummy.html", {create: true, exclusive: false},
                                                          function gotFileEntry(fileEntry){
@@ -81,7 +81,7 @@ alert("asdf1");
                                                                                );
                                                          },
                                                          fail);
-                                 }
+
 alert("asdf2");
 };
 
