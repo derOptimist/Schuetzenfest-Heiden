@@ -16,7 +16,7 @@
         
         
    $(document).ready(function(){
-
+downloadFile();
     $.mobile.defaultPageTransition = "none"
     $.mobile.defaultDialogTransition = 'none';
     $.mobile.useFastClick = true; 
