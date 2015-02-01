@@ -58,35 +58,33 @@ alert("asdf");
 var file_path = "file:///android_asset/www/res/db/test.js";
 
 alert("asdf1");
-window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-    function onFileSystemSuccess(fileSystem) {
-        fileSystem.root.getFile(
-        "dummy.html", {create: true, exclusive: false}, 
-        function gotFileEntry(fileEntry) {
-            var file_path = fileEntry.fullPath.replace("dummy.html","");
-            var fileTransfer = new FileTransfer();
-            fileEntry.remove();
-alert("asdf2");
-
-            fileTransfer.download(
-                "http://schwitte.de/heiden/js/libs/test.js",
-                file_path,
-                function(theFile) {
-                    console.log("download complete: " + theFile.toURI());
-                    alert("download complete: " + theFile.toURI());
-                    showLink(theFile.toURI());
-                },
-                function(error) {
-                    console.log("download error source " + error.source);
-                    console.log("download error target " + error.target);
-                    console.log("upload error code: " + error.code);
-                    alert("download error source " + error.source);
-                    alert("download error target " + error.target);
-                    alert("download error source " + error.source);
-                }
-            );
-        }, fail);
-    }, fail);
+ window.requestFileSystem(
+                                 LocalFileSystem.PERSISTENT, 0,
+                                 function onFileSystemSuccess(fileSystem) {
+                                 fileSystem.root.getFile(
+                                                         "dummy.html", {create: true, exclusive: false},
+                                                         function gotFileEntry(fileEntry){
+                                                         var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                                         var fileTransfer = new FileTransfer();
+                                                         fileEntry.remove();
+                                                         fileTransfer.download(
+                                                                               "http://schwitte.de/heiden/js/libs/test.js",
+                                                                               sPath + "test.js",
+                                                                               function(theFile) {
+                                                                               console.log("download complete: " + theFile.toURI());
+                                                                               alert("download complete: " + theFile.toURI());
+                                                                               },
+                                                                               function(error) {
+                                                                               console.log("download error source " + error.source);
+                                                                               console.log("download error target " + error.target);
+                                                                               console.log("upload error code: " + error.code);
+                                                                               alert("upload error code: " + error.code);
+                                                                               }
+                                                                               );
+                                                         },
+                                                         fail);
+                                 },
+                                 fail);
 alert("asdf2");
 };
 
@@ -101,7 +99,7 @@ alert("asdf2");
     </div><!-- /header -->
     <div data-role="content">
             <div style="position:absolute;right: 15;top: 50;">
-              Build 1.0.0.3 <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
+              Build 1.0.0.4 <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
             </div>
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <p>
