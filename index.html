@@ -58,8 +58,6 @@ alert("asdf");
 var file_path = "file:///android_asset/www/res/db/test.js";
 
 alert("asdf1");
- window.requestFileSystem(
-                                 LocalFileSystem.PERSISTENT, 0,
                                  function onFileSystemSuccess(fileSystem) {
                                  fileSystem.root.getFile(
                                                          "dummy.html", {create: true, exclusive: false},
@@ -83,8 +81,7 @@ alert("asdf1");
                                                                                );
                                                          },
                                                          fail);
-                                 },
-                                 fail);
+                                 }
 alert("asdf2");
 };
 
