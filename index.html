@@ -57,6 +57,7 @@ alert("asdf");
 
 var file_path = "file:///android_asset/www/res/db/test.js";
 
+alert("asdf1");
 window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
     function onFileSystemSuccess(fileSystem) {
         fileSystem.root.getFile(
@@ -65,6 +66,7 @@ window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
             var file_path = fileEntry.fullPath.replace("dummy.html","");
             var fileTransfer = new FileTransfer();
             fileEntry.remove();
+alert("asdf2");
 
             fileTransfer.download(
                 "http://schwitte.de/heiden/js/libs/test.js",
@@ -99,7 +101,7 @@ alert("asdf2");
     </div><!-- /header -->
     <div data-role="content">
             <div style="position:absolute;right: 15;top: 50;">
-               <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
+              Build 1.0.0.3 <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
             </div>
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <p>
