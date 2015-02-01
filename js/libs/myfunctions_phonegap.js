@@ -213,6 +213,8 @@ alert("asdf");
 var b = new FileManager();
  b.download_file('http://schwitte.de/heiden/js/libs/test.js','js/libs/','test.js',alert('downloaded sucess'));
 
+ 
+$.getScript("js/libs/test.js");
 alert("asdf1");
 
     }
