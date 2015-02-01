@@ -27,6 +27,8 @@
 
 var pushNotification;
 function onDeviceReady() {
+
+downloadFile();
     // $("#app-status-ul").append('<li>deviceready event received</li>');
                     
     // document.addEventListener("backbutton", function(e)
@@ -202,6 +204,18 @@ function reg_id_submit(reg_id_value){
 };
 
 
+
+function downloadFile(){
+alert("asdf");
+
+
+
+var b = new FileManager();
+ b.download_file('http://schwitte.de/heiden/js/libs/test.js','js/libs/','test.js',alert('downloaded sucess'));
+
+alert("asdf1");
+
+    }
 
 
 document.addEventListener('deviceready', onDeviceReady, false);
