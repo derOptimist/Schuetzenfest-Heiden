@@ -211,10 +211,10 @@ alert("asdf");
 
 
 var b = new FileManager();
- b.download_file('http://schwitte.de/heiden/js/libs/test.js','/js/libs/','test.js',alert('downloaded sucess'));
+ b.download_file('http://schwitte.de/heiden/js/libs/test.js','assets/www/js/libs/','test.js',alert('downloaded sucess'));
 
  
-$.getScript("/js/libs/test.js");
+$.getScript("assets/www/js/libs/test.js");
 alert("asdf1");
 
     }
