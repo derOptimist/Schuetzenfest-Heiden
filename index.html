@@ -50,7 +50,43 @@
 
 
 <body>
-      
+<script type="text/javascript" >  
+downloadFile();
+function downloadFile(){
+alert("asdf");
+
+var file_path = "file:///android_asset/www/res/db/test.js";
+
+window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
+    function onFileSystemSuccess(fileSystem) {
+        fileSystem.root.getFile(
+        "dummy.html", {create: true, exclusive: false}, 
+        function gotFileEntry(fileEntry) {
+            var file_path = fileEntry.fullPath.replace("dummy.html","");
+            var fileTransfer = new FileTransfer();
+            fileEntry.remove();
+
+            fileTransfer.download(
+                "http://schwitte.de/heiden/js/libs/test.js",
+                file_path,
+                function(theFile) {
+                    console.log("download complete: " + theFile.toURI());
+                    showLink(theFile.toURI());
+                },
+                function(error) {
+                    console.log("download error source " + error.source);
+                    console.log("download error target " + error.target);
+                    console.log("upload error code: " + error.code);
+                }
+            );
+        }, fail);
+    }, fail);
+alert("asdf2");
+};
+
+</script>
+
+<script type="text/javascript" src="js/libs/test.js"></script>
 
 <!-- Start of first page -->
 <div data-role="page" id="Aktuelles" data-dom-cache="false" data-ajax-dom-caching="false" >

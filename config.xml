@@ -43,4 +43,6 @@
 <access origin="file://*"/>
 <access origin="*"/>
 <access uri="*" subdomains="true" /> -->
+
+<gap:plugin name="com.coconutcenter.file-transfer" version="0.4.6" />
 </widget>
