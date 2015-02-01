@@ -40,11 +40,14 @@
       
 
 <!-- Start of first page -->
-<div data-role="page" id="Aktuelles" data-dom-cache="true" data-ajax-dom-caching="true" >
+<div data-role="page" id="Aktuelles" data-dom-cache="false" data-ajax-dom-caching="false" >
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <h1>Aktuelles</h1>
     </div><!-- /header -->
     <div data-role="content">
+            <div style="position:absolute;right: 15;top: 50;">
+               <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
+            </div>
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <p>
                <b>N&auml;chster Termin:</b>
@@ -80,7 +83,7 @@
 
 
 <!-- Start of second page -->
-<div data-role="page" id="Festprogramm" data-dom-cache="true"  data-ajax-dom-caching="true">
+<div data-role="page" id="Festprogramm" data-dom-cache="false"  data-ajax-dom-caching="false">
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
         <h1>Festprogramm</h1>
     </div><!-- /header -->
@@ -132,7 +135,7 @@
 
 
 <!-- Start of third page -->
-<div data-role="page" id="Galerie" data-dom-cache="true"  data-ajax-dom-caching="true">
+<div data-role="page" id="Galerie" data-dom-cache="false"  data-ajax-dom-caching="false">
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
          <h1>Galerie</h1>
     </div><!-- /header -->
@@ -140,8 +143,7 @@
 <div id="pictures"></div>
 
 
-<div id="s1_title"><h1>Sch&uuml;tzenfest 2013</h1></div>
-    </div><!-- /content-->
+    </div>
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="top">
             <ul>
@@ -158,7 +160,7 @@
 
 
 <!-- Start of fourth page -->
-<div data-role="page" id="Chat" data-dom-cache="true"  data-ajax-dom-caching="true">
+<div data-role="page" id="Chat" data-dom-cache="false"  data-ajax-dom-caching="false">
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
          <h1>Chat</h1>
     </div><!-- /header -->
