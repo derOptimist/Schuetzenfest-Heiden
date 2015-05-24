@@ -12,7 +12,6 @@ var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen m
 var debug = 1;
 
 $(document).ready(function(){
-downloadFile();
 $.mobile.defaultPageTransition = "none"
 $.mobile.defaultDialogTransition = 'none';
 $.mobile.useFastClick = true; 
@@ -164,6 +163,8 @@ for ( ; i < iDevice.length ; i++ )
       break; 
       }
 }
+document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("resume", onDeviceResume, false);
 });//Ende $(document).ready(function(){
 h_ios = 1;
    
@@ -354,3 +355,4 @@ function chat_refresh(){
        }
    });
 };
+

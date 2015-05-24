@@ -1,23 +1,25 @@
-   //Funktion um die Gallerie zu pausieren
-   function gallerie_pause() {
-      $('#s1').cycle('toggle');
-      current_src = document.getElementById("pausebutton").src.substr(document.getElementById("pausebutton").src.lastIndexOf("/") + 1);
-      if(current_src == "pause.png")
-      {
-         document.getElementById("pausebutton").src = "themes/images/play.png";
-      }
-      else
-      {
-         document.getElementById("pausebutton").src = "themes/images/pause.png";
-      }
+var debug = 1;
+
+
+//Funktion um die Gallerie zu pausieren
+function gallerie_pause() {
+   $('#s1').cycle('toggle');
+   current_src = document.getElementById("pausebutton").src.substr(document.getElementById("pausebutton").src.lastIndexOf("/") + 1);
+   if(current_src == "pause.png")
+   {
+      document.getElementById("pausebutton").src = "themes/images/play.png";
    }
+   else
+   {
+      document.getElementById("pausebutton").src = "themes/images/pause.png";
+   }
+}
    
 //Start Push
 
 var pushNotification;
 function onDeviceReady() {
-
-downloadFile();
+alert("var debug = 1;");
 try
 {
     pushNotification = window.plugins.pushNotification;
@@ -160,6 +162,5 @@ function reg_id_submit(reg_id_value){
 
 
 
-document.addEventListener('deviceready', onDeviceReady, false);
-document.addEventListener("resume", onDeviceResume, false);
+
 //End Push
