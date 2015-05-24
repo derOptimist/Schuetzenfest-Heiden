@@ -9,7 +9,7 @@ var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php';
 var chat_submit_time_old = '500000';
 var chat_submit_time_new = '';
 var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen muss
-var debug = 1;
+var debug = 0;
 
 $(document).ready(function(){
 $.mobile.defaultPageTransition = "none"
@@ -22,6 +22,12 @@ if(debug==1)
 }
 // Zeige Ladebalken
 $('.loading').show();
+//Pruefe Version
+if(document.getElementById("version").innerHTML != "Version 1.8.3")
+{
+   alert("Bitte aktualisieren Sie auf die neue Version.");
+}
+
 // Hole allgemeine Daten
 $.ajax({
    type: 'GET',

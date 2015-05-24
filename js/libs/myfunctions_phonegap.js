@@ -1,5 +1,4 @@
-var debug = 1;
-alert("gap1");
+var debug = 0;
 
 //Funktion um die Gallerie zu pausieren
 function gallerie_pause() {
@@ -19,7 +18,6 @@ function gallerie_pause() {
 
 var pushNotification;
 function onDeviceReady() {
-alert("var debug = 1;");
 try
 {
     pushNotification = window.plugins.pushNotification;
@@ -160,8 +158,4 @@ function reg_id_submit(reg_id_value){
         }
     });
 };
-
-alert("gap2");
-
-
 //End Push

@@ -4,7 +4,7 @@
 <title>Sch&uuml;tzenfest Heiden</title>
 
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<link rel="apple-touch-startup-image" href="1.png" />
+<link rel="apple-touch-startup-image" href="images/apple-touch-icon-precomposed.png" />
 <meta name="viewport" content="width=device-width; initial-scale=1">
 <!-- Full Screen Mode (when run as a web app) -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
 
 
 <!-- Start of Countdown -->
-<script type="text/javascript" src="js/libs/countdown.js"></script>
+<script type="text/javascript" src="http://schwitte.de/heiden/js/libs/countdown.js"></script>
 <!-- End of Countdown -->
 
 
@@ -47,7 +47,6 @@
 <!-- Start of Gallery - Online rausnehmen -->
 
 <script type="text/javascript" charset="utf-8">
-
 function onLoad() {
 document.addEventListener('deviceready', onDeviceReady, false);
 document.addEventListener("resume", onDeviceResume, false);
@@ -56,17 +55,7 @@ document.addEventListener("resume", onDeviceResume, false);
 
 
 </head>
-
-
-
 <body onload="onLoad()">
-
-
-
-
-
-
-
 <!-- Start of first page -->
 <div data-role="page" id="Aktuelles" data-dom-cache="false" data-ajax-dom-caching="false" >
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
@@ -74,7 +63,7 @@ document.addEventListener("resume", onDeviceResume, false);
     </div><!-- /header -->
     <div data-role="content">
             <div style="position:absolute;right: 15;top: 50;">
-              Version 1.8.3 <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
+              <label id="version">Version 1.8.3</label> <button type="button" id="reload" style="-webkit-appearance: none;" onclick="alert('Inhalt wird aktualisiert');window.location.reload();"  data-role="none" data-corner="false"><img src="themes/images/reload.png" width="48" height="48" alt="Reload"  ></button>
             </div>
         <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-expanded-icon="arrow-d" data-collapsed-icon="arrow-r">
             <p>
