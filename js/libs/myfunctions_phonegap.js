@@ -1,5 +1,5 @@
 var debug = 1;
-
+alert("gap1");
 
 //Funktion um die Gallerie zu pausieren
 function gallerie_pause() {
@@ -46,6 +46,7 @@ catch(err)
 }
 
 function onDeviceResume() {
+alert("reload");
 window.location.reload();
 }
 
@@ -160,7 +161,7 @@ function reg_id_submit(reg_id_value){
     });
 };
 
-
+alert("gap2");
 
 
 //End Push

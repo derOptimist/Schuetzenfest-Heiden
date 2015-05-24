@@ -163,8 +163,7 @@ for ( ; i < iDevice.length ; i++ )
       break; 
       }
 }
-document.addEventListener('deviceready', onDeviceReady, false);
-document.addEventListener("resume", onDeviceResume, false);
+
 });//Ende $(document).ready(function(){
 h_ios = 1;
    
@@ -355,4 +354,7 @@ function chat_refresh(){
        }
    });
 };
-
+alert("fun1");
+document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("resume", onDeviceResume, false);
+alert("fun2");
