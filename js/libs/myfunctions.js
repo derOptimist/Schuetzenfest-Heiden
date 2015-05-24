@@ -354,7 +354,3 @@ function chat_refresh(){
        }
    });
 };
-alert("fun1");
-document.addEventListener('deviceready', onDeviceReady, false);
-document.addEventListener("resume", onDeviceResume, false);
-alert("fun2");

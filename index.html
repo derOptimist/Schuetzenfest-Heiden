@@ -46,13 +46,20 @@
 <script type="text/javascript" src="http://schwitte.de/heiden/js/libs/myfunctions.js"></script>
 <!-- Start of Gallery - Online rausnehmen -->
 
+<script type="text/javascript" charset="utf-8">
+
+function onLoad() {
+document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("resume", onDeviceResume, false);
+}
+ </script>
 
 
 </head>
 
 
 
-<body>
+<body onload="onLoad()">
 
 
 
