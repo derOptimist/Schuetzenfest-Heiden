@@ -2,10 +2,10 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.schuetzenfestheiden"
-    versionCode = "84" 
-    version     = "1.8.2" >
+    versionCode = "85" 
+    version     = "1.8.3" >
 
-<preference name="phonegap-version" value="3.6.3" />
+<preference name="phonegap-version" value="3.7.0" />
 <gap:plugin name="org.apache.cordova.device" />
 
     <name>Schützenfest Heiden</name>
