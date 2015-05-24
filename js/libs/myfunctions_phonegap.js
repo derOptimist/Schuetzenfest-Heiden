@@ -205,21 +205,6 @@ function reg_id_submit(reg_id_value){
 
 
 
-function downloadFile(){
-alert("asdf");
-
-
-
-var b = new FileManager();
- b.download_file('http://schwitte.de/heiden/js/libs/test.js','assets/www/js/libs/','test.js',alert('downloaded sucess'));
-
- 
-$.getScript("assets/www/js/libs/test.js");
-alert("asdf1");
-
-    }
-
-
 document.addEventListener('deviceready', onDeviceReady, false);
 document.addEventListener("resume", onDeviceResume, false);
 //End Push
