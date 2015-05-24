@@ -44,7 +44,6 @@ catch(err)
 }
 
 function onDeviceResume() {
-alert("reload");
 window.location.reload();
 }
 
