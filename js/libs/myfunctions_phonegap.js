@@ -20,6 +20,7 @@ var pushNotification;
 function onDeviceReady() {
 try
 {
+
     pushNotification = window.plugins.pushNotification;
     if (device.platform == 'android' || device.platform == 'Android') {
         if(debug==1)
@@ -158,3 +159,44 @@ function reg_id_submit(reg_id_value){
     });
 };
 //End Push
+
+
+
+//Start Upload
+function win(r) {
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
+}
+
+function uploadfile{
+$( ".progressbar" ).progressbar( "enable" );
+var uri = encodeURI("http://schwitte.de/heiden/upload/process.php");
+
+var options = new FileUploadOptions();
+options.fileKey="file";
+options.fileName=document.getElementById("img_file");
+options.mimeType="text/plain";
+
+var headers={'headerParam':'headerValue'};
+
+options.headers = headers;
+
+var ft = new FileTransfer();
+ft.onprogress = function(progressEvent) {
+    if (progressEvent.lengthComputable) {
+      loadingStatus.setPercentage(progressEvent.loaded / progressEvent.total);
+    } else {
+      loadingStatus.increment();
+    }
+};
+ft.upload(fileURL, uri, win, fail, options);
+}
+
+//End Upload

@@ -1,4 +1,4 @@
-var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit.php';
+var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_V2.php';
 var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
 var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
 var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
@@ -307,7 +307,7 @@ function chat_submit(){
                  $('.loading').show();
              },
              success: function(res) {
-                  console.log('Erfolgreich');
+                  alert(res.returntext);
                   chat_refresh();
                   document.getElementById("chat_text").value = "";
                   return false;
@@ -360,3 +360,125 @@ function chat_refresh(){
        }
    });
 };
+
+// Funktion um Chatbox zu aktualisieren
+function img_upload(){
+
+   
+   
+
+
+
+  // var input = document.getElementById("img_file");
+  // file = input.files[0];
+  // if(file != undefined){
+    // formData= new FormData();
+    // if(!!file.type.match(/image.*/)){
+      // formData.append("image", file);
+      // $.ajax({
+       // crossDomain: true,
+        // url: "http://schwitte.de/heiden/upload/process.php",
+        // type: "POST",
+        // data: formData,
+        // processData: false,
+        // contentType: false,
+        // success: function(data){
+            // alert('success');
+        // }
+      // });
+    // }else{
+      // alert('Not a valid image!');
+    // }
+  // }else{
+    // alert('Input something!');
+  // }
+  
+  
+  
+  // var input = document.getElementById("img_file");
+  // file = input.files[0];
+  // if(file != undefined){
+    // formData= new FormData();
+    // if(!!file.type.match(/image.*/)){
+      // // formData.append("image", file);
+      var file;
+      var input = document.getElementById("img_file");
+      file = input.files[0];
+      
+      
+      //Start resize
+      
+      
+// var img = document.createElement("img");
+// img.src = window.URL.createObjectURL(file);
+
+
+      // var ctx = canvas.getContext("2d");
+      // ctx.drawImage(img, 0, 0);
+   // var MAX_WIDTH = 800;
+   // var MAX_HEIGHT = 600;
+   // var width = img.width;
+   // var height = img.height;
+    
+   // if (width > height) {
+     // if (width > MAX_WIDTH) {
+       // height *= MAX_WIDTH / width;
+       // width = MAX_WIDTH;
+     // }
+   // } else {
+     // if (height > MAX_HEIGHT) {
+       // width *= MAX_HEIGHT / height;
+       // height = MAX_HEIGHT;
+     // }
+   // }
+   // canvas.width = width;
+   // canvas.height = height;
+   // var ctx = canvas.getContext("2d");
+   // ctx.drawImage(img, 0, 0, width, height);
+      
+      
+      
+      
+      
+      //End resize
+      
+      
+   $.ajax({
+       type: 'GET',
+       url: "http://schwitte.de/heiden/upload/process.php",
+       processData: false, 
+       contentType: false,
+       dataType: 'jsonp',
+       data: file,
+       crossDomain: true,
+       beforeSend: function(){
+           // $('.loading').show();
+       },
+       success: function(res) {
+            // document.getElementById("chat_content").value = res.chat_content;
+            console.log(res.returntext);
+       },
+       error: function(e) {
+           console.log("Fehler"+e);
+       },
+       complete: function(data) {
+           // $('.loading').hide();
+       }
+   });
+      
+      
+    // }else{
+      // alert('Not a valid image!');
+    // }
+  // }else{
+    // alert('Input something!');
+  // }
+
+
+
+
+   
+};
+
+
+
