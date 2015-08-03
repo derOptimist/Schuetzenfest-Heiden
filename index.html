@@ -21,6 +21,7 @@
 <!-- Ende Erforderlich für Phonegap API -->
 <script src="js/libs/jquery1.11.0.min.js"></script> 
 <script src="js/libs/jquery.mobile1.3.2.min.js"></script> 
+<script src="js/libs/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="themes/div_table.css" /> 
 <link rel="stylesheet" href="themes/style.css" />
 <link rel="stylesheet" href="themes/jquery.mobile.structure1.3.2.min.css" /> 
@@ -157,24 +158,8 @@ document.addEventListener("resume", onDeviceResume, false);
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
          <h1>Galerie</h1>
     </div><!-- /header -->
-    
-    
-            <form id="myform" action="javascript:uploadfile()" >
-            <fieldset>
-
-                  <table cellpadding="0" cellspacing="0"  frame="void" class="dfContactTable" style="width:300px">
-
-                     <tr><p>
-                        <input accept="image/*;capture=camera" id="img_file" type="file">
-                        <td ><input type="submit" id="submit" value="Hochladen" /></td>
-<div id="progressbar"></div>
-                     </p></tr>
-                  </table>
-            </fieldset>
-            </form>
-    
     <div data-role="content">
-<div id="pictures"></div>
+        <div id="pictures"></div>
     </div><!-- /content-->
     <div data-role="footer" style="overflow:hidden;" data-position="fixed" data-tap-toggle="false">
         <div data-role="navbar" data-iconpos="top">

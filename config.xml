@@ -37,14 +37,8 @@
 
 
 <feature name="http://api.phonegap.com/1.0/network"/>
-<!-- <feature name="http://api.phonegap.com/1.0/device" />  -->
 <gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="com.phonegap.plugins.pushplugin" />
-<gap:plugin name="com.chanthu.evri.gcs-file-transfer" version="1.0.0" />
-<gap:plugin name="com.synconset.imageresizer" version="0.1.1" />
-<!-- <gap:plugin name="com.badrit.backbutton" version="0.1.0" /> -->
-<!-- <access origin=".*"/>
-<access origin="file://*"/>
-<access origin="*"/>
-<access uri="*" subdomains="true" /> -->
+<!-- <gap:plugin name="com.chanthu.evri.gcs-file-transfer" version="1.0.0" />
+<gap:plugin name="com.synconset.imageresizer" version="0.1.1" /> -->
 </widget>

@@ -170,33 +170,6 @@ for ( ; i < iDevice.length ; i++ )
       }
 }
 
-
-
-   // When the browser is ready...
-   $(function() {
-  
-      // Setup form validation on the #register-form element
-      $("#myform").validate({
-    
-         // Specify the validation rules
-         rules: {
-            chat_user: "required",
-            chat_text: "required"
-         },
-        
-         // Specify the validation error messages
-         messages: {
-            chat_user: "Bitte eine gültige Mailadresse angeben",
-            chat_text: "Dies ist ein Pflichtfeld"
-         },
-        
-         submitHandler: function(form) {
-            form.submit();
-        }
-      });
-   });
-
-
 });//Ende $(document).ready(function(){
 h_ios = 1;
    
