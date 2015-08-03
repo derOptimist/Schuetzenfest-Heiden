@@ -25,7 +25,7 @@ $('.loading').show();
 //Pruefe Version
 if(document.getElementById("version").innerHTML != "Version 1.8.3")
 {
-   alert("Bitte aktualisieren Sie auf die neue Version.");
+   show_message("Bitte aktualisieren Sie auf die neue Version.");
 }
 
 // Hole allgemeine Daten
@@ -307,11 +307,11 @@ function chat_submit(){
 
    if(document.getElementById("chat_text").value == '')
    {
-      alert('Bitte Text angeben');
+      show_message('Bitte Text angeben');
    }
    else if(document.getElementById("chat_user").value == '')
    {
-      alert('Bitte Mailadresse angeben');
+      show_message('Bitte Mailadresse angeben');
    }
    else
    {
@@ -334,7 +334,7 @@ function chat_submit(){
                  $('.loading').show();
              },
              success: function(res) {
-                  alert(res.returntext);
+                  show_message(res.returntext);
                   chat_refresh();
                   document.getElementById("chat_text").value = "";
                   return false;
@@ -354,7 +354,7 @@ function chat_submit(){
       {
          var wait_seconds;
          wait_seconds = chat_submit_diff - rest;
-         alert('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
+         show_message('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
       }
       
       //Chat Benutzername merken
@@ -387,3 +387,15 @@ function chat_refresh(){
        }
    });
 };
+
+
+function show_message(txt){
+   try
+   {
+      navigator.notification.alert(txt,function() {}, 'Heiden', 'Ok');
+   }
+   catch(err)
+   {
+      alert(txt);
+   }
+}
