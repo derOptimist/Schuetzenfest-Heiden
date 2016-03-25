@@ -5,11 +5,12 @@
     versionCode = "87" 
     version     = "2.0.1" >
 
+<preference name="phonegap-version" value="3.7.0" />
 
     <name>Schützenfest Heiden</name>
 
     <description>
-      Die offizielle App von Schützenfest Heiden
+      Die offizielle App vom Schützenverein Heiden
     </description>
 
     <author href="http://www.schwitte.de" email="phonegap@schwitte.de">
@@ -18,7 +19,7 @@
     <icon src="icon.png" />
     
 
-    
+                
     
 <!-- <gap:plugin name="org.apache.cordova.core.camera" />
 <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
