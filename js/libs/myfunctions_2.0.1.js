@@ -1,10 +1,10 @@
-var url_chatbox_submit = 'http://www.schwitte.de/heiden/chat_submit_V2.php';
-var url_chatbox_refresh = 'http://www.schwitte.de/heiden/chat_refresh.php';
-var url_load_infos = 'http://www.schwitte.de/heiden/ajax_test.php';
-var url_load_date_checksums = 'http://www.schwitte.de/heiden/ajax_date_checksums.php';
-var url_load_date_saturday = 'http://www.schwitte.de/heiden/ajax_date_saturday.php';
-var url_load_date_sunday = 'http://www.schwitte.de/heiden/ajax_date_sunday.php';
-var url_load_date_monday = 'http://www.schwitte.de/heiden/ajax_date_monday.php';
+var url_chatbox_submit = 'http://schwitte.de/heiden/chat_submit_V2.php';
+var url_chatbox_refresh = 'http://schwitte.de/heiden/chat_refresh.php';
+var url_load_infos = 'http://schwitte.de/heiden/ajax_test.php';
+var url_load_date_checksums = 'http://schwitte.de/heiden/ajax_date_checksums.php';
+var url_load_date_saturday = 'http://schwitte.de/heiden/ajax_date_saturday.php';
+var url_load_date_sunday = 'http://schwitte.de/heiden/ajax_date_sunday.php';
+var url_load_date_monday = 'http://schwitte.de/heiden/ajax_date_monday.php';
 var url_push_save_reg_id = 'http://schwitte.de/heiden/push/save_id.php';
 var chat_submit_time_old = '500000';
 var chat_submit_time_new = '';
@@ -12,33 +12,11 @@ var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen m
 var debug = 0;
 var chat_aktiv = 0;
 
-function checkConnection() {
-
-}
-
 $(document).ready(function(){
 $.mobile.defaultPageTransition = "none"
 $.mobile.defaultDialogTransition = 'none';
 $.mobile.useFastClick = true; 
 $.mobile.touchOverflowEnabled = true;
-alert("ready");
-
-
-
-    var networkState = navigator.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
-
 
 if (window.localStorage.getItem("chat_aktiv") == 0)
 {
@@ -127,6 +105,7 @@ $.ajax({
       {
          var date_saturday = window.localStorage.getItem("date_saturday");
          $("#table_termine_samstag").html(date_saturday).trigger('create');
+         set_gray("table_termine_samstag");
          console.log("Loaded data via cache for date saturday");
          // document.getElementById("console").value = "Loaded data via cache";
       }
@@ -151,14 +130,13 @@ $.ajax({
          load_date_monday();
          set_gray("table_termine_montag");
          console.log("Loaded data via ajax for date monday");
-         set_gray("table_termine_sonntag");
          window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
       }
       else
       {
          var date_monday = window.localStorage.getItem("date_monday");
          $("#table_termine_montag").html(date_monday).trigger('create');
-         set_gray("table_termine_sonntag");
+         set_gray("table_termine_montag");
          console.log("Loaded data via cache for date monday");
       }
   },
@@ -235,7 +213,6 @@ if(cur_version < "200")
 {
    show_message('Bitte aktualisieren Sie auf die neue Version. Aktuelle Version ('+cur_version+')');
 }
-alert("ready2");
 });//Ende $(document).ready(function(){
 // h_ios = 1;
    
