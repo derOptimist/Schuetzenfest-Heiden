@@ -17,202 +17,202 @@ $.mobile.defaultPageTransition = "none"
 $.mobile.defaultDialogTransition = 'none';
 $.mobile.useFastClick = true; 
 $.mobile.touchOverflowEnabled = true;
+alert("ready");
+// if (window.localStorage.getItem("chat_aktiv") == 0)
+// {
+   // var neuerLink = document.createElement("label");
+   // neuerLink.innerHTML = "Ihre Mailadresse wurde noch nicht aktiviert. F&uuml;r die Aktivierung geben Sie einfach in dem Feld 'Mailadresse' Ihre Mailadresse an und senden irgendeinen Text ab (Text wird nicht gespeichert). Dann wird Ihnen eine Aktvierungsmail mit einem Link an diese Adresse geschickt.";
+   // neuerLink.style.color = "#FF0000";
+   // document.getElementById("myform").insertBefore(neuerLink, null);
+// }
 
-if (window.localStorage.getItem("chat_aktiv") == 0)
-{
-   var neuerLink = document.createElement("label");
-   neuerLink.innerHTML = "Ihre Mailadresse wurde noch nicht aktiviert. F&uuml;r die Aktivierung geben Sie einfach in dem Feld 'Mailadresse' Ihre Mailadresse an und senden irgendeinen Text ab (Text wird nicht gespeichert). Dann wird Ihnen eine Aktvierungsmail mit einem Link an diese Adresse geschickt.";
-   neuerLink.style.color = "#FF0000";
-   document.getElementById("myform").insertBefore(neuerLink, null);
-}
+// if(debug==1)
+// {
+   // $("#app-status-ul").append('<li>'+new Date().getTime()+' - document ready</li>');
+// }
+// // Zeige Ladebalken
+// $('.loading').show();
 
-if(debug==1)
-{
-   $("#app-status-ul").append('<li>'+new Date().getTime()+' - document ready</li>');
-}
-// Zeige Ladebalken
-$('.loading').show();
-
-// Hole allgemeine Daten
-$.ajax({
-   type: 'GET',
-   url: url_load_infos,
-   contentType: "application/json",
-   dataType: 'jsonp',
-   data: {},
-   crossDomain: true,
-   beforeSend: function(){
-      $.mobile.loading('show');
-   },
-   success: function(res) {
-      //Hole technisches Datum für Counter
-      start(res.datum_technisch);
-      console.log("Counter: "+res.datum_technisch);
-      //Hole Text zum Counter
-      $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');  
-      console.log("Text zu Counter: "+res.datum_anzeige);
-      //Hole aktuelle news
-      $("#news").html(res.news).trigger('create');
-      console.log("News: "+res.news);
-      //Hole Chatbox                    
-      document.getElementById("chat_content").value = res.chat_content;
-      //console.log("chat_content: "+res.chat_content);
-      //Setze gemerkten Namen der Chatbox
-      document.getElementById("chat_user").value = window.localStorage.getItem("chat_user");
-      console.log("chat_user: "+window.localStorage.getItem("chat_user"));
+// // Hole allgemeine Daten
+// $.ajax({
+   // type: 'GET',
+   // url: url_load_infos,
+   // contentType: "application/json",
+   // dataType: 'jsonp',
+   // data: {},
+   // crossDomain: true,
+   // beforeSend: function(){
+      // $.mobile.loading('show');
+   // },
+   // success: function(res) {
+      // //Hole technisches Datum für Counter
+      // start(res.datum_technisch);
+      // console.log("Counter: "+res.datum_technisch);
+      // //Hole Text zum Counter
+      // $("#output").html(res.mytext+'<br/>'+'<span style="color: #ff0000; font-weight: bold;">'+res.datum_anzeige+"</span><br/>").trigger('create');  
+      // console.log("Text zu Counter: "+res.datum_anzeige);
+      // //Hole aktuelle news
+      // $("#news").html(res.news).trigger('create');
+      // console.log("News: "+res.news);
+      // //Hole Chatbox                    
+      // document.getElementById("chat_content").value = res.chat_content;
+      // //console.log("chat_content: "+res.chat_content);
+      // //Setze gemerkten Namen der Chatbox
+      // document.getElementById("chat_user").value = window.localStorage.getItem("chat_user");
+      // console.log("chat_user: "+window.localStorage.getItem("chat_user"));
       
-      $("#pictures").html(res.pictures).trigger('create');
-   },
-   error: function(e) {
-      console.log(e.message);
-   },
-   complete: function(data) {
-      //Ladebalken entfernen
-      $.mobile.loading('hide'); 
-   }
-});
-
-// Hole Schuetzenfesttermine
-$.ajax({
-   type: 'GET',
-   url: url_load_date_checksums,
-   contentType: "application/json",
-   dataType: 'jsonp',
-   data: {},
-   crossDomain: true,
-   beforeSend: function(){
-      $.mobile.loading('show');
-   },
-   success: function(res) {
-      var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
-      var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
-      var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
-      // ldate_saturday_checksum = 0;
-      // ldate_sunday_checksum = 0;
-      // ldate_monday_checksum = 0;
-      console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
-      console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
-      console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
-      if(ldate_saturday_checksum != res.date_saturday_checksum)
-      {
-         load_date_saturday();
-         set_gray("table_termine_samstag");
-         console.log("Loaded data via ajax for date saturday");
-         window.localStorage.setItem("date_saturday_checksum", res.date_saturday_checksum);
-         // document.getElementById("console").value = "Loaded data via ajax";
-      }
-      else
-      {
-         var date_saturday = window.localStorage.getItem("date_saturday");
-         $("#table_termine_samstag").html(date_saturday).trigger('create');
-         console.log("Loaded data via cache for date saturday");
-         // document.getElementById("console").value = "Loaded data via cache";
-      }
-      
-      if(ldate_sunday_checksum != res.date_sunday_checksum)
-      {
-         load_date_sunday();
-         set_gray("table_termine_sonntag");
-         console.log("Loaded data via ajax for date sunday");
-         window.localStorage.setItem("date_sunday_checksum", res.date_sunday_checksum);
-      }
-      else
-      {
-         var date_sunday = window.localStorage.getItem("date_sunday");
-         $("#table_termine_sonntag").html(date_sunday).trigger('create');
-         set_gray("table_termine_sonntag");
-         console.log("Loaded data via cache for date sunday");
-      }
-      
-      if(ldate_monday_checksum != res.date_monday_checksum)
-      {
-         load_date_monday();
-         set_gray("table_termine_montag");
-         console.log("Loaded data via ajax for date monday");
-         set_gray("table_termine_sonntag");
-         window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
-      }
-      else
-      {
-         var date_monday = window.localStorage.getItem("date_monday");
-         $("#table_termine_montag").html(date_monday).trigger('create');
-         set_gray("table_termine_sonntag");
-         console.log("Loaded data via cache for date monday");
-      }
-  },
-  error: function(e) {
-      console.log(e.message);
-  },
-  complete: function(data) {
-    $.mobile.loading('hide'); 
-  }
-});
-
-// //Funktionen für Galerie
-// $('.slideshow').cycle({
-   // fx:     'fade',
-   // next:   '#vorbutton',
-   // prev:   '#zurueckbutton' 
+      // $("#pictures").html(res.pictures).trigger('create');
+   // },
+   // error: function(e) {
+      // console.log(e.message);
+   // },
+   // complete: function(data) {
+      // //Ladebalken entfernen
+      // $.mobile.loading('hide'); 
+   // }
 // });
 
-//Galerie bei IOS ausblenden
-var i = 0;
-var h_ios = 0;
-iDevice = ['iPad', 'iPhone', 'iPod'];
-for ( ; i < iDevice.length ; i++ ) 
-{
-   if( navigator.platform === iDevice[i] ){ 
-      // document.getElementById('s1').style.visibility = 'hidden';
-      // document.getElementById('s1').style.display = 'none';
-      // document.getElementById('s1_buttons').style.visibility = 'hidden';
-      // document.getElementById('s1_buttons').style.display = 'none';
-      // document.getElementById('s1_title').style.visibility = 'hidden';
-      // document.getElementById('s1_title').style.display = 'none';
+// // Hole Schuetzenfesttermine
+// $.ajax({
+   // type: 'GET',
+   // url: url_load_date_checksums,
+   // contentType: "application/json",
+   // dataType: 'jsonp',
+   // data: {},
+   // crossDomain: true,
+   // beforeSend: function(){
+      // $.mobile.loading('show');
+   // },
+   // success: function(res) {
+      // var ldate_saturday_checksum = window.localStorage.getItem("date_saturday_checksum");
+      // var ldate_sunday_checksum = window.localStorage.getItem("date_sunday_checksum");
+      // var ldate_monday_checksum = window.localStorage.getItem("date_monday_checksum");
+      // // ldate_saturday_checksum = 0;
+      // // ldate_sunday_checksum = 0;
+      // // ldate_monday_checksum = 0;
+      // console.log("ldate_saturday_checksum: "+ldate_saturday_checksum+" - res.date_saturday_checksum: "+res.date_saturday_checksum)
+      // console.log("ldate_sunday_checksum: "+ldate_sunday_checksum+" - res.date_sunday_checksum: "+res.date_sunday_checksum)
+      // console.log("ldate_monday_checksum: "+ldate_monday_checksum+" - res.date_monday_checksum: "+res.date_monday_checksum)
+      // if(ldate_saturday_checksum != res.date_saturday_checksum)
+      // {
+         // load_date_saturday();
+         // set_gray("table_termine_samstag");
+         // console.log("Loaded data via ajax for date saturday");
+         // window.localStorage.setItem("date_saturday_checksum", res.date_saturday_checksum);
+         // // document.getElementById("console").value = "Loaded data via ajax";
+      // }
+      // else
+      // {
+         // var date_saturday = window.localStorage.getItem("date_saturday");
+         // $("#table_termine_samstag").html(date_saturday).trigger('create');
+         // console.log("Loaded data via cache for date saturday");
+         // // document.getElementById("console").value = "Loaded data via cache";
+      // }
+      
+      // if(ldate_sunday_checksum != res.date_sunday_checksum)
+      // {
+         // load_date_sunday();
+         // set_gray("table_termine_sonntag");
+         // console.log("Loaded data via ajax for date sunday");
+         // window.localStorage.setItem("date_sunday_checksum", res.date_sunday_checksum);
+      // }
+      // else
+      // {
+         // var date_sunday = window.localStorage.getItem("date_sunday");
+         // $("#table_termine_sonntag").html(date_sunday).trigger('create');
+         // set_gray("table_termine_sonntag");
+         // console.log("Loaded data via cache for date sunday");
+      // }
+      
+      // if(ldate_monday_checksum != res.date_monday_checksum)
+      // {
+         // load_date_monday();
+         // set_gray("table_termine_montag");
+         // console.log("Loaded data via ajax for date monday");
+         // set_gray("table_termine_sonntag");
+         // window.localStorage.setItem("date_monday_checksum", res.date_monday_checksum);
+      // }
+      // else
+      // {
+         // var date_monday = window.localStorage.getItem("date_monday");
+         // $("#table_termine_montag").html(date_monday).trigger('create');
+         // set_gray("table_termine_sonntag");
+         // console.log("Loaded data via cache for date monday");
+      // }
+  // },
+  // error: function(e) {
+      // console.log(e.message);
+  // },
+  // complete: function(data) {
+    // $.mobile.loading('hide'); 
+  // }
+// });
 
-      // gallerie_pause(); 
-      document.getElementById('webcal').style.visibility = 'visible';
-      h_ios = 1;
+// // //Funktionen für Galerie
+// // $('.slideshow').cycle({
+   // // fx:     'fade',
+   // // next:   '#vorbutton',
+   // // prev:   '#zurueckbutton' 
+// // });
 
-      break; 
-      }
-}
+// //Galerie bei IOS ausblenden
+// var i = 0;
+// var h_ios = 0;
+// iDevice = ['iPad', 'iPhone', 'iPod'];
+// for ( ; i < iDevice.length ; i++ ) 
+// {
+   // if( navigator.platform === iDevice[i] ){ 
+      // // document.getElementById('s1').style.visibility = 'hidden';
+      // // document.getElementById('s1').style.display = 'none';
+      // // document.getElementById('s1_buttons').style.visibility = 'hidden';
+      // // document.getElementById('s1_buttons').style.display = 'none';
+      // // document.getElementById('s1_title').style.visibility = 'hidden';
+      // // document.getElementById('s1_title').style.display = 'none';
+
+      // // gallerie_pause(); 
+      // document.getElementById('webcal').style.visibility = 'visible';
+      // h_ios = 1;
+
+      // break; 
+      // }
+// }
 
 
 
-   // When the browser is ready...
-   $(function() {
+   // // When the browser is ready...
+   // $(function() {
   
-      // Setup form validation on the #register-form element
-      $("#myform").validate({
+      // // Setup form validation on the #register-form element
+      // $("#myform").validate({
     
-         // Specify the validation rules
-         rules: {
-            chat_user: "required",
-            chat_text: "required"
-         },
+         // // Specify the validation rules
+         // rules: {
+            // chat_user: "required",
+            // chat_text: "required"
+         // },
         
-         // Specify the validation error messages
-         messages: {
-            chat_user: "Bitte eine gültige Mailadresse angeben",
-            chat_text: "Dies ist ein Pflichtfeld"
-         },
+         // // Specify the validation error messages
+         // messages: {
+            // chat_user: "Bitte eine gültige Mailadresse angeben",
+            // chat_text: "Dies ist ein Pflichtfeld"
+         // },
         
-         submitHandler: function(form) {
-            form.submit();
-        }
-      });
-   });
+         // submitHandler: function(form) {
+            // form.submit();
+        // }
+      // });
+   // });
 
    
-//Pruefe Version
-var cur_version = document.getElementById("version").innerHTML; 
-var cur_version = cur_version.replace("Version ", ""); 
-var cur_version = cur_version.replace(".", "");
-var cur_version = cur_version.replace(".", "");
-if(cur_version < "200")
-{
-   show_message('Bitte aktualisieren Sie auf die neue Version. Aktuelle Version ('+cur_version+')');
-}
+// //Pruefe Version
+// var cur_version = document.getElementById("version").innerHTML; 
+// var cur_version = cur_version.replace("Version ", ""); 
+// var cur_version = cur_version.replace(".", "");
+// var cur_version = cur_version.replace(".", "");
+// if(cur_version < "200")
+// {
+   // show_message('Bitte aktualisieren Sie auf die neue Version. Aktuelle Version ('+cur_version+')');
+// }
 
 });//Ende $(document).ready(function(){
 // h_ios = 1;
