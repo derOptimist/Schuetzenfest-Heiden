@@ -213,7 +213,7 @@ alert("ready");
 // {
    // show_message('Bitte aktualisieren Sie auf die neue Version. Aktuelle Version ('+cur_version+')');
 // }
-
+alert("ready2");
 });//Ende $(document).ready(function(){
 // h_ios = 1;
    
