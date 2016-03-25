@@ -39,6 +39,7 @@
 <gap:plugin name="org.apache.cordova.device" />
 <gap:plugin name="com.phonegap.plugins.pushplugin" />
 <gap:plugin name="org.apache.cordova.dialogs" />
+<plugin name="cordova-plugin-network-information" spec="1.0.1" source="pgb" />
 <!-- <gap:plugin name="com.chanthu.evri.gcs-file-transfer" version="1.0.0" />
 <gap:plugin name="com.synconset.imageresizer" version="0.1.1" /> -->
 <access origin="http://phonegap.com" subdomains="true" />
