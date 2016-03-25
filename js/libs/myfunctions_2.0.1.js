@@ -12,6 +12,10 @@ var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen m
 var debug = 0;
 var chat_aktiv = 0;
 
+function checkConnection() {
+
+}
+
 $(document).ready(function(){
 $.mobile.defaultPageTransition = "none"
 $.mobile.defaultDialogTransition = 'none';
@@ -19,7 +23,8 @@ $.mobile.useFastClick = true;
 $.mobile.touchOverflowEnabled = true;
 alert("ready");
 
-function checkConnection() {
+
+
     var networkState = navigator.connection.type;
 
     var states = {};
@@ -33,9 +38,6 @@ function checkConnection() {
     states[Connection.NONE]     = 'No network connection';
 
     alert('Connection type: ' + states[networkState]);
-}
-
-checkConnection();
 
 
 if (window.localStorage.getItem("chat_aktiv") == 0)
