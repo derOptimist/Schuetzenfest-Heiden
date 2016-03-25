@@ -10,23 +10,28 @@ var chat_submit_time_old = '500000';
 var chat_submit_time_new = '';
 var chat_submit_diff = 10; //Differenz in Sekunden die zwischen 2 Posts liegen muss
 var debug = 0;
+var chat_aktiv = 0;
 
 $(document).ready(function(){
 $.mobile.defaultPageTransition = "none"
 $.mobile.defaultDialogTransition = 'none';
 $.mobile.useFastClick = true; 
 $.mobile.touchOverflowEnabled = true;
+
+if (window.localStorage.getItem("chat_aktiv") == 0)
+{
+   var neuerLink = document.createElement("label");
+   neuerLink.innerHTML = "Ihre Mailadresse wurde noch nicht aktiviert. F&uuml;r die Aktivierung geben Sie einfach in dem Feld 'Mailadresse' Ihre Mailadresse an und senden irgendeinen Text ab (Text wird nicht gespeichert). Dann wird Ihnen eine Aktvierungsmail mit einem Link an diese Adresse geschickt.";
+   neuerLink.style.color = "#FF0000";
+   document.getElementById("myform").insertBefore(neuerLink, null);
+}
+
 if(debug==1)
 {
    $("#app-status-ul").append('<li>'+new Date().getTime()+' - document ready</li>');
 }
 // Zeige Ladebalken
 $('.loading').show();
-//Pruefe Version
-if(document.getElementById("version").innerHTML != "Version 1.8.3")
-{
-   show_message("Bitte aktualisieren Sie auf die neue Version.");
-}
 
 // Hole allgemeine Daten
 $.ajax({
@@ -143,12 +148,12 @@ $.ajax({
   }
 });
 
-//Funktionen für Galerie
-$('.slideshow').cycle({
-   fx:     'fade',
-   next:   '#vorbutton',
-   prev:   '#zurueckbutton' 
-});
+// //Funktionen für Galerie
+// $('.slideshow').cycle({
+   // fx:     'fade',
+   // next:   '#vorbutton',
+   // prev:   '#zurueckbutton' 
+// });
 
 //Galerie bei IOS ausblenden
 var i = 0;
@@ -157,15 +162,17 @@ iDevice = ['iPad', 'iPhone', 'iPod'];
 for ( ; i < iDevice.length ; i++ ) 
 {
    if( navigator.platform === iDevice[i] ){ 
-      document.getElementById('s1').style.visibility = 'hidden';
-      document.getElementById('s1').style.display = 'none';
-      document.getElementById('s1_buttons').style.visibility = 'hidden';
-      document.getElementById('s1_buttons').style.display = 'none';
-      document.getElementById('s1_title').style.visibility = 'hidden';
-      document.getElementById('s1_title').style.display = 'none';
-      gallerie_pause(); 
+      // document.getElementById('s1').style.visibility = 'hidden';
+      // document.getElementById('s1').style.display = 'none';
+      // document.getElementById('s1_buttons').style.visibility = 'hidden';
+      // document.getElementById('s1_buttons').style.display = 'none';
+      // document.getElementById('s1_title').style.visibility = 'hidden';
+      // document.getElementById('s1_title').style.display = 'none';
+
+      // gallerie_pause(); 
       document.getElementById('webcal').style.visibility = 'visible';
       h_ios = 1;
+
       break; 
       }
 }
@@ -196,9 +203,19 @@ for ( ; i < iDevice.length ; i++ )
       });
    });
 
+   
+//Pruefe Version
+var cur_version = document.getElementById("version").innerHTML; 
+var cur_version = cur_version.replace("Version ", ""); 
+var cur_version = cur_version.replace(".", "");
+var cur_version = cur_version.replace(".", "");
+if(cur_version < "200")
+{
+   show_message('Bitte aktualisieren Sie auf die neue Version. Aktuelle Version ('+cur_version+')');
+}
 
 });//Ende $(document).ready(function(){
-h_ios = 1;
+// h_ios = 1;
    
 
 
@@ -336,7 +353,17 @@ function chat_submit(){
              success: function(res) {
                   show_message(res.returntext);
                   chat_refresh();
-                  document.getElementById("chat_text").value = "";
+                  if(res.returntext == "Gesendet")
+                  {
+                     document.getElementById("chat_text").value = "";
+                     chat_aktiv = 1;
+                     window.localStorage.setItem("chat_aktiv", chat_aktiv);
+                  }
+                  else
+                  {
+                     chat_aktiv = 0;
+                     window.localStorage.setItem("chat_aktiv", chat_aktiv);
+                  }
                   return false;
              },
              error: function(e) {
@@ -354,7 +381,7 @@ function chat_submit(){
       {
          var wait_seconds;
          wait_seconds = chat_submit_diff - rest;
-         show_message('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + 'Sekunden');
+         show_message('Es müssen ' + chat_submit_diff + ' Sekunden zwischen 2 Posts liegen. Gedulde dich noch ' + wait_seconds + ' Sekunden');
       }
       
       //Chat Benutzername merken
@@ -387,12 +414,12 @@ function chat_refresh(){
        }
    });
 };
-
+ 
 
 function show_message(txt){
    try
    {
-      navigator.notification.alert(txt,function() {}, 'Heiden', 'Ok');
+      navigator.notification.alert(txt,function() {}, 'Information', 'Ok');
    }
    catch(err)
    {
