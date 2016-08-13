@@ -48,7 +48,7 @@
 <allow-navigation href="http://schwitte.de/*" />
 <!-- <allow-navigation href="*" /> -->
 
-<plugin name="fr.louisbl.cordova.gpslocation" spec="0.1.0" source="pgb" />
+<plugin name="fr.louisbl.cordova.gpslocation" source="pgb" />
 
 <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
