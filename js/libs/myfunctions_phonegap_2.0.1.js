@@ -20,7 +20,7 @@ var pushNotification;
 function onDeviceReady() {
 try
 {
-
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
     pushNotification = window.plugins.pushNotification;
     if (device.platform == 'android' || device.platform == 'Android') {
         if(debug==1)
@@ -184,5 +184,5 @@ function onError(error) {
           'message: ' + error.message + '\n');
 }
 
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 //End Geo
