@@ -48,9 +48,7 @@
 <allow-navigation href="http://schwitte.de/*" />
 <!-- <allow-navigation href="*" /> -->
 
-<feature name="Geolocation">
-    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
-</feature>
+<plugin name="fr.louisbl.cordova.gpslocation" spec="0.1.0" source="pgb" />
 
 <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
