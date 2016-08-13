@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
     xmlns:gap   = "http://phonegap.com/ns/1.0"
     id          = "com.schuetzenfestheiden"
-    versionCode = "87" 
-    version     = "2.0.1" >
+    versionCode = "88" 
+    version     = "2.1.0" >
 
 <!-- <preference name="phonegap-version" value="3.7.0" /> -->
 
@@ -52,7 +52,7 @@
     <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
 </feature>
 
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
 
 </widget>
